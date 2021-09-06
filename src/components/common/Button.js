@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function Button({ type, content, onClick = () => {} }) {
+export default function Button({ type, content, onClick = () => {} , className}) {
 	return (
-		<button type={type} onClick={onClick}>
+		<button className={className} type={type} onClick={onClick}>
 			{content}
 		</button>
 	);
