@@ -11,4 +11,5 @@ export default function Button({ className, type, content, onClick = () => {} })
 Button.propTypes = {
   type: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
