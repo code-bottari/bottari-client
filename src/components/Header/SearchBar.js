@@ -47,7 +47,7 @@ const SearchIcon = styled.img`
   left: 29%;
 `;
 
-export default function SearchBar () {
+export default function SearchBar() {
   return (
     <Wrapper>
       <SearchBox>
