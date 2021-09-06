@@ -1,27 +1,25 @@
-import React from "react";
 import styled from "styled-components";
 
-import Input from "../common/Input";
 import Button from "../common/Button";
 
-const Shadow = styled.div`
-  margin-top: 24px;
+const Wrapper = styled.div`
+  margin-top: 25px;
+  text-align: center;
 `;
 
-const SearchInput = styled(Input)`
-  position: absolute;
-  width: 726px;
-  height: 40px;
-  left: 398px;
-  padding-left: 60px;
+const SearchBox = styled.div`
+  position: relative;
+`;
 
-  background: #FFFFFF;
+const SearchInput = styled.input`
+  width: 40%;
+  height: 25px;
+  padding: 10px 10px 10px 60px;
   border: 2px solid rgba(134, 64, 249, 0.48);
-  box-sizing: border-box;
   border-radius: 10px;
-
-  font-size: 20px;
+  background: #FFFFFF;
   caret-color: #8877E8;
+  font-size: 20px;
   box-shadow: 0 2.5px 2.5px 0px rgba(0, 0, 0, 0.15);
 
   &:focus {
@@ -31,32 +29,32 @@ const SearchInput = styled(Input)`
 
 const SearchButton = styled(Button)`
   position: absolute;
-  width: 117px;
-  height: 40px;
-  left: 1007px;
-
-  color: #FFFFFF;
-  background: #8877E8;
+  width: 110px;
+  height: 49px;
+  right: 23%;
   border: none;
   border-radius: 10px;
-
+  background: #8877E8;
+  color: #FFFFFF;
   font-size: 20px;
 `;
 
 const SearchIcon = styled.img`
   position: absolute;
-  width: 26px;
-  height: 22px;
-  left: 418px;
-  top: 35px;
+  width: 35px;
+  margin-top: 10px;
+  height: 30px;
+  left: 29%;
 `;
 
 export default function SearchBar () {
   return (
-    <Shadow>
-      <SearchInput type="text" placeholder="#HashTag" />
-      <SearchButton type="submit" content="검 색" />
-      <SearchIcon src={"images/search_icon.png"} alt="돋보기 아이콘" />
-    </Shadow>
+    <Wrapper>
+      <SearchBox>
+        <SearchInput type="text" placeholder="#HashTag" />
+        <SearchButton type="submit" content="검 색" />
+        <SearchIcon src={"images/search_icon.png"} alt="돋보기 아이콘" />
+      </SearchBox>
+    </Wrapper>
   );
 };
