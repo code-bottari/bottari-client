@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function Input({ type, placeholder = "" }) {
+export default function Input({ type, placeholder = "", className }) {
 	return (
-		<input type={type} placeholder={placeholder} />
+		<input className={className} type={type} placeholder={placeholder} />
 	);
 }
 

@@ -13,7 +13,7 @@ const SearchInput = styled(Input)`
   width: 726px;
   height: 40px;
   left: 398px;
-  padding-left: 13px;
+  padding-left: 60px;
 
   background: #FFFFFF;
   border: 2px solid rgba(134, 64, 249, 0.48);
@@ -43,11 +43,20 @@ const SearchButton = styled(Button)`
   font-size: 20px;
 `;
 
+const SearchIcon = styled.img`
+  position: absolute;
+  width: 26px;
+  height: 22px;
+  left: 418px;
+  top: 35px;
+`;
+
 export default function SearchBar () {
   return (
     <Shadow>
       <SearchInput type="text" placeholder="#HashTag" />
-      <SearchButton type="submit" content="검 색"></SearchButton>
+      <SearchButton type="submit" content="검 색" />
+      <SearchIcon src={"images/search_icon.png"} alt="돋보기 아이콘" />
     </Shadow>
   );
 };
