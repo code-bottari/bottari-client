@@ -31,11 +31,11 @@ export default function UserMenuModal() {
   const [modalVisible, setModalVisible] = useState(false);
 
   const openModal = () => {
-    setModalVisible(true)
+    setModalVisible(true);
   };
 
   const closeModal = () => {
-    setModalVisible(false)
+    setModalVisible(false);
   };
 
   return (
