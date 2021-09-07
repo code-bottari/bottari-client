@@ -25,7 +25,7 @@ const ModalInner = styled.div`
   background-color: #ffffff;
 `;
 
-export default function TestModal({ className, visible, children, onClose, maskClosable }) {
+export default function UserMenuModalWindow({ className, visible, children, onClose, maskClosable }) {
   const onMaskClick = (event) => {
     if (event.target === event.currentTarget) {
       onClose(event);
@@ -39,7 +39,7 @@ export default function TestModal({ className, visible, children, onClose, maskC
         onClick={maskClosable ? onMaskClick : null}
         visible={visible}
       >
-        <ModalInner tabIndex="0">
+        <ModalInner>
           {children}
         </ModalInner>
       </ModalWrapper>
@@ -47,7 +47,7 @@ export default function TestModal({ className, visible, children, onClose, maskC
   );
 }
 
-TestModal.propTypes = {
+UserMenuModalWindow.propTypes = {
   className: PropTypes.string,
   visible: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

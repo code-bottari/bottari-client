@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import styled from "styled-components";
 import Button from "../common/Button";
-import TestModal from "./UserMenuModalWindow";
+import UserMenuModalWindow from "./UserMenuModalWindow";
 
 import { button } from "../../constants/button";
 import { backgroundColor } from "../../constants/backgroundColor";
@@ -27,7 +27,7 @@ const MiddleModalButton = styled(Button)`
   }
 `;
 
-export default function UserMenuModalWindow() {
+export default function UserMenuModal() {
   const [modalVisible, setModalVisible] = useState(false);
 
   const openModal = () => {
@@ -43,7 +43,7 @@ export default function UserMenuModalWindow() {
       <button onClick={openModal}>Open Modal</button>
       {
         modalVisible &&
-        <TestModal
+        <UserMenuModalWindow
           visible={modalVisible}
           maskClosable={true}
           onClose={closeModal}
@@ -51,7 +51,7 @@ export default function UserMenuModalWindow() {
           <ModalButton type="Button" content="New Snippet" />
           <MiddleModalButton type="Button" content="My Page" />
           <ModalButton type="Button" content="Log out" />
-        </TestModal>
+        </UserMenuModalWindow>
       }
     </>
   );
