@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function Button({ type, content, onClick = () => {} }) {
-	return (
-		<button type={type} onClick={onClick}>
-			{content}
-		</button>
-	);
+export default function Button({ type, content, onClick = () => { } }) {
+  return (
+    <button type={type} onClick={onClick}>
+      {content}
+    </button>
+  );
 }
 
 Button.propTypes = {
