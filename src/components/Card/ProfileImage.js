@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
-const ProfileImageWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
   width: 320px;
+  height: 180px;
+`;
+
+const ProfileImageTool = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 180px;
   height: 180px;
 `;
 
@@ -14,19 +22,28 @@ const Image = styled.img`
   border-radius: 100%;
 `;
 
-const UploadingButton = styled.input`
+const ImageUploader = styled.div`
   position: absolute;
-  left: 190px;
-  bottom: 0px;
   width: 45px;
   height: 40px;
 `;
 
+const Uploader = styled.input`
+  display: none;
+`;
+
 export default function ProfileImage() {
   return (
-    <ProfileImageWrapper>
-      <Image src="/images/arbitrary_profile_image.jpeg" alt="프로필 이미지" width="180" height="180" />
-      <UploadingButton type="image" alt="이미지 추가" src="/images/image_uploader_icon.png" />
-    </ProfileImageWrapper>
+    <Wrapper>
+      <ProfileImageTool>
+        <Image src="/images/arbitrary_profile_image.jpeg" alt="프로필 이미지" width="180" height="180" />
+        <ImageUploader>
+          <label htmlFor="uploader">
+            <img src="/images/image_uploader_icon.png" alt="이미지 첨부" width="45px" height="40px" />
+          </label>
+          <Uploader type="file" id="uploader" />
+        </ImageUploader>
+      </ProfileImageTool>
+    </Wrapper>
   );
 }
