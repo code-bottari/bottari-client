@@ -30,7 +30,7 @@ export default function SelectBox() {
   };
 
   return (
-    <Select name="fruits" className="select" onChange={handleChangeSelect} value={selected}>
+    <Select name="sort" className="select" onChange={handleChangeSelect} value={selected}>
       <SelectOption value="default" disabled>정렬 순서</SelectOption>
       <SelectOption value="latest">최신순</SelectOption>
       <SelectOption value="like">좋아요 많은 순</SelectOption>
