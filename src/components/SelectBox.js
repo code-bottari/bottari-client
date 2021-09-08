@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 const Select = styled.select`
   appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
   width: 120px;
   height: 30px;
   padding: 5px 30px 5px 10px;
