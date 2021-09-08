@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 
 const buildStyle = ({
   margin,
+  padding,
   border,
   borderRadius,
   backgroundColor,
@@ -19,6 +20,7 @@ const buildStyle = ({
   focusColor,
 }) => css`
   margin: ${margin};
+  padding: ${padding};
   border: ${border};
   border-radius: ${borderRadius};
   background-color: ${backgroundColor};
@@ -101,6 +103,16 @@ const buttonType = {
     whiteSpace: "nowrap",
     hoverBoxShadow: "0px 2px 3px 1px rgba(0, 0, 0, 0.25)",
     activeBoxShadow: "inset 0px 1px 1px 1px rgba(0, 0, 0, 0.25)",
+  },
+  utility: {
+    padding: "6px 19px",
+    borderRadius: "5px",
+    backgroundColor: "#FFFFFF",
+    color: "#9871B7",
+    fontSize: "8px",
+    boxShadow: "1px 1px 4px rgba(0, 0, 0, 0.25)",
+    hoverBoxShadow: "0px 2px 3px 1px rgba(0, 0, 0, 0.25)",
+    activeBoxShadow: "inset 0px 1px 1px 1px rgba(0, 0, 0, 0.2)",
   },
   icon: {
     backgroundColor: "transparent",
