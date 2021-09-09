@@ -2,8 +2,9 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 const buildStyle = ({
-  margin,
+  width,
   padding,
+  margin,
   border,
   borderRadius,
   backgroundColor,
@@ -19,8 +20,9 @@ const buildStyle = ({
   focusBackgroundColor,
   focusColor,
 }) => css`
-  margin: ${margin};
+  width: ${width};
   padding: ${padding};
+  margin: ${margin};
   border: ${border};
   border-radius: ${borderRadius};
   background-color: ${backgroundColor};
@@ -48,15 +50,16 @@ const buildStyle = ({
 
 const buttonType = {
   userMenu: {
+    margin: "1px",
     backgroundColor: "#AEA5DF",
-    fontSize: "20px",
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
     hoverBackgroundColor: "#26BFA6",
     activeBackgroundColor: "#21A18C",
   },
   search: {
+    padding: "7px 15px",
     backgroundColor: "#8877E8",
-    fontSize: "20px",
+    fontSize: "10px",
     hoverBackgroundColor: "#26BFA6",
     activeBackgroundColor: "#21A18C",
   },
@@ -81,16 +84,18 @@ const buttonType = {
     borderRadius: "5px",
     backgroundColor: "#FFFFFF",
     color: "#9871B7",
-    fontSize: "20px",
+    fontSize: "13px",
     boxShadow: "1px 1px 5px rgba(0, 0, 0, 0.25)",
     focusBackgroundColor: "#9871B7",
     focusColor: "#FFFFFF",
   },
   notification: {
+    width: "270px",
+    margin: "2px",
     border: "1px solid #AEA5DF",
     backgroundColor: "#FFFFFF",
     color: "#000000",
-    fontSize: "11px",
+    fontSize: "10px",
     boxShadow: "0px 1px 3px 1px rgba(0, 0, 0, 0.25)",
     hoverBoxShadow: "0px 2px 5px 3px rgba(0, 0, 0, 0.25)",
     activeBackgroundColor: "#DCF1EC",
@@ -106,6 +111,7 @@ const buttonType = {
   },
   utility: {
     padding: "6px 19px",
+    margin: "2px",
     borderRadius: "5px",
     backgroundColor: "#FFFFFF",
     color: "#9871B7",
@@ -120,12 +126,12 @@ const buttonType = {
 };
 
 const StyledButton = styled.button`
-  padding: 13px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 10px;
   background-color: #AEA5DF;
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 10px;
   line-height: 0.9;
   transition: 0.2s;
 
@@ -151,11 +157,9 @@ export default function Button({
 
 Button.propTypes = {
   type: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  name: PropTypes.string,
   onClick: PropTypes.func,
+  children: PropTypes.node,
 };
 
 Button.defaultProps = {
