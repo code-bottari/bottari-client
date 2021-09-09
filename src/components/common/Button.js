@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function Button({ className, type, content, onClick = () => {} }) {
+export default function Button({ type, content, onClick = () => {} , className}) {
 	return (
 		<button className={className} type={type} onClick={onClick}>
 			{content}
