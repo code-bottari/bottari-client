@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
 
 const buildStyle = ({
   width,
@@ -152,23 +151,13 @@ export default function Button({
   children,
 }) {
   return (
-    <StyledButton
-      type={type}
-      name={name}
-      onClick={onClick}
-    >
-      {children}
-    </StyledButton>
+    <button className={className} type={type} onClick={onClick}>
+      {content}
+    </button>
   );
 }
 
 Button.propTypes = {
-  type: PropTypes.string,
-  name: PropTypes.string,
-  onClick: PropTypes.func,
-  children: PropTypes.node,
-};
-
-Button.defaultProps = {
-  type: "button",
+  type: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
 };
