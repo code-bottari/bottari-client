@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
@@ -17,7 +16,7 @@ const buildStyle = ({
 `;
 
 const dropdownType = {
-  list:{
+  list: {
     padding: "10px 20px",
     overflowWrap: "break-word",
     boxShadow: "0px 5px 5px 1px rgba(0, 0, 0, 0.25)",

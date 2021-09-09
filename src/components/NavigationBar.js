@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import Button from "./common/Button";
 
+import LANGUAGES from "../constants/languages";
+
 const NavigationWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -9,7 +11,9 @@ const NavigationWrapper = styled.div`
 `;
 
 function NavigationBar() {
-  const languageList = ["All", "Python", "Java", "JavaScript", "C#", "C/C++", "PHP", "R", "Objective-C", "Others"];
+  const { ALL, PYTHON, JAVA, JAVASCRIPT, PHP, R, OBJECTIVE_C, OTHERS } = LANGUAGES;
+
+  const languageList = [ALL, PYTHON, JAVA, JAVASCRIPT, "C#", "C/C++", PHP, R, OBJECTIVE_C, OTHERS];
 
   return (
     <NavigationWrapper>

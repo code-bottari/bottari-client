@@ -1,3 +1,6 @@
+import CONSTANTS from "./constants/constants";
+import MESSAGES from "./constants/messages";
+
 const bucketName = process.env.REACT_APP_S3_BUCKET_NAME;
 const bucketRegion = process.env.REACT_APP_S3_BUCKET_REGION;
 const IdentityPoolId = process.env.REACT_APP_S3_IDENTITY_POOL_ID;
@@ -20,32 +23,33 @@ const s3 = new AWS.S3({
 
 export default function addPhoto() {
   const files = document.getElementById("uploader").files;
-  let imageURL;
+
+  const { EXCESSIVE_IMAGE_SIZE } = MESSAGES;
+  const { DEFAULT_IMAGE_URL } = CONSTANTS;
 
   if (!files.length) {
-    imageURL = "https://test-bucket960714.s3.ap-northeast-2.amazonaws.com/profilePic/bottari.png";
-
-    return imageURL;
+    return DEFAULT_IMAGE_URL;
   }
 
   const maxSize = 1 * 1024 * 1024;
   const fileSize = files[0].size;
 
-  if (fileSize > maxSize){
-    alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
+  if (fileSize > maxSize) {
+    alert(EXCESSIVE_IMAGE_SIZE);
 
     return;
   }
 
   const file = files[0];
   const fileName = file.name;
-  const albumPhotosKey = "profilePic";
+  const ALBUM_PHOTOS_KEY = "profilePic";
+  const ACL = "public-read";
 
-  const photoKey = albumPhotosKey + "/" + fileName;
+  const Key = `${ALBUM_PHOTOS_KEY}/${fileName}`;
 
   return s3.upload({
-    Key: photoKey,
+    Key,
     Body: file,
-    ACL: "public-read"
+    ACL,
   }).promise();
 }

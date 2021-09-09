@@ -1,9 +1,13 @@
 import Button from "./common/Button";
 
+import METHODS from "../constants/methods";
+
 export default function NotificationButton() {
   const handleButtonClick = async () => {
+    const { GET } = METHODS;
+
     await fetch(`${process.env.REACT_APP_SERVER_URL}/users/notification`, {
-      method: "get",
+      method: GET,
       headers: {
         "Content-Type": "application/json",
       },

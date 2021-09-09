@@ -1,8 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
-import ERROR from "../constants/error";
-import MESSAGE from "../constants/messages";
+import ERRORS from "../constants/errors";
+import MESSAGES from "../constants/messages";
 
 const login = async () => {
   const provider = new firebase
@@ -13,14 +13,14 @@ const login = async () => {
     AUTH_CANCELLED_POPUP_REQUEST,
     AUTH_POPUP_CLOSED_BY_USER,
     AUTH_POPUP_BLOCKED,
-  } = ERROR;
+  } = ERRORS;
 
   const {
     DUPLICATE_REQUEST,
     POPUP_BLOCKED,
     POPUP_CLOSED,
     UNEXPECTED_ERROR,
-  } = MESSAGE;
+  } = MESSAGES;
 
   try {
     await firebase
@@ -47,7 +47,7 @@ const login = async () => {
 };
 
 const logout = async () => {
-  const { FAILURE_LOGOUT } = ERROR;
+  const { FAILURE_LOGOUT } = ERRORS;
 
   try {
     await firebase
@@ -60,7 +60,7 @@ const logout = async () => {
 };
 
 const getToken = async () => {
-  const { EXPIRED_TOKEN } = MESSAGE;
+  const { EXPIRED_TOKEN } = MESSAGES;
 
   const token = await firebase
     .auth()
