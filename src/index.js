@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "./config/firebase";
 
+require("dotenv").config();
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

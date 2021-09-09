@@ -6,7 +6,11 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+<<<<<<< HEAD
     "firebase": "^8.10.0",
+=======
+    "aws-sdk": "^2.984.0",
+>>>>>>> origin/upload_profile_image
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
