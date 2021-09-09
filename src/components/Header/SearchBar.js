@@ -53,7 +53,7 @@ export default function SearchBar() {
       <SearchBox>
         <SearchInput type="text" placeholder="#HashTag" />
         <SearchButton type="submit" content="검 색" />
-        <SearchIcon src={"images/search_icon.png"} alt="돋보기 아이콘" />
+        <SearchIcon src="images/search_icon.png" alt="돋보기 아이콘" />
       </SearchBox>
     </Wrapper>
   );
