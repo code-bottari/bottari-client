@@ -25,10 +25,10 @@ const ModalInner = styled.div`
   background-color: #ffffff;
 `;
 
-export default function UserMenuModalWindow({ className, visible, children, onClose, maskClosable }) {
-  const onMaskClick = (event) => {
+export default function UserMenuModalWindow({ className, visible, children, onClick }) {
+  const closeWhenOutsideClicked = (event) => {
     if (event.target === event.currentTarget) {
-      onClose(event);
+      onClick(event);
     }
   };
 
@@ -36,7 +36,7 @@ export default function UserMenuModalWindow({ className, visible, children, onCl
     <>
       <ModalWrapper
         className={className}
-        onClick={maskClosable ? onMaskClick : null}
+        onClick={closeWhenOutsideClicked}
         visible={visible}
       >
         <ModalInner>

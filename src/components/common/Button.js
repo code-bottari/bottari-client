@@ -54,6 +54,7 @@ const buttonType = {
     activeBackgroundColor: "#21A18C",
   },
   userMenu: {
+    width: "180px",
     margin: "1px",
     backgroundColor: "#AEA5DF",
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",

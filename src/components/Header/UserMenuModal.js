@@ -1,56 +1,31 @@
 import { useState } from "react";
 
-import styled from "styled-components";
 import Button from "../common/Button";
 import UserMenuModalWindow from "./UserMenuModalWindow";
 
-import { button } from "../../constants/button";
-import { backgroundColor } from "../../constants/backgroundColor";
-
-const ModalButton = styled(Button)`
-  ${button.userModalButton}
-  ${backgroundColor.mauve}
-
-  &:hover {
-    ${button.buttonHover}
-  }
-`;
-
-const MiddleModalButton = styled(Button)`
-  ${button.userModalButton}
-  ${backgroundColor.mauve}
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-  &:hover {
-    ${button.buttonHover}
-  }
-`;
-
 export default function UserMenuModal() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
-    setModalVisible(true);
+    setIsOpen(true);
   };
 
   const closeModal = () => {
-    setModalVisible(false);
+    setIsOpen(false);
   };
 
   return (
     <>
       <button onClick={openModal}>Open Modal</button>
       {
-        modalVisible &&
+        isOpen &&
         <UserMenuModalWindow
-          visible={modalVisible}
-          maskClosable={true}
-          onClose={closeModal}
+          visible={isOpen}
+          onClick={closeModal}
         >
-          <ModalButton type="Button" content="New Snippet" />
-          <MiddleModalButton type="Button" content="My Page" />
-          <ModalButton type="Button" content="Log out" />
+          <Button name="userMenu" children="New Snippet" />
+          <Button name="userMenu" children="My Page" />
+          <Button name="userMenu" children="Log out" />
         </UserMenuModalWindow>
       }
     </>
