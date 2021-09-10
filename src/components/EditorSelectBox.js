@@ -11,7 +11,7 @@ const Select = styled.select`
   border-radius: 4px;
   outline: 0 none;
   background: black url("images/grey_arrow.png") calc(100% - 5px) center no-repeat;
-  color: #8E9093;
+  color: var(--color-gray);
   font-size: 20px;
   font-family: Inter;
   font-weight: bold;
