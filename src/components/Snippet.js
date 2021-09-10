@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import SnippetFooter from "./SnippetFooter";
 import SnippetHeader from "./SnippetHeader";
+import SnippetFooter from "./SnippetFooter";
 
 const SnippetBox = styled.div`
   width: 700px;

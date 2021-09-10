@@ -13,8 +13,8 @@ const CreatorBox = styled.div`
   grid-template-columns: 50px 100px 460px 80px;
   grid-template-rows: 25px 25px;
   grid-template-areas:
-		"userImage userName . copyButton"
-		"userImage subscriber . copyButton";
+    "userImage userName . copyButton"
+    "userImage subscriber . copyButton";
   align-items: center;
   justify-items: center;
   width: 690px;
