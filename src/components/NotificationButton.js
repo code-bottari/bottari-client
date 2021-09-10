@@ -3,24 +3,31 @@ import { useState } from "react";
 import Button from "./common/Button";
 import Dropdown from "../components/common/Dropdown";
 
-import METHODS from "../constants/methods";
+import { GET } from "../constants/methods";
 
 export default function NotificationButton() {
   const [isClicked, setClickStatus] = useState(false);
   const [notifications, setNotifications] = useState([]);
 
   const handleButtonClick = async () => {
-    const { GET } = METHODS;
+    try {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/notification`, {
+        method: GET,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-    const notifications = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/notification`, {
-      method: GET,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+      const data = await response.json();
+      const { notifications } = data;
 
-    setClickStatus(true);
-    setNotifications(notifications);
+      setClickStatus(true);
+      setNotifications(notifications);
+    } catch (error) {
+      if (error) {
+        alert(error.message); // 에러 처리
+      }
+    }
   };
 
   const handleDropdownClick = ({ target, currentTarget }) => {
@@ -38,7 +45,14 @@ export default function NotificationButton() {
       </Button>
       {isClicked && (
         <Dropdown name="list" onClick={handleDropdownClick}>
-          {notifications.map((notification) => <Button name="notification" key={notification._id}>{notification}</Button>)}
+          {notifications.map((notification) => (
+            <Button
+              name="notification"
+              key={notification._id}
+            >
+              {notification}
+            </Button>
+          ))}
         </Dropdown>
       )}
     </>
