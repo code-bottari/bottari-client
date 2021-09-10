@@ -45,9 +45,9 @@ const StyledDropdown = styled.div`
   ${({ name }) => buildStyle(dropdownType[name])}
 `;
 
-export default function Dropdown({ name, children }) {
+export default function Dropdown({ name, onClick, children }) {
   return (
-    <StyledDropdown name={name}>
+    <StyledDropdown name={name} onClick={onClick}>
       {children}
     </StyledDropdown>
   );
@@ -55,5 +55,6 @@ export default function Dropdown({ name, children }) {
 
 Dropdown.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.node,
+  onClick: PropTypes.func,
+  children: PropTypes.node.isRequired,
 };
