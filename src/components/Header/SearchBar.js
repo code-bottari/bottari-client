@@ -2,19 +2,24 @@ import styled from "styled-components";
 
 import Button from "../common/Button";
 
-const Wrapper = styled.div`
-  margin-top: 25px;
+const SearchBox = styled.div`
+  position: relative;
   text-align: center;
 `;
 
-const SearchBox = styled.div`
-  position: relative;
+const SearchIcon = styled.img`
+  position: absolute;
+  width: 35px;
+  height: 30px;
+  margin-top: 8px;
+  margin-left: 10px;
 `;
 
 const SearchInput = styled.input`
   width: 40%;
-  height: 25px;
+  height: 20px;
   padding: 10px 10px 10px 60px;
+  margin-right: 10px;
   border: 2px solid rgba(134, 64, 249, 0.48);
   border-radius: 10px;
   background: #FFFFFF;
@@ -27,34 +32,12 @@ const SearchInput = styled.input`
   }
 `;
 
-const SearchButton = styled(Button)`
-  position: absolute;
-  width: 110px;
-  height: 49px;
-  right: 23%;
-  border: none;
-  border-radius: 10px;
-  background: #8877E8;
-  color: #FFFFFF;
-  font-size: 20px;
-`;
-
-const SearchIcon = styled.img`
-  position: absolute;
-  width: 35px;
-  margin-top: 10px;
-  height: 30px;
-  left: 29%;
-`;
-
 export default function SearchBar() {
   return (
-    <Wrapper>
-      <SearchBox>
-        <SearchInput type="text" placeholder="#HashTag" />
-        <SearchButton type="submit" content="검 색" />
-        <SearchIcon src={"images/search_icon.png"} alt="돋보기 아이콘" />
-      </SearchBox>
-    </Wrapper>
+    <SearchBox>
+      <SearchIcon src="images/search_icon.png" alt="돋보기 아이콘" />
+      <SearchInput type="text" placeholder="#HashTag" />
+      <Button type="submit" name="search" children="검 색" />
+    </SearchBox>
   );
 };
