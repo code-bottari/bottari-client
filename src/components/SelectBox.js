@@ -1,6 +1,9 @@
 import { useState } from "react";
-
 import styled from "styled-components";
+
+import VARIANTS from "../constants/variants";
+
+const { SELECT } = VARIANTS;
 
 const Select = styled.select`
   appearance: none;
@@ -28,7 +31,7 @@ export default function SelectBox() {
   };
 
   return (
-    <Select variant="sort" className="select" onChange={handleChangeSelect} value={selected}>
+    <Select variant="sort" className={SELECT} onChange={handleChangeSelect} value={selected}>
       <SelectOption value="default" disabled>정렬 순서</SelectOption>
       <SelectOption value="latest">최신순</SelectOption>
       <SelectOption value="like">좋아요 많은 순</SelectOption>

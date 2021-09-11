@@ -3,6 +3,10 @@ import { useState } from "react";
 import Button from "../../common/Button";
 import UserMenuDropdown from "./UserMenuDropdown";
 
+import VARIANTS from "../../../constants/variants";
+
+const { ICON } = VARIANTS;
+
 export default function UserMenuButton({ onClick }) {
   const [toggleDropDown, setToggleDropDown] = useState(false);
 
@@ -18,7 +22,7 @@ export default function UserMenuButton({ onClick }) {
 
   return (
     <>
-      <Button variant="icon" children={UserMenuIcon} onClick={handleDropDown} />
+      <Button variant={ICON} children={UserMenuIcon} onClick={handleDropDown} />
       {toggleDropDown && <UserMenuDropdown onClick={handleLoginStatus} />}
     </>
   );

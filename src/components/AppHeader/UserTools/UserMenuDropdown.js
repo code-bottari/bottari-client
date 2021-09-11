@@ -6,6 +6,10 @@ import Dropdown from "../../common/Dropdown";
 import firebaseAPI from "../../../api/firebase";
 import { postData } from "../../../api/service";
 
+import VARIANTS from "../../../constants/variants";
+
+const { LIST } = VARIANTS;
+
 const DropdownWrapper = styled.div`
   z-index: 1;
 `;
@@ -38,6 +42,7 @@ export default function UserMenuDropdown({ onClick }) {
 
   const userMenuList = ["New Snippet", "My page", "Logout"].map((text) => {
     const isLogoutButton = text === "Logout";
+
     return (
       <Button
         variant="userMenu"
@@ -50,7 +55,7 @@ export default function UserMenuDropdown({ onClick }) {
 
   return (
     <DropdownWrapper>
-      <Dropdown variant="list" children={userMenuList} />
+      <Dropdown variant={LIST} children={userMenuList} />
     </DropdownWrapper>
   );
 }

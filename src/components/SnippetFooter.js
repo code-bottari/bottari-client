@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
 
+import VARIANTS from "../constants/variants";
+
+const { ICON } = VARIANTS;
+
 const FooterBox = styled.div`
   display: flex;
   width: 700px;
@@ -48,11 +52,11 @@ export default function SnippetFooter() {
   return (
     <FooterBox>
       <Date>2020.10.10</Date>
-      <IconButton variant="icon">
+      <IconButton variant={ICON}>
         <IconImage src="images/like.png" />
       </IconButton>
       <LikeNumber>20</LikeNumber>
-      <IconButton variant="icon">
+      <IconButton variant={ICON}>
         <IconImage src="images/comment.png" />
       </IconButton>
       <CommentNumber>30</CommentNumber>

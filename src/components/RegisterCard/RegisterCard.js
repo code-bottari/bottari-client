@@ -13,6 +13,7 @@ import addPhoto from "../../addPhoto";
 import MESSAGES from "../../constants/messages";
 import METHODS from "../../constants/methods";
 import NAMES from "../../constants/names";
+import VARIANTS from "../../constants/variants";
 
 const {
   FAILED_UPLOAD_IMAGE,
@@ -22,6 +23,11 @@ const {
 const { POST } = METHODS;
 
 const { REGISTRATION } = NAMES;
+
+const {
+  NICKNAME,
+  BASIC
+} = VARIANTS;
 
 const Card = styled.div`
   display: flex;
@@ -93,8 +99,8 @@ export default function RegisterCard() {
     <Card>
       <h1 className="title">사용자 정보 등록</h1>
       <ProfileImage />
-      <Nickname variant="nickname" reference={referenceTarget} message={failureReason} />
-      <Button variant="basic" onClick={handleButtonClick} children={REGISTRATION} />
+      <Nickname variant={NICKNAME} reference={referenceTarget} message={failureReason} />
+      <Button variant={BASIC} onClick={handleButtonClick} children={REGISTRATION} />
     </Card>
   );
 }

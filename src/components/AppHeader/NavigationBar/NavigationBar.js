@@ -2,12 +2,18 @@ import styled from "styled-components";
 
 import Button from "../../common/Button";
 
+import VARIANTS from "../../../constants/variants";
 import LANGUAGES from "../../../constants/languages";
 
-const { ALL,
+const { TOOL } = VARIANTS;
+
+const {
+  ALL,
   PYTHON,
   JAVA,
   JAVASCRIPT,
+  CSHARP,
+  C_CPP,
   PHP,
   R,
   OBJECTIVE_C,
@@ -22,12 +28,12 @@ const NavigationWrapper = styled.div`
 
 function NavigationBar() {
 
-  const languageList = [ALL, PYTHON, JAVA, JAVASCRIPT, "C#", "C/C++", PHP, R, OBJECTIVE_C, OTHERS];
+  const languageList = [ALL, PYTHON, JAVA, JAVASCRIPT, CSHARP, C_CPP, PHP, R, OBJECTIVE_C, OTHERS];
 
   return (
     <NavigationWrapper>
       {languageList.map((language) => {
-        return <Button key={language} variant="tool" >{language}</Button>;
+        return <Button key={language} variant={TOOL} >{language}</Button>;
       })}
     </NavigationWrapper>
   );

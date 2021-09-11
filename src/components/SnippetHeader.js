@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 import Button from "./common/Button";
 
+import VARIANTS from "../constants/variants";
+
+const { TOOL } = VARIANTS;
+
 const HeaderBox = styled.div`
   width: 690px;
   height: 95px;
@@ -84,7 +88,7 @@ export default function SnippetHeader() {
         <CreatorImage src="/images/like.png" alt="프로필 이미지" width="40px" height="40px" />
         <CreatorName>James</CreatorName>
         <SubscriberImage src="images/Subscribers.png" />
-        <Button variant="tool" children="복사" />
+        <Button variant={TOOL} children="복사" />
       </CreatorBox>
       <TitleBox>
         <HashTag>#LinkedList</HashTag>

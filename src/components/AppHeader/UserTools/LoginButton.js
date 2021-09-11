@@ -3,7 +3,10 @@ import Button from "../../common/Button";
 import firebaseAPI from "../../../api/firebase";
 import { postData } from "../../../api/service";
 
+import VARIANTS from "../../../constants/variants";
 import MESSAGES from "../../../constants/messages";
+
+const { BASIC } = VARIANTS;
 
 const {
   FAILURE_LOGIN,
@@ -42,5 +45,5 @@ export default function LoginButton({ onClick }) {
     setLoginStatus(true);
   };
 
-  return <Button variant="basic" onClick={handleLogin}>로그인</Button>;
+  return <Button variant={BASIC} onClick={handleLogin}>로그인</Button>;
 }

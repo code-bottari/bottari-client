@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 import Button from "../../common/Button";
 
+import VARIANTS from "../../../constants/variants";
+
+const { SEARCH } = VARIANTS;
+
 const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -33,7 +37,7 @@ export default function SearchBar() {
     <SearchWrapper>
       <SearchIcon src="images/search_icon.png" alt="돋보기 아이콘" />
       <SearchInput type="text" placeholder="#HashTag" />
-      <Button variant="search" children="검 색" />
+      <Button variant={SEARCH} children="검 색" />
     </SearchWrapper>
   );
 };

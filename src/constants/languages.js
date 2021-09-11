@@ -3,6 +3,8 @@ const LANGUAGES = {
   PYTHON: "Python",
   JAVA: "Java",
   JAVASCRIPT: "JavaScript",
+  CSHARP: "C#",
+  C_CPP: "C/C++",
   PHP: "PHP",
   R: "R",
   OBJECTIVE_C: "Objective-C",
