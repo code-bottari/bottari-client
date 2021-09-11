@@ -8,12 +8,15 @@ const {
   UNSUITABLE_CASE,
 } = MESSAGES;
 
+const MAX_NUMBER = 5;
+const MAX_LENGTH = 16;
+
 const validateHashtag = (hashtagList) => {
-  if (hashtagList.length > 5) {
+  if (hashtagList.length > MAX_NUMBER) {
     return EXCESSIVE_HASHTAG_NUMBER;
   }
 
-  const hasExeedingLength = hashtagList.some((hashtag) => hashtag.length > 16);
+  const hasExeedingLength = hashtagList.some((hashtag) => hashtag.length > MAX_LENGTH);
 
   if (hasExeedingLength) {
     return EXCESSIVE_HASHTAG_LENGTH;

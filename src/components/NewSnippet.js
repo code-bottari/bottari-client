@@ -3,9 +3,10 @@ import styled, { css } from "styled-components";
 import { nanoid } from "nanoid";
 
 import Button from "../components/common/Button";
-import MESSAGES from "../constants/messages";
 
 import validateHashtag from "../utils/validateHashtag";
+
+import MESSAGES from "../constants/messages";
 
 const { OK } = MESSAGES;
 
@@ -56,9 +57,9 @@ const Input = styled.input`
 `;
 
 const Message = styled.p`
-  font-size: 13px;
   margin-top: 5px;
   color: #EE0004;
+  font-size: 13px;
   text-align: right;
 `;
 
@@ -69,9 +70,9 @@ export default function NewSnippet() {
 
   const handleButtonClick = () => {
     const hashtags = hashtagInput.current.value;
-    const hashtagList = hashtags.split(" ");
+    const splitedHashtags = hashtags.split(" ");
 
-    const validationResult = validateHashtag(hashtagList);
+    const validationResult = validateHashtag(splitedHashtags);
 
     if (validationResult !== OK) {
       setFailureReason(validationResult);
