@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import styled from "styled-components";
 
 import Snippet from "./Snippet";
@@ -16,7 +17,7 @@ export default function SnippetList({ snippets }) {
     <Wrapper>
       <ListBox>
         {snippets.map((data) => (
-          <Snippet data={data} />
+          <Snippet data={data} key={nanoid()} />
         ))}
       </ListBox>
     </Wrapper>
