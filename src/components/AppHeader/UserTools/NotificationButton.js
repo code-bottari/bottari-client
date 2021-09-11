@@ -42,14 +42,14 @@ export default function NotificationButton() {
 
   return (
     <>
-      <Button name="icon" onClick={handleButtonClick}>
+      <Button variant="icon" onClick={handleButtonClick}>
         <img src="images/notification_icon.png" alt="알림 버튼" width="40px" height="35px" />
       </Button>
       {isClicked && (
-        <Dropdown name="list" onClick={handleDropdownClick}>
+        <Dropdown variant="list" onClick={handleDropdownClick}>
           {notifications.map((notification) => (
             <Button
-              name="notification"
+              variant="notification"
               key={notification._id}
             >
               {notification}

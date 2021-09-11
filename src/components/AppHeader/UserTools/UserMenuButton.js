@@ -18,7 +18,7 @@ export default function UserMenuButton({ onClick }) {
 
   return (
     <>
-      <Button name="icon" children={UserMenuIcon} onClick={handleDropDown} />
+      <Button variant="icon" children={UserMenuIcon} onClick={handleDropDown} />
       {toggleDropDown && <UserMenuDropdown onClick={handleLoginStatus} />}
     </>
   );

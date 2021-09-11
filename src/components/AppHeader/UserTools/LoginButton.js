@@ -42,5 +42,5 @@ export default function LoginButton({ onClick }) {
     setLoginStatus(true);
   };
 
-  return <Button name="basic" onClick={handleLogin}>로그인</Button>;
+  return <Button variant="basic" onClick={handleLogin}>로그인</Button>;
 }

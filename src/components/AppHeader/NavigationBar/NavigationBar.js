@@ -27,7 +27,7 @@ function NavigationBar() {
   return (
     <NavigationWrapper>
       {languageList.map((language) => {
-        return <Button key={language} name="tool" >{language}</Button>;
+        return <Button key={language} variant="tool" >{language}</Button>;
       })}
     </NavigationWrapper>
   );

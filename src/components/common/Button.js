@@ -144,19 +144,19 @@ const StyledButton = styled.button`
   line-height: 0.9;
   transition: 0.2s;
 
-  ${({ name }) => buildStyle(buttonType[name])}
+  ${({ variant }) => buildStyle(buttonType[variant])}
 `;
 
 export default function Button({
   type,
-  name,
+  variant,
   onClick,
   children,
 }) {
   return (
     <StyledButton
       type={type}
-      name={name}
+      variant={variant}
       onClick={onClick}
     >
       {children}
@@ -166,7 +166,7 @@ export default function Button({
 
 Button.propTypes = {
   type: PropTypes.string,
-  name: PropTypes.string,
+  variant: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node,
 };

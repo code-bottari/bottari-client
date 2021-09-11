@@ -33,7 +33,7 @@ export default function LanguageSelectBox() {
   };
 
   return (
-    <Select name="language" className="select" onChange={handleChangeSelect} value={selected}>
+    <Select variant="language" className="select" onChange={handleChangeSelect} value={selected}>
       {["Python", "Java", "JavaScript", "C#", "C/C++", "PHP", "R", "Objective-C"].map((language) => {
         return <SelectOption value={language}>{language}</SelectOption>;
       })}

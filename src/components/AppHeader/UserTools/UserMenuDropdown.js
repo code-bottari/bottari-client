@@ -40,7 +40,7 @@ export default function UserMenuDropdown({ onClick }) {
     const isLogoutButton = text === "Logout";
     return (
       <Button
-        name="userMenu"
+        variant="userMenu"
         onClick={isLogoutButton ? handleLogout : undefined}
       >
         {text}
@@ -50,7 +50,7 @@ export default function UserMenuDropdown({ onClick }) {
 
   return (
     <DropdownWrapper>
-      <Dropdown name="list" children={userMenuList} />
+      <Dropdown variant="list" children={userMenuList} />
     </DropdownWrapper>
   );
 }

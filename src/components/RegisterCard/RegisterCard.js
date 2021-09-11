@@ -93,8 +93,8 @@ export default function RegisterCard() {
     <Card>
       <h1 className="title">사용자 정보 등록</h1>
       <ProfileImage />
-      <Nickname name="nickname" reference={referenceTarget} message={failureReason} />
-      <Button name="basic" onClick={handleButtonClick} children={REGISTRATION} />
+      <Nickname variant="nickname" reference={referenceTarget} message={failureReason} />
+      <Button variant="basic" onClick={handleButtonClick} children={REGISTRATION} />
     </Card>
   );
 }

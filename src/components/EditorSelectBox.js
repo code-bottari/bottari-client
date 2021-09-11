@@ -30,7 +30,7 @@ export default function EditorSelectBox({ type, options }) {
   };
 
   return (
-    <Select name="sort" className="select" onChange={handleChangeSelect} value={selected}>
+    <Select variant="sort" className="select" onChange={handleChangeSelect} value={selected}>
       <SelectOption value="default" disabled>{type}</SelectOption>
       {options.map((theme) => (
         <SelectOption value={theme}>

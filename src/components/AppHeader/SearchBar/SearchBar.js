@@ -33,7 +33,7 @@ export default function SearchBar() {
     <SearchWrapper>
       <SearchIcon src="images/search_icon.png" alt="돋보기 아이콘" />
       <SearchInput type="text" placeholder="#HashTag" />
-      <Button name="search" children="검 색" />
+      <Button variant="search" children="검 색" />
     </SearchWrapper>
   );
 };

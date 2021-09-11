@@ -48,11 +48,11 @@ export default function SnippetFooter() {
   return (
     <FooterBox>
       <Date>2020.10.10</Date>
-      <IconButton name="icon">
+      <IconButton variant="icon">
         <IconImage src="images/like.png" />
       </IconButton>
       <LikeNumber>20</LikeNumber>
-      <IconButton name="icon">
+      <IconButton variant="icon">
         <IconImage src="images/comment.png" />
       </IconButton>
       <CommentNumber>30</CommentNumber>
