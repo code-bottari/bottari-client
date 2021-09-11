@@ -1,6 +1,14 @@
+import { useRef, useState } from "react";
 import styled, { css } from "styled-components";
+import { nanoid } from "nanoid";
 
 import Button from "../components/common/Button";
+
+import validateHashtag from "../utils/validateHashtag";
+
+import MESSAGES from "../constants/messages";
+
+const { OK } = MESSAGES;
 
 const commonStyle = css`
   display: block;
@@ -48,7 +56,29 @@ const Input = styled.input`
   width: 470px;
 `;
 
+const Message = styled.p`
+  margin-top: 5px;
+  color: #EE0004;
+  font-size: 13px;
+  text-align: right;
+`;
+
 export default function NewSnippet() {
+  const [failureReason, setFailureReason] = useState("");
+
+  const hashtagInput = useRef();
+
+  const handleButtonClick = () => {
+    const hashtags = hashtagInput.current.value;
+    const splitedHashtags = hashtags.split(" ");
+
+    const validationResult = validateHashtag(splitedHashtags);
+
+    if (validationResult !== OK) {
+      setFailureReason(validationResult);
+    }
+  };
+
   return (
     <SnippetToolWrapper>
       <InputContainer>
@@ -57,19 +87,20 @@ export default function NewSnippet() {
           <Select>
             <option hidden>언어 선택</option>
             {["Python", "Java", "JavaScript", "C#", "C/C++", "PHP", "R", "Objective-C"].map((language) => (
-              <option>{language}</option>
+              <option key={nanoid()}>{language}</option>
             ))}
           </Select>
         </label>
         <label>
           해시태그
-          <Input type="text" placeholder="#HashTag" />
+          <Input type="text" placeholder="#HashTag" ref={hashtagInput} />
+          <Message>{failureReason}</Message>
         </label>
       </InputContainer>
       <div>
         에디터
       </div>
-      <Button type="submit" name="edit" children="생성하기" />
+      <Button type="submit" name="edit" onClick={() => handleButtonClick(hashtagInput)} children="생성하기" />
     </SnippetToolWrapper>
   );
 }
