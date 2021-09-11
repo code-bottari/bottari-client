@@ -6,6 +6,7 @@ import SnippetFooter from "./SnippetFooter";
 const SnippetBox = styled.div`
   width: 700px;
   height: 370px;
+  margin-bottom: 30px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 `;
 
