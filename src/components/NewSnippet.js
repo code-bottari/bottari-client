@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import styled, { css } from "styled-components";
-import { nanoid } from "nanoid";
 
 import Button from "../components/common/Button";
 

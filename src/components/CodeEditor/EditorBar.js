@@ -1,5 +1,5 @@
-import { nanoid } from "nanoid";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const SelectBoxWrapper = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ const themes = ["monokai", "xcode", "dracula", "eclipse", "tomorrow", "github", 
 const fontSizes = [14, 16, 18, 20, 24, 28, 32, 40];
 const tabs = [2, 4];
 
-export default function EditorSelectBox({ optionTypes, onOptionSelected, width }) {
+export default function EditorBar({ optionTypes, onOptionSelected, width }) {
   const {
     language,
     theme,
@@ -41,7 +41,7 @@ export default function EditorSelectBox({ optionTypes, onOptionSelected, width }
           value={language}
         >
           {selectBoxLanguages.map((language, index) => (
-            <option value={themeLanguages[index]} key={nanoid()}>{language}</option>
+            <option value={themeLanguages[index]} key={language}>{language}</option>
           ))}
         </Select>
       </Label>
@@ -52,7 +52,7 @@ export default function EditorSelectBox({ optionTypes, onOptionSelected, width }
           value={theme}
         >
           {themes.map((theme) => (
-            <option key={nanoid()}>{theme}</option>
+            <option key={theme}>{theme}</option>
           ))}
         </Select>
       </Label>
@@ -63,7 +63,7 @@ export default function EditorSelectBox({ optionTypes, onOptionSelected, width }
           value={fontSize}
         >
           {fontSizes.map((size) => (
-            <option key={nanoid()}>{size}</option>
+            <option key={size}>{size}</option>
           ))}
         </Select>
       </Label>
@@ -74,10 +74,21 @@ export default function EditorSelectBox({ optionTypes, onOptionSelected, width }
           value={tab}
         >
           {tabs.map((tab) => (
-            <option key={nanoid()}>{tab}</option>
+            <option key={tab}>{tab}</option>
           ))}
         </Select>
       </Label>
     </SelectBoxWrapper>
   );
 }
+
+EditorBar.propTypes = {
+  optionTypes: PropTypes.shape({
+    language: PropTypes.string.isRequired,
+    theme: PropTypes.string.isRequired,
+    fontSize: PropTypes.number.isRequired,
+    tab: PropTypes.number.isRequired,
+  }),
+  onOptionSelected: PropTypes.func.isRequired,
+  width: PropTypes.string,
+};

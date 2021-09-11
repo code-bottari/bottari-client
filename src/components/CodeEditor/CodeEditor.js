@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import EditorBar from "./EditorBar";
 import Editor from "./Editor";
@@ -11,7 +12,7 @@ const EditorWrapper = styled.div`
 `;
 
 export default function CodeEditor({ width, height }) {
-  const [editorOption, setEditorOption] = useState({
+  const [editorOptions, setEditorOption] = useState({
     language: "javascript",
     theme: "monokai",
     fontSize: 14,
@@ -21,7 +22,7 @@ export default function CodeEditor({ width, height }) {
   const updateOption = (optionName) => {
     return ({ target }) => {
       setEditorOption({
-        ...editorOption,
+        ...editorOptions,
         [optionName]: target.value,
       });
     };
@@ -29,8 +30,13 @@ export default function CodeEditor({ width, height }) {
 
   return (
     <EditorWrapper>
-      <EditorBar optionTypes={editorOption} onOptionSelected={updateOption} width={width} height={height} />
-      <Editor editorOption={editorOption} width={width} height={height} />
+      <EditorBar optionTypes={editorOptions} onOptionSelected={updateOption} width={width} height={height} />
+      <Editor editorOptions={editorOptions} width={width} height={height} />
     </EditorWrapper>
   );
 }
+
+CodeEditor.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
