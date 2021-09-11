@@ -18,7 +18,7 @@ const checkCookie = (name) => {
     }
   }
 
-  return cookieStorage[name] ? true : false;
+  return !!cookieStorage[name];
 };
 
 export default checkCookie;

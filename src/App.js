@@ -1,11 +1,11 @@
 import GlobalStyle from "./constants/styledComponent/GlobalStyle";
+import AppHeader from "./components/AppHeader/AppHeader";
 
-function App() {
+export default function App() {
   return (
     <>
       <GlobalStyle />
+      <AppHeader />
     </>
   );
 }
-
-export default App;

@@ -55,7 +55,7 @@ const buttonType = {
   },
   userMenu: {
     width: "180px",
-    margin: "1px",
+    margin: "2px 0px",
     backgroundColor: "#AEA5DF",
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
     hoverBackgroundColor: "#26BFA6",
@@ -129,6 +129,7 @@ const buttonType = {
     activeBoxShadow: "inset 0px 1px 1px 1px rgba(0, 0, 0, 0.2)",
   },
   icon: {
+    padding: "0px",
     backgroundColor: "transparent",
   },
 };
@@ -143,19 +144,19 @@ const StyledButton = styled.button`
   line-height: 0.9;
   transition: 0.2s;
 
-  ${({ name }) => buildStyle(buttonType[name])}
+  ${({ variant }) => buildStyle(buttonType[variant])}
 `;
 
 export default function Button({
   type,
-  name,
+  variant,
   onClick,
   children,
 }) {
   return (
     <StyledButton
       type={type}
-      name={name}
+      variant={variant}
       onClick={onClick}
     >
       {children}
@@ -165,7 +166,7 @@ export default function Button({
 
 Button.propTypes = {
   type: PropTypes.string,
-  name: PropTypes.string,
+  variant: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node,
 };

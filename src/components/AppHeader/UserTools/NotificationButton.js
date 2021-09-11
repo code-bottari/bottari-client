@@ -1,9 +1,18 @@
 import { useState } from "react";
 
-import Button from "./common/Button";
-import Dropdown from "../components/common/Dropdown";
+import Button from "../../common/Button";
+import Dropdown from "../../common/Dropdown";
 
-import { GET } from "../constants/methods";
+import METHODS from "../../../constants/methods";
+import VARIANTS from "../../../constants/variants";
+
+const { GET } = METHODS;
+
+const {
+  ICON,
+  LIST,
+  NOTIFICATION
+} = VARIANTS;
 
 export default function NotificationButton() {
   const [isClicked, setClickStatus] = useState(false);
@@ -40,14 +49,14 @@ export default function NotificationButton() {
 
   return (
     <>
-      <Button name="icon" onClick={handleButtonClick}>
+      <Button variant={ICON} onClick={handleButtonClick}>
         <img src="images/notification_icon.png" alt="알림 버튼" width="40px" height="35px" />
       </Button>
       {isClicked && (
-        <Dropdown name="list" onClick={handleDropdownClick}>
+        <Dropdown variant={LIST} onClick={handleDropdownClick}>
           {notifications.map((notification) => (
             <Button
-              name="notification"
+              variant={NOTIFICATION}
               key={notification._id}
             >
               {notification}

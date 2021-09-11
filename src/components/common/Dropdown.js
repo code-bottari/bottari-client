@@ -41,20 +41,21 @@ const StyledDropdown = styled.div`
   flex-direction: column;
   padding: 10px 15px;
   border-radius: 5px;
+  background-color: white;
 
-  ${({ name }) => buildStyle(dropdownType[name])}
+  ${({ variant }) => buildStyle(dropdownType[variant])}
 `;
 
-export default function Dropdown({ name, onClick, children }) {
+export default function Dropdown({ variant, onClick, children }) {
   return (
-    <StyledDropdown name={name} onClick={onClick}>
+    <StyledDropdown variant={variant} onClick={onClick}>
       {children}
     </StyledDropdown>
   );
 }
 
 Dropdown.propTypes = {
-  name: PropTypes.string.isRequired,
+  variant: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
 };

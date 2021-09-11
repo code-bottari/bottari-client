@@ -1,6 +1,9 @@
 import { useState } from "react";
-
 import styled from "styled-components";
+
+import VARIANTS from "../constants/variants";
+
+const { SORT } = VARIANTS;
 
 const Select = styled.select`
   appearance: none;
@@ -30,7 +33,7 @@ export default function EditorSelectBox({ type, options }) {
   };
 
   return (
-    <Select name="sort" className="select" onChange={handleChangeSelect} value={selected}>
+    <Select variant={SORT} className="select" onChange={handleChangeSelect} value={selected}>
       <SelectOption value="default" disabled>{type}</SelectOption>
       {options.map((theme) => (
         <SelectOption value={theme}>

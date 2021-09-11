@@ -3,8 +3,23 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import CONSTANTS from "../constants/constants";
+import LANGUAGES from "../constants/languages";
+import VARIANTS from "../constants/variants";
 
 const { SELECT_BOX_ARROW_URL } = CONSTANTS;
+
+const {
+  PYTHON,
+  JAVA,
+  JAVASCRIPT,
+  CSHARP,
+  C_CPP,
+  PHP,
+  R,
+  OBJECTIVE_C,
+} = LANGUAGES;
+
+const { LANGUAGE } = VARIANTS;
 
 const Select = styled.select`
   appearance: none;
@@ -32,9 +47,11 @@ export default function LanguageSelectBox() {
     setSelected(event.target.value);
   };
 
+  const languageList = [PYTHON, JAVA, JAVASCRIPT, CSHARP, C_CPP, PHP, R, OBJECTIVE_C];
+
   return (
-    <Select name="language" className="select" onChange={handleChangeSelect} value={selected}>
-      {["Python", "Java", "JavaScript", "C#", "C/C++", "PHP", "R", "Objective-C"].map((language) => {
+    <Select variant={LANGUAGE} className="select" onChange={handleChangeSelect} value={selected}>
+      {languageList.map((language) => {
         return <SelectOption value={language}>{language}</SelectOption>;
       })}
     </Select>
