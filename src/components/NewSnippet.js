@@ -87,7 +87,7 @@ export default function NewSnippet() {
           <Select>
             <option hidden>언어 선택</option>
             {["Python", "Java", "JavaScript", "C#", "C/C++", "PHP", "R", "Objective-C"].map((language) => (
-              <option key={nanoid()}>{language}</option>
+              <option key={language}>{language}</option>
             ))}
           </Select>
         </label>
