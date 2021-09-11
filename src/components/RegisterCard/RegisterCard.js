@@ -17,7 +17,7 @@ import VARIANTS from "../../constants/variants";
 
 const {
   FAILED_UPLOAD_IMAGE,
-  OK
+  OK,
 } = MESSAGES;
 
 const { POST } = METHODS;
@@ -26,7 +26,7 @@ const { REGISTRATION } = NAMES;
 
 const {
   NICKNAME,
-  BASIC
+  BASIC,
 } = VARIANTS;
 
 const Card = styled.div`
@@ -100,7 +100,7 @@ export default function RegisterCard() {
       <h1 className="title">사용자 정보 등록</h1>
       <ProfileImage />
       <Nickname variant={NICKNAME} reference={referenceTarget} message={failureReason} />
-      <Button variant={BASIC} onClick={handleButtonClick} children={REGISTRATION} />
+      <Button variant={BASIC} onClick={handleButtonClick}>{REGISTRATION}</Button>
     </Card>
   );
 }

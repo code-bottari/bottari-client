@@ -13,6 +13,7 @@ export const getData = async (path) => {
     },
     credentials: "include",
   };
+
   try {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}${path}`, options);
 
@@ -33,6 +34,7 @@ export const postData = async (path, resource) => {
     credentials: "include",
     body: JSON.stringify(resource),
   };
+
   try {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}${path}`, options);
 

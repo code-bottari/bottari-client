@@ -20,7 +20,6 @@ export default function UserMenuDropdown({ onClick }) {
   };
 
   const handleLogout = async () => {
-
     try {
       const data = await postData("/users/logout");
 
@@ -29,7 +28,6 @@ export default function UserMenuDropdown({ onClick }) {
       }
 
       await firebaseAPI.logout();
-
     } catch (error) {
       alert(error); // 에러처리
       return;
@@ -46,7 +44,7 @@ export default function UserMenuDropdown({ onClick }) {
     return (
       <Button
         variant="userMenu"
-        onClick={isLogoutButton ? handleLogout : undefined}
+        onClick={isLogoutButton && handleLogout}
       >
         {text}
       </Button >

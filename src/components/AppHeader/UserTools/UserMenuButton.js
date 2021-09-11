@@ -22,7 +22,7 @@ export default function UserMenuButton({ onClick }) {
 
   return (
     <>
-      <Button variant={ICON} children={UserMenuIcon} onClick={handleDropDown} />
+      <Button variant={ICON} onClick={handleDropDown} children={UserMenuIcon} />
       {toggleDropDown && <UserMenuDropdown onClick={handleLoginStatus} />}
     </>
   );

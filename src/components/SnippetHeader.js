@@ -88,7 +88,7 @@ export default function SnippetHeader() {
         <CreatorImage src="/images/like.png" alt="프로필 이미지" width="40px" height="40px" />
         <CreatorName>James</CreatorName>
         <SubscriberImage src="images/Subscribers.png" />
-        <Button variant={TOOL} children="복사" />
+        <Button variant={TOOL}>복사</Button>
       </CreatorBox>
       <TitleBox>
         <HashTag>#LinkedList</HashTag>

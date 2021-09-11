@@ -23,8 +23,8 @@ const SearchIcon = styled.img`
 `;
 
 const SearchInput = styled.input`
-  border: none;
   padding: 0px 10px;
+  border: none;
   font-size: 20px;
 
   &:focus {
@@ -37,7 +37,7 @@ export default function SearchBar() {
     <SearchWrapper>
       <SearchIcon src="images/search_icon.png" alt="돋보기 아이콘" />
       <SearchInput type="text" placeholder="#HashTag" />
-      <Button variant={SEARCH} children="검 색" />
+      <Button variant={SEARCH}>검 색</Button>
     </SearchWrapper>
   );
 };
