@@ -55,7 +55,7 @@ const buttonType = {
   },
   userMenu: {
     width: "180px",
-    margin: "1px",
+    margin: "2px 0px",
     backgroundColor: "#AEA5DF",
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
     hoverBackgroundColor: "#26BFA6",
@@ -129,6 +129,7 @@ const buttonType = {
     activeBoxShadow: "inset 0px 1px 1px 1px rgba(0, 0, 0, 0.2)",
   },
   icon: {
+    padding: "0px",
     backgroundColor: "transparent",
   },
 };

@@ -1,8 +1,18 @@
 import styled from "styled-components";
 
-import Button from "./common/Button";
+import Button from "../../common/Button";
 
-import LANGUAGES from "../constants/languages";
+import LANGUAGES from "../../../constants/languages";
+
+const { ALL,
+  PYTHON,
+  JAVA,
+  JAVASCRIPT,
+  PHP,
+  R,
+  OBJECTIVE_C,
+  OTHERS
+} = LANGUAGES;
 
 const NavigationWrapper = styled.div`
   display: flex;
@@ -11,7 +21,6 @@ const NavigationWrapper = styled.div`
 `;
 
 function NavigationBar() {
-  const { ALL, PYTHON, JAVA, JAVASCRIPT, PHP, R, OBJECTIVE_C, OTHERS } = LANGUAGES;
 
   const languageList = [ALL, PYTHON, JAVA, JAVASCRIPT, "C#", "C/C++", PHP, R, OBJECTIVE_C, OTHERS];
 

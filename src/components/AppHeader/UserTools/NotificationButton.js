@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-import Button from "./common/Button";
-import Dropdown from "../components/common/Dropdown";
+import Button from "../../common/Button";
+import Dropdown from "../../common/Dropdown";
 
-import { GET } from "../constants/methods";
+import METHODS from "../../../constants/methods";
+
+const { GET } = METHODS;
 
 export default function NotificationButton() {
   const [isClicked, setClickStatus] = useState(false);

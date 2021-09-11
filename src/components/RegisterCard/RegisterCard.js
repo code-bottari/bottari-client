@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { useHistory } from "react-router";
-
 import styled from "styled-components";
 
 import ProfileImage from "./ProfileImage";
@@ -14,6 +13,15 @@ import addPhoto from "../../addPhoto";
 import MESSAGES from "../../constants/messages";
 import METHODS from "../../constants/methods";
 import NAMES from "../../constants/names";
+
+const {
+  FAILED_UPLOAD_IMAGE,
+  OK
+} = MESSAGES;
+
+const { POST } = METHODS;
+
+const { REGISTRATION } = NAMES;
 
 const Card = styled.div`
   display: flex;
@@ -39,10 +47,6 @@ export default function RegisterCard() {
   const [failureReason, setFailureReason] = useState("");
   const referenceTarget = useRef();
   const history = useHistory();
-
-  const { FAILED_UPLOAD_IMAGE, OK } = MESSAGES;
-  const { POST } = METHODS;
-  const { REGISTRATION } = NAMES;
 
   const handleButtonClick = async () => {
     const nickname = referenceTarget.current.value;

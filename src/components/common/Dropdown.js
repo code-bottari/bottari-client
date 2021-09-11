@@ -41,6 +41,7 @@ const StyledDropdown = styled.div`
   flex-direction: column;
   padding: 10px 15px;
   border-radius: 5px;
+  background-color: white;
 
   ${({ name }) => buildStyle(dropdownType[name])}
 `;
