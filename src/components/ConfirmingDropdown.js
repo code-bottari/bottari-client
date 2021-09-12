@@ -1,10 +1,7 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 
-import Dropdown from "../components/common/Dropdown";
+import Dropdown from "./common/Dropdown";
 import Button from "./common/Button";
-
-import { deleteData } from "../api/service";
 
 import VARIANTS from "../constants/variants";
 import NAMES from "../constants/names";
@@ -21,34 +18,28 @@ const {
 
 const buttonNames = [CANCEL, DELETE];
 
-export default function ConfirmingDropdown({ path, resource }) {
-  const [isOpen, setOpenStatus] = useState(true);
-
-  const handleClick = ({ target }) => {
+export default function ConfirmingDropdown({ onCancelButtonClick, onDeleteButtonClick }) {
+  const clickHandler = ({ target }) => {
     if (target.textContent === CANCEL) {
-      setOpenStatus(false);
+      onCancelButtonClick(false);
 
       return;
     }
 
-    deleteData(path, resource);
+    onDeleteButtonClick();
   };
 
   return (
-    <>
-      {isOpen && (
-        <Dropdown variant={CONFIRM}>
-          <p>정말로 삭제하시겠습니까?</p>
-          <div onClick={handleClick}>
-            {buttonNames.map((name) => <Button variant={UTILITY} key={name}>{name}</Button>)}
-          </div>
-        </Dropdown>
-      )}
-    </>
+    <Dropdown variant={CONFIRM}>
+      <p>정말로 삭제하시겠습니까?</p>
+      <div onClick={clickHandler}>
+        {buttonNames.map((name) => <Button variant={UTILITY} key={name}>{name}</Button>)}
+      </div>
+    </Dropdown>
   );
 }
 
 ConfirmingDropdown.propTypes = {
-  path: PropTypes.string.isRequired,
-  resource: PropTypes.object,
+  onCancelButtonClick: PropTypes.func.isRequired,
+  onDeleteButtonClick: PropTypes.func.isRequired,
 };
