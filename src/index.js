@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./config/firebase";
-import "./config/socketId";
+import "./config/socketIo";
 
 ReactDOM.render(
   <React.StrictMode>
