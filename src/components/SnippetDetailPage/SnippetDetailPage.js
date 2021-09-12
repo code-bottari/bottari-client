@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import DetailSnippet from "./Snippet/Snippet";
 
 const SnippetBox = styled.div`

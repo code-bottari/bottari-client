@@ -7,9 +7,7 @@ import VARIANTS from "../../../constants/variants";
 
 const { ICON } = VARIANTS;
 
-const buildStyle = ({
-  cursor,
-}) => css`
+const buildStyle = ({ cursor }) => css`
   cursor: ${cursor};
 `;
 
@@ -28,7 +26,6 @@ const StyledInfoWrapper = styled.div`
   width: 65px;
   height: 40px;
   margin: 0px 10px;
-
 `;
 
 const Number = styled.div`

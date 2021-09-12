@@ -31,9 +31,9 @@ const SubscriberType = {
 
 const StyledSubscribeButton = styled.button`
   display: flex;
+  padding: 0px;
   border: none;
   border-radius: 5px;
-  padding: 0px;
   background-color: white;
   cursor: pointer;
 `;
@@ -44,8 +44,8 @@ const StyledSubscribeMark = styled.div`
   align-items: center;
   width: 23px;
   height: 19px;
-  border-radius: 5px 0px 0px 5px;
   padding-left: 2px;
+  border-radius: 5px 0px 0px 5px;
 
   ${({ variant }) => buildStyle(MarkType[variant])}
 `;

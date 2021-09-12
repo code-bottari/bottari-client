@@ -11,10 +11,10 @@ const InfoWrapper = styled.div`
 const Language = styled.div`
   width: 120px;
   height: 23px;
-  background-color: black;
-  border-radius: 20px;
   padding-top: 7px;
   margin: 0px 15px;
+  border-radius: 20px;
+  background-color: black;
   color: #FFFFFF;
   font-weight: bold;
   text-align: center;

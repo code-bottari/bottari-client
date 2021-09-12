@@ -17,16 +17,14 @@ const Hashtag = styled.a`
 export default function TitleHashtag({ hashtags }) {
   return (
     <TitleWrapper>
-      {hashtags.map((hashtag) => {
-        return (
-          <Hashtag
-            key={hashtag}
-            href={`/?search=${hashtag}`}
-          >
-            {hashtag}
-          </Hashtag>
-        );
-      })}
+      {hashtags.map((hashtag) => (
+        <Hashtag
+          key={hashtag}
+          href={`/?search=${hashtag}`}
+        >
+          {hashtag}
+        </Hashtag>
+      ))}
     </TitleWrapper>
   );
 }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import SnippetTool from "../../DetailSnippet/SnippetTool/SnippetTool";
 import SnippetInfo from "../../DetailSnippet/SnippetInfo/SnippetInfo";
 import TitleHashtag from "../../DetailSnippet/TitleHashtag/TitleHashtag";
@@ -34,7 +35,7 @@ const Date = styled.div`
 `;
 
 export default function DetailSnippet() {
-  const mockInfo = {
+  const mockInfo = { // mock
     hashtags: ["#some", "#every"],
     profileUrl: "/images/like.png",
     nickname: "Sweet Potato",
@@ -43,7 +44,8 @@ export default function DetailSnippet() {
     createdAt: "2020.10.10",
   };
 
-  const { hashtags,
+  const {
+    hashtags,
     profileUrl,
     nickname,
     subscriber,

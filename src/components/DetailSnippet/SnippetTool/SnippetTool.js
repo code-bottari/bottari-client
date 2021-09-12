@@ -7,15 +7,15 @@ import VARIANTS from "../../../constants/variants";
 const { TOOL } = VARIANTS;
 
 const ToolWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 320px;
 `;
 
 export default function SnippetTool() {
   return (
     <ToolWrapper>
-      <Button variant={TOOL}>저장</Button>
-      <Button variant={TOOL}>복사</Button>
-      <Button variant={TOOL}>공유</Button>
-      <Button variant={TOOL}>삭제</Button>
+      {["저장", "복사", "공유", "삭제"].map((name) => <Button variant={TOOL}>{name}</Button>)}
     </ToolWrapper>
   );
 }
