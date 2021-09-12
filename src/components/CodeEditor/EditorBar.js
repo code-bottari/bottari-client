@@ -1,21 +1,50 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
+
+const buildSelectBoxColor = (backgroundColor, color) => css`
+  background-color: ${backgroundColor};
+  color: ${color};
+`;
+
+const buildBarBackgroundColor = (backgroundColor, color) => css`
+  background-color: ${backgroundColor};
+  color: ${color};
+`;
+
+const themeType = {
+  monokai: ["#272822", "#FFFFFF"],
+  xcode: ["#FFFFFF", "#008E00"],
+  dracula: ["#282a36", "#6272a4"],
+  eclipse: ["#FFFFFF", "#719682"],
+  tomorrow: ["#FFFFFF", "#8E908C"],
+  github: ["FFFFFF", "#999988"],
+  solarized_dark: ["#002B36", "#657B83"],
+  solarized_light: ["#FDF6E3", "#93A1A1"],
+  terminal: ["#000000", "#FF5349"],
+};
 
 const SelectBoxWrapper = styled.div`
   display: flex;
+  justify-content: flex-end;
+  border-radius: 5px 5px 0px 0px;
+
+  ${({ theme }) => buildBarBackgroundColor(...themeType[theme])}
 `;
 
 const Label = styled.label`
   display: inline-block;
+  margin-top: 8px;
   font-size: 8px;
 `;
 
 const Select = styled.select`
   display: block;
   height: 30px;
+  margin: 0px 20px;
   border: none;
-  background-color: #272822;
-  color: #FFFFFF;
+  outline: none;
+
+  ${({ theme }) => buildSelectBoxColor(...themeType[theme])}
 `;
 
 const themeLanguages = ["python", "java", "javascript", "csharp", "c_cpp", "php", "r", "objectivec"];
@@ -33,10 +62,11 @@ export default function EditorBar({ optionTypes, onOptionSelected, width }) {
   } = optionTypes;
 
   return (
-    <SelectBoxWrapper style={{ "width": width }}>
+    <SelectBoxWrapper theme={theme} style={{ "width": width }}>
       <Label>
         언어
         <Select
+          theme={theme}
           onChange={onOptionSelected("language")}
           value={language}
         >
@@ -48,6 +78,7 @@ export default function EditorBar({ optionTypes, onOptionSelected, width }) {
       <Label>
         테마
         <Select
+          theme={theme}
           onChange={onOptionSelected("theme")}
           value={theme}
         >
@@ -59,6 +90,7 @@ export default function EditorBar({ optionTypes, onOptionSelected, width }) {
       <Label>
         폰트 크기
         <Select
+          theme={theme}
           onChange={onOptionSelected("fontSize")}
           value={fontSize}
         >
@@ -70,6 +102,7 @@ export default function EditorBar({ optionTypes, onOptionSelected, width }) {
       <Label>
         탭 수
         <Select
+          theme={theme}
           onChange={onOptionSelected("tab")}
           value={tab}
         >

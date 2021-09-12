@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import styled, { css } from "styled-components";
 
+import CodeEditor from "../components/CodeEditor/CodeEditor";
 import Button from "../components/common/Button";
 
 import validateHashtag from "../utils/validateHashtag";
@@ -22,6 +23,7 @@ const commonStyle = css`
 
 const SnippetToolWrapper = styled.div`
   width: 100%;
+  margin-top: 30px;
   text-align: center;
 `;
 
@@ -29,23 +31,13 @@ const InputContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  height: 95px;
 
   label {
     margin: 15px;
     color: #543FD3;
     font-size: 14px;
     text-align: left;
-  }
-`;
-
-const Select = styled.select`
-  ${commonStyle}
-
-  width: 240px;
-  text-align: center;
-
-  option {
-    text-align: center;
   }
 `;
 
@@ -82,24 +74,13 @@ export default function NewSnippet() {
     <SnippetToolWrapper>
       <InputContainer>
         <label>
-          언어 선택
-          <Select>
-            <option hidden>언어 선택</option>
-            {["Python", "Java", "JavaScript", "C#", "C/C++", "PHP", "R", "Objective-C"].map((language) => (
-              <option key={language}>{language}</option>
-            ))}
-          </Select>
-        </label>
-        <label>
           해시태그
           <Input type="text" placeholder="#HashTag" ref={hashtagInput} />
           <Message>{failureReason}</Message>
         </label>
       </InputContainer>
-      <div>
-        에디터
-      </div>
-      <Button type="submit" name="edit" onClick={() => handleButtonClick(hashtagInput)} children="생성하기" />
+      <CodeEditor width="1000px" height="500px" />
+      <Button variant="edit" onClick={() => handleButtonClick(hashtagInput)} children="생성하기" />
     </SnippetToolWrapper>
   );
 }
