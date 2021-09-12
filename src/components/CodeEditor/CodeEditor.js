@@ -9,6 +9,7 @@ const EditorWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 20px 0px 40px 0px;
 `;
 
 export default function CodeEditor({ width, height }) {

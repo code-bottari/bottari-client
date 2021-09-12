@@ -9,6 +9,7 @@ const MESSAGES = {
   FAILED_FULFILLMENT: "알 수 없는 이유로 요청하신 작업을 수행할 수 없습니다.",
   INCLUDING_SPECIAL_CHARACTER: "특수문자를 포함할 수 없습니다.",
   INCLUDING_SPACE: "공백을 포함할 수 없습니다.",
+  DEMAND_INPUT: "하나 이상의 값을 입력해 주세요.",
   INSUFFICIENT_NICKNAME_LENGTH: "두 글자 이상 입력해 주세요.",
   EXCESSIVE_NICKNAME_LENGTH: "최대 10자리까지 입력 가능합니다.",
   EXCESSIVE_HASHTAG_NUMBER: "해시태그 개수는 5개를 초과할 수 없습니다.",

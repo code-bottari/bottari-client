@@ -3,6 +3,7 @@ import { pascalCase } from "pascal-case";
 import MESSAGES from "../constants/messages";
 
 const {
+  DEMAND_INPUT,
   EXCESSIVE_HASHTAG_NUMBER,
   EXCESSIVE_HASHTAG_LENGTH,
   UNSUITABLE_CASE,
@@ -12,6 +13,10 @@ const MAX_NUMBER = 5;
 const MAX_LENGTH = 16;
 
 const validateHashtag = (hashtagList) => {
+  if (hashtagList[0] === "") {
+    return DEMAND_INPUT;
+  }
+
   if (hashtagList.length > MAX_NUMBER) {
     return EXCESSIVE_HASHTAG_NUMBER;
   }
