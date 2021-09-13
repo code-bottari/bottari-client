@@ -2,28 +2,28 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Bar = styled.div`
-  position: relative;
+  position: absolute;
   display: flex;
-  z-index: 2;
+  z-index: 10;
   flex-direction: column;
   height: 100%;
   border-right: 2px solid;
   border-radius: 0;
   border-color: var(--caret-color);
-  background-color: var(--color-historyPage);
+  background-color: var(--color-subscribed-tap);
   transition: 0.8s ease;
 `;
 
 const Icon = styled.img`
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   width: 50px;
   height: 80px;
   border-left: 0;
   outline: none;
 `;
 
-export default function SideBar({ width, height, children, buttonPosition = 20 }) {
+export default function SubscribedBar({ width, height, children, buttonPosition = 100 }) {
   const [position, setPosition] = useState(-width);
 
   const toggleMenu = () => {
@@ -49,7 +49,7 @@ export default function SideBar({ width, height, children, buttonPosition = 20 }
         }}
       >
         <Icon
-          src="/images/notificationMenu.png"
+          src="/images/subscribedMenu.png"
           onClick={toggleMenu}
           style={{
             transform: `translate(${width}px, ${buttonPosition}px)`,

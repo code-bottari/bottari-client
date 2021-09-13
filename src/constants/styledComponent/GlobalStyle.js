@@ -8,7 +8,8 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --caret-color: #8877E8;
     --color-gray: #8E9093;
-    --color-historyPage: #FDFAFF;
+    --color-notification-tap: #FDFAFF;
+    --color-subscribed-tap: #F9F7F7;
     --color-message: #543FD3;
   }
 `;

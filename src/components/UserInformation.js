@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
 
-import SideBar from "./SideBar";
+import NotificationBar from "./NotificationBar";
+import SubscribedBar from "./SubscribedBar";
 import UserTap from "./UserTap";
 import SelectBox from "./SelectBox";
 import SnippetList from "./SnippetList";
@@ -126,9 +127,12 @@ export default function UserInformation() {
   return (
     <Wrapper>
       <Side>
-        <SideBar width={430} height="100vh" buttonPosition="20">
+        <NotificationBar width={430} height="100vh">
           <p>This is Notification List</p>
-        </SideBar>
+        </NotificationBar>
+        <SubscribedBar width={430} height="100vh">
+          <p>This is Subscribed List</p>
+        </SubscribedBar>
         {user && <UserTap user={user} />}
       </Side>
       <Menu>
