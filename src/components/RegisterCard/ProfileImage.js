@@ -32,11 +32,11 @@ const Uploader = styled.input`
   display: none;
 `;
 
-export default function ProfileImage() {
+export default function ProfileImage({ imageUrl }) {
   return (
     <Wrapper>
       <ProfileImageTool>
-        <Image src="/images/arbitrary_profile_image.jpeg" alt="프로필 이미지" width="180" height="180" />
+        <Image src={imageUrl || "/images/arbitrary_profile_image.jpeg"} alt="프로필 이미지" width="180" height="180" />
         <ImageUploader>
           <label htmlFor="uploader">
             <img src="/images/image_uploader_icon.png" alt="이미지 첨부" width="45px" height="40px" />

@@ -35,7 +35,7 @@ const SearchInput = styled.input`
 export default function SearchBar() {
   return (
     <SearchWrapper>
-      <SearchIcon src="images/search_icon.png" alt="돋보기 아이콘" />
+      <SearchIcon src="/images/search_icon.png" alt="돋보기 아이콘" />
       <SearchInput type="text" placeholder="#HashTag" />
       <Button variant={SEARCH}>검 색</Button>
     </SearchWrapper>

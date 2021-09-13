@@ -9,7 +9,7 @@ const LogoImage = styled.img`
 export default function Logo() {
   return (
     <a href="/">
-      <LogoImage src="images/logo.png" />
+      <LogoImage src="/images/logo.png" />
     </a>
   );
 }

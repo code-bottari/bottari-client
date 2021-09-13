@@ -17,6 +17,7 @@ const MESSAGES = {
   UNSUITABLE_CASE: "모든 해시태그는 PascalCase로 입력되어야 합니다.",
   EXCESSIVE_IMAGE_SIZE: "첨부파일 사이즈는 1MB 이내로 등록 가능합니다.",
   FAILED_UPLOAD_IMAGE: "이미지를 업로드하실 수 없습니다.",
+  USER_INFORMATION_UPDATED: "정보가 수정되었습니다.",
   OK: "ok",
 };
 
