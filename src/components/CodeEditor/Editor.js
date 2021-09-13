@@ -1,5 +1,6 @@
 import AceEditor from "react-ace";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import "ace-builds/webpack-resolver";
 
 const StyledAceEditor = styled(AceEditor)`
@@ -11,6 +12,8 @@ export default function Editor({ editorOptions, width, height }) {
     language,
     theme,
     fontSize,
+    readOnly,
+    code,
     tab,
   } = editorOptions;
 
@@ -27,6 +30,8 @@ export default function Editor({ editorOptions, width, height }) {
       showGutter={true}
       highlightActiveLine={true}
       wrapEnabled={true}
+      readOnly={readOnly}
+      defaultValue={code}
       setOptions={{
         showLineNumbers: true,
         tabSize: Number(tab),
@@ -34,3 +39,9 @@ export default function Editor({ editorOptions, width, height }) {
     />
   );
 }
+
+Editor.propTypes = {
+  editorOptions: PropTypes.object.isRequired,
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+};

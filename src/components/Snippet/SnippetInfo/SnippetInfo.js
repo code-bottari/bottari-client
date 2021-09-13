@@ -20,11 +20,11 @@ const Language = styled.div`
   text-align: center;
 `;
 
-export default function SnippetInfo({ language }) {
+export default function SnippetInfo({ language, likeCount, commentCount }) {
   return (
     <InfoWrapper>
-      <Info type="like" image="images/like.png" />
-      <Info type="comment" image="images/comment.png" />
+      <Info type="like" image="/images/like.png" count={likeCount} />
+      <Info type="comment" image="/images/comment.png" count={commentCount} />
       <Language>{language}</Language>
     </InfoWrapper>
   );
@@ -32,4 +32,6 @@ export default function SnippetInfo({ language }) {
 
 SnippetInfo.propTypes = {
   language: PropTypes.string.isRequired,
+  likeCount: PropTypes.number.isRequired,
+  commentCount: PropTypes.number.isRequired,
 };

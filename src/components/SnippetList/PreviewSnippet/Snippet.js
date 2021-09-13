@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import SnippetHeader from "./SnippetHeader";
 import SnippetFooter from "./SnippetFooter";
+import Editor from "../../CodeEditor/Editor";
 
 const SnippetBox = styled.div`
   width: 700px;
@@ -10,18 +12,46 @@ const SnippetBox = styled.div`
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 `;
 
-const CodeBox = styled.div`
-  width: 700px;
-  height: 230px;
-  background-color: black;
-`;
+export default function Snippet({ data }) {
+  const { _id, poster, language, createdAt, likerList, commentList, code, hashtagList } = data;
+  const { imageUrl, nickname, followerList } = poster;
 
-export default function Snippet() {
+  const formatDate = createdAt.slice(0, 10);
+
+  const editorOptions = {
+    language: language.toLowerCase(),
+    theme: "monokai", // react-query로 데이터 받아오기
+    fontSize: 14,
+    readOnly: true,
+    code,
+    tab: 2,
+  };
+
   return (
     <SnippetBox>
-      <SnippetHeader />
-      <CodeBox />
-      <SnippetFooter />
+      <SnippetHeader
+        profileUrl={imageUrl}
+        nickname={nickname}
+        follower={followerList.length}
+        language={language}
+        hashtags={hashtagList}
+      />
+      <a href={`/snippets/${_id}`}>
+        <Editor
+          editorOptions={editorOptions}
+          width="700px"
+          height="230px"
+        />
+      </a>
+      <SnippetFooter
+        createdAt={formatDate}
+        likeCount={likerList.length}
+        commentCount={commentList.length}
+      />
     </SnippetBox>
   );
 }
+
+Snippet.propTypes = {
+  data: PropTypes.object.isRequired,
+};

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Button from "../../common/Button";
+import Button from "../../Common/Button";
 
 import VARIANTS from "../../../constants/variants";
 
@@ -15,7 +15,7 @@ const ToolWrapper = styled.div`
 export default function SnippetTool() {
   return (
     <ToolWrapper>
-      {["저장", "복사", "공유", "삭제"].map((name) => <Button variant={TOOL}>{name}</Button>)}
+      {["저장", "복사", "공유", "삭제"].map((name) => <Button key={name} variant={TOOL}>{name}</Button>)}
     </ToolWrapper>
   );
 }

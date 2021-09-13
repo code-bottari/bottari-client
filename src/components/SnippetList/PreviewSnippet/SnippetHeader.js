@@ -1,71 +1,30 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import Button from "../../Common/Button";
 
 import VARIANTS from "../../../constants/variants";
+import UserProfile from "../../Snippet/UserProfile/UserProfile";
+import HashtagList from "../../Snippet/HashtagList/HashtagList";
 
 const { TOOL } = VARIANTS;
 
 const HeaderBox = styled.div`
-  width: 690px;
+  width: 700px;
   height: 95px;
   padding-bottom: 5px;
 `;
 
 const CreatorBox = styled.div`
-  display: grid;
-  grid-template-columns: 50px 100px 460px 80px;
-  grid-template-rows: 25px 25px;
-  grid-template-areas:
-    "userImage userName . copyButton"
-    "userImage follower . copyButton";
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-items: center;
-  width: 690px;
-  height: 50px;
-  padding: 5px;
-
-  & button {
-    grid-area: copyButton;
-  }
-`;
-
-const CreatorImage = styled.img`
-  grid-area: userImage;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
-  border-radius: 100%;
-`;
-
-const CreatorName = styled.div`
-  grid-area: userName;
-  width: 80px;
-  height: 20px;
-  padding: 5px;
-  font-weight: bold;
-`;
-
-const FollowerImage = styled.img`
-  grid-area: follower;
-  width: 80px;
-  height: 20px;
+  height: 60px;
 `;
 
 const TitleBox = styled.div`
   width: 700px;
   height: 35px;
-`;
-
-const HashTag = styled.button`
-  display: inline-block;
-  width: 540px;
-  height: 15px;
-  margin: 10px;
-  margin-right: 20px;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  font-weight: bold;
-  text-align: left;
 `;
 
 const Language = styled.div`
@@ -81,19 +40,32 @@ const Language = styled.div`
   text-align: center;
 `;
 
-export default function SnippetHeader() {
+export default function SnippetHeader({ profileUrl, nickname, follower, hashtags, language }) {
   return (
     <HeaderBox>
       <CreatorBox>
-        <CreatorImage src="/images/bottari.png" alt="프로필 이미지" width="40px" height="40px" />
-        <CreatorName>James</CreatorName>
-        <FollowerImage src="images/Followers.png" />
+        <UserProfile
+          profileUrl={profileUrl}
+          nickname={nickname}
+          follower={follower}
+        />
         <Button variant={TOOL}>복사</Button>
       </CreatorBox>
       <TitleBox>
-        <HashTag>#LinkedList</HashTag>
-        <Language>JavaScript</Language>
+        <HashtagList
+          type="preview"
+          hashtags={hashtags}
+        />
+        <Language>{language}</Language>
       </TitleBox>
     </HeaderBox>
   );
 }
+
+SnippetHeader.propTypes = {
+  profileUrl: PropTypes.string.isRequired,
+  nickname: PropTypes.string.isRequired,
+  follower: PropTypes.number.isRequired,
+  hashtags: PropTypes.array.isRequired,
+  language: PropTypes.string.isRequired,
+};

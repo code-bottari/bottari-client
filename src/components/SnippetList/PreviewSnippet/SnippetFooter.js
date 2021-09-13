@@ -1,8 +1,7 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-import VARIANTS from "../../../constants/variants";
-
-const { ICON } = VARIANTS;
+import Info from "../../Snippet/SnippetInfo/Info";
 
 const FooterBox = styled.div`
   display: flex;
@@ -10,56 +9,26 @@ const FooterBox = styled.div`
   height: 50px;
 `;
 
-const IconButton = styled.button`
-  width: 35px;
-  height: 40px;
-  padding-right: 0;
-  margin-top: 2px;
-  background-color: transparent;
-  border: none;
-`;
-
-const IconImage = styled.img`
-  width: 30px;
-  height: 35px;
-`;
-
 const Date = styled.div`
-  width: 80px;
+  width: 100px;
   height: 20px;
   padding: 12px;
   margin-right: 440px;
   font-weight: bold;
 `;
 
-const Text = css`
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  padding: 12px 12px 12px 8px;
-  font-weight: bold;
-`;
-
-const LikeNumber = styled.div`
-  ${Text}
-`;
-
-const CommentNumber = styled.div`
-  ${Text}
-`;
-
-export default function SnippetFooter() {
+export default function SnippetFooter({ createdAt, likeCount, commentCount }) {
   return (
     <FooterBox>
-      <Date>2020.10.10</Date>
-      <IconButton variant={ICON}>
-        <IconImage src="images/like.png" />
-      </IconButton>
-      <LikeNumber>20</LikeNumber>
-      <IconButton variant={ICON}>
-        <IconImage src="images/comment.png" />
-      </IconButton>
-      <CommentNumber>30</CommentNumber>
+      <Date>{createdAt}</Date>
+      <Info type="like" image="/images/like.png" count={likeCount}/>
+      <Info type="comment" image="/images/comment.png" count={commentCount}/>
     </FooterBox>
   );
 }
+
+SnippetFooter.propTypes = {
+  createdAt: PropTypes.string.isRequired,
+  likeCount: PropTypes.number.isRequired,
+  commentCount: PropTypes.number.isRequired,
+};

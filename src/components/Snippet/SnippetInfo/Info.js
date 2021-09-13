@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
-import Button from "../../common/Button";
+import Button from "../../Common/Button";
 
 import VARIANTS from "../../../constants/variants";
 
@@ -28,7 +28,7 @@ const StyledInfoWrapper = styled.div`
   margin: 0px 10px;
 `;
 
-const Number = styled.div`
+const Count = styled.div`
   width: 35px;
   font-weight: bold;
   text-align: center;
@@ -41,7 +41,7 @@ const Icon = styled.img`
   ${({ type }) => buildStyle(IconType[type])}
 `;
 
-export default function Info({ type, image }) {
+export default function Info({ type, image, count }) {
   const isLike = type === "like";
 
   const handleLike = () => {
@@ -55,7 +55,7 @@ export default function Info({ type, image }) {
         onClick={isLike ? handleLike : undefined}
         children={<Icon type={type} src={image} />}
       />
-      <Number>20</Number>
+      <Count>{count}</Count>
     </StyledInfoWrapper>
   );
 }
@@ -63,4 +63,5 @@ export default function Info({ type, image }) {
 Info.propTypes = {
   type: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
 };

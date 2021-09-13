@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
+import HashtagList from "../Snippet/HashtagList/HashtagList";
+import UserProfile from "../Snippet/UserProfile/UserProfile";
 import SnippetTool from "../Snippet/SnippetTool/SnippetTool";
 import SnippetInfo from "../Snippet/SnippetInfo/SnippetInfo";
-import TitleHashtag from "../Snippet/TitleHashtag/TitleHashtag";
-import UserProfile from "../Snippet/UserProfile/UserProfile";
 
 const CodeEditor = styled.div`
   width: 1100px;
@@ -42,6 +42,8 @@ export default function DetailSnippet() {
     follower: 125,
     language: "Javascript",
     createdAt: "2020.10.10",
+    likerList: ["1", "2"],
+    commentList: ["1", "2"],
   };
 
   const {
@@ -51,11 +53,15 @@ export default function DetailSnippet() {
     follower,
     language,
     createdAt,
+    likerList,
+    commentList,
   } = mockInfo;
 
   return (
     <>
-      <TitleHashtag hashtags={hashtags} />
+      <HashtagList
+        type="detail"
+        hashtags={hashtags} />
       <CodeEditor />
       <InfoWrapper>
         <UserProfile
@@ -63,7 +69,11 @@ export default function DetailSnippet() {
           nickname={nickname}
           follower={follower}
         />
-        <SnippetInfo language={language} />
+        <SnippetInfo
+          language={language}
+          likeCount={likerList.length}
+          commentCount={commentList.length}
+        />
       </InfoWrapper>
       <Footer>
         <Date>{createdAt}</Date>
