@@ -1,6 +1,6 @@
 import GlobalStyle from "./constants/styledComponent/GlobalStyle";
 import AppHeader from "./components/AppHeader/AppHeader";
-import UserInformation from "./components/UserInformation";
+import UserInformation from "./components/UserInformationPage/UserInformation";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 export default function App() {
   return (

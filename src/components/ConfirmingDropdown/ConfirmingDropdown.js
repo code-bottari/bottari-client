@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
-import Dropdown from "./common/Dropdown";
-import Button from "./common/Button";
+import Dropdown from "../Common/Dropdown";
+import Button from "../Common/Button";
 
-import VARIANTS from "../constants/variants";
-import NAMES from "../constants/names";
+import VARIANTS from "../../constants/variants";
+import NAMES from "../../constants/names";
 
 const {
   CONFIRM,

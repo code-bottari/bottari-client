@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import SnippetTool from "../../DetailSnippet/SnippetTool/SnippetTool";
-import SnippetInfo from "../../DetailSnippet/SnippetInfo/SnippetInfo";
-import TitleHashtag from "../../DetailSnippet/TitleHashtag/TitleHashtag";
-import UserProfile from "../../DetailSnippet/UserProfile/UserProfile";
+import SnippetTool from "../Snippet/SnippetTool/SnippetTool";
+import SnippetInfo from "../Snippet/SnippetInfo/SnippetInfo";
+import TitleHashtag from "../Snippet/TitleHashtag/TitleHashtag";
+import UserProfile from "../Snippet/UserProfile/UserProfile";
 
 const CodeEditor = styled.div`
   width: 1100px;

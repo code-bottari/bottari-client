@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import Button from "./common/Button";
+import Button from "../../Common/Button";
 
-import VARIANTS from "../constants/variants";
+import VARIANTS from "../../../constants/variants";
 
 const { TOOL } = VARIANTS;
 

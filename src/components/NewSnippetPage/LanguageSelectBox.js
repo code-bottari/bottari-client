@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import styled from "styled-components";
 
-import CONSTANTS from "../constants/constants";
-import LANGUAGES from "../constants/languages";
-import VARIANTS from "../constants/variants";
+import CONSTANTS from "../../constants/constants";
+import LANGUAGES from "../../constants/languages";
+import VARIANTS from "../../constants/variants";
 
 const { SELECT_BOX_ARROW_URL } = CONSTANTS;
 

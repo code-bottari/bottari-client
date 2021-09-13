@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import DetailSnippet from "./Snippet/Snippet";
+import DetailSnippet from "./Snippet";
 
 const SnippetBox = styled.div`
   width: 1100px;

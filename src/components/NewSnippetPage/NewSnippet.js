@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import styled, { css } from "styled-components";
 
-import CodeEditor from "../components/CodeEditor/CodeEditor";
-import Button from "../components/common/Button";
+import CodeEditor from "../CodeEditor/CodeEditor";
+import Button from "../Common/Button";
 
-import validateHashtag from "../utils/validateHashtag";
+import validateHashtag from "../../utils/validateHashtag";
 
-import MESSAGES from "../constants/messages";
+import MESSAGES from "../../constants/messages";
 
 const { OK } = MESSAGES;
 

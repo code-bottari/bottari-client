@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import Button from "./common/Button";
-import ProfileImage from "./RegisterCard/ProfileImage";
+import Button from "../Common/Button";
+import ProfileImage from "../RegisterCard/ProfileImage";
 
-import { postData } from "../api/service";
-import validateNickname from "../utils/validateNickname";
-import addPhoto from "../addPhoto";
+import { postData } from "../../api/service";
+import validateNickname from "../../utils/validateNickname";
+import addPhoto from "../../addPhoto";
 
-import MESSAGES from "../constants/messages";
+import MESSAGES from "../../constants/messages";
 
 const {
   FAILED_UPLOAD_IMAGE,

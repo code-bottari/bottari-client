@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import styled from "styled-components";
 
-import Snippet from "./Snippet";
+import Snippet from "./PreviewSnippet/Snippet";
 
 const Wrapper = styled.div`
   display: flex;

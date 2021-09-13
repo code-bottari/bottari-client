@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import VARIANTS from "../constants/variants";
+import VARIANTS from "../../../constants/variants";
 
 const { ICON } = VARIANTS;
 

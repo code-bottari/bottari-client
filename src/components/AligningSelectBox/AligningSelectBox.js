@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import VARIANTS from "../constants/variants";
+import VARIANTS from "../../constants/variants";
 
 const { SELECT } = VARIANTS;
 

@@ -5,11 +5,11 @@ import styled from "styled-components";
 import NotificationBar from "./NotificationBar";
 import SubscribedBar from "./SubscribedBar";
 import UserTap from "./UserTap";
-import SelectBox from "./SelectBox";
-import SnippetList from "./SnippetList";
-import Button from "./common/Button";
+import SelectBox from "../AligningSelectBox/AligningSelectBox";
+import SnippetList from "../SnippetList/SnippetList";
+import Button from "../Common/Button";
 
-import { getData } from "../api/service";
+import { getData } from "../../api/service";
 
 const Wrapper = styled.div`
   display: grid;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import Button from "../../common/Button";
-import Dropdown from "../../common/Dropdown";
+import Button from "../../Common/Button";
+import Dropdown from "../../Common/Dropdown";
 
 import METHODS from "../../../constants/methods";
 import VARIANTS from "../../../constants/variants";

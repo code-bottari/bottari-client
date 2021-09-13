@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 
-import Button from "./common/Button";
+import Button from "../../common/Button";
 import ConfirmingDropdown from "./ConfirmingDropdown";
 
-import { deleteData } from "../api/service";
+import { deleteData } from "../../../api/service";
 
-import MESSAGES from "../constants/messages";
+import MESSAGES from "../../../constants/messages";
 
 const { OK } = MESSAGES;
 
