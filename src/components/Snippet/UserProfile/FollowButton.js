@@ -14,22 +14,22 @@ const MarkType = {
     border: "1px solid #999090",
     backgroundColor: "#999090",
   },
-  subscription: {
+  Following: {
     border: "1px solid #F9675D",
     backgroundColor: "#F9675D",
   },
 };
 
-const SubscriberType = {
+const FollowerType = {
   default: {
     border: "1px solid #999090",
   },
-  subscription: {
+  Following: {
     border: "1px solid #F9675D",
   },
 };
 
-const StyledSubscribeButton = styled.button`
+const StyledFollowButton = styled.button`
   display: flex;
   padding: 0px;
   border: none;
@@ -38,7 +38,7 @@ const StyledSubscribeButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledSubscribeMark = styled.div`
+const StyledFollowMark = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@ const StyledSubscribeMark = styled.div`
   ${({ variant }) => buildStyle(MarkType[variant])}
 `;
 
-const StyledSubscriber = styled.div`
+const StyledFollower = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,7 @@ const StyledSubscriber = styled.div`
   height: 19px;
   border-radius: 0px 5px 5px 0px;
 
-  ${({ variant }) => buildStyle(SubscriberType[variant])}
+  ${({ variant }) => buildStyle(FollowerType[variant])}
 `;
 
 const Mark = styled.img`
@@ -66,20 +66,20 @@ const Mark = styled.img`
   height: 15px;
 `;
 
-export default function SubscribeButton({ variant, count }) {
+export default function FollowButton({ variant, count }) {
   return (
-    <StyledSubscribeButton variant={variant}>
-      <StyledSubscribeMark variant={variant}>
+    <StyledFollowButton variant={variant}>
+      <StyledFollowMark variant={variant}>
         <Mark src="images/subscribeMark.png" alt="구독 마크" />
-      </StyledSubscribeMark>
-      <StyledSubscriber variant={variant}>
+      </StyledFollowMark>
+      <StyledFollower variant={variant}>
         {count}
-      </StyledSubscriber>
-    </StyledSubscribeButton>
+      </StyledFollower>
+    </StyledFollowButton>
   );
 };
 
-SubscribeButton.propTypes = {
+FollowButton.propTypes = {
   variant: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
 };

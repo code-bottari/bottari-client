@@ -18,7 +18,7 @@ const CreatorBox = styled.div`
   grid-template-rows: 25px 25px;
   grid-template-areas:
     "userImage userName . copyButton"
-    "userImage subscriber . copyButton";
+    "userImage follower . copyButton";
   align-items: center;
   justify-items: center;
   width: 690px;
@@ -44,8 +44,8 @@ const CreatorName = styled.div`
   font-weight: bold;
 `;
 
-const SubscriberImage = styled.img`
-  grid-area: subscriber;
+const FollowerImage = styled.img`
+  grid-area: follower;
   width: 80px;
   height: 20px;
 `;
@@ -85,9 +85,9 @@ export default function SnippetHeader() {
   return (
     <HeaderBox>
       <CreatorBox>
-        <CreatorImage src="/images/like.png" alt="프로필 이미지" width="40px" height="40px" />
+        <CreatorImage src="/images/bottari.png" alt="프로필 이미지" width="40px" height="40px" />
         <CreatorName>James</CreatorName>
-        <SubscriberImage src="images/Subscribers.png" />
+        <FollowerImage src="images/Followers.png" />
         <Button variant={TOOL}>복사</Button>
       </CreatorBox>
       <TitleBox>

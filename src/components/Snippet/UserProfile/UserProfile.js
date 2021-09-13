@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import SubscribeButton from "./SubscribeButton";
+import FollowButton from "./FollowButton";
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -29,13 +29,13 @@ const UserName = styled.div`
   cursor: pointer;
 `;
 
-export default function UserProfile({ profileUrl, nickname, subscriber }) {
+export default function UserProfile({ profileUrl, nickname, follower }) {
   return (
     <ProfileWrapper>
       <UserImage src={profileUrl} />
       <Group>
         <UserName>{nickname}</UserName>
-        <SubscribeButton variant="default" count={subscriber} />
+        <FollowButton variant="default" count={follower} />
       </Group>
     </ProfileWrapper>
   );
@@ -44,5 +44,5 @@ export default function UserProfile({ profileUrl, nickname, subscriber }) {
 UserProfile.propTypes = {
   profileUrl: PropTypes.string.isRequired,
   nickname: PropTypes.string.isRequired,
-  subscriber: PropTypes.number.isRequired,
+  follower: PropTypes.number.isRequired,
 };

@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import styled from "styled-components";
 
 import NotificationBar from "./NotificationBar";
-import SubscribedBar from "./SubscribedBar";
+import FollowingBar from "./FollowingBar";
 import UserTap from "./UserTap";
 import SelectBox from "../AligningSelectBox/AligningSelectBox";
 import SnippetList from "../SnippetList/SnippetList";
@@ -132,9 +132,9 @@ export default function UserInformation() {
           <Button variant="notification">한나님께서 00님의 글에 좋아요를 누르셨습니다.</Button>
           <Button variant="notification">환님께서 00님의 글에 좋아요를 누르셨습니다.</Button>
         </NotificationBar>
-        <SubscribedBar width={430} height="100vh">
-          <p>This is Subscribed List</p>
-        </SubscribedBar>
+        <FollowingBar width={430} height="100vh">
+          <p>This is Following List</p>
+        </FollowingBar>
         {user && <UserTap user={user} />}
       </Side>
       <Menu>

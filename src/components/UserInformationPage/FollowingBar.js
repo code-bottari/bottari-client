@@ -11,7 +11,7 @@ const Bar = styled.div`
   border-right: 2px solid;
   border-radius: 0;
   border-color: var(--caret-color);
-  background-color: var(--color-subscribed-tap);
+  background-color: var(--color-following-tap);
   transition: 0.8s ease;
 `;
 
@@ -24,7 +24,7 @@ const Icon = styled.img`
   outline: none;
 `;
 
-export default function SubscribedBar({ width, height, children, buttonPosition = 80 }) {
+export default function FollowingBar({ width, height, children, buttonPosition = 80 }) {
   const [position, setPosition] = useState(-width);
 
   const toggleMenu = () => {
@@ -50,7 +50,7 @@ export default function SubscribedBar({ width, height, children, buttonPosition 
         }}
       >
         <Icon
-          src="/images/subscribedMenu.png"
+          src="/images/followingMenu.png"
           onClick={toggleMenu}
           style={{
             transform: `translate(${width}px, ${buttonPosition}px)`,

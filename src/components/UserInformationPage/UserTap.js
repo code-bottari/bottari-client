@@ -68,7 +68,7 @@ const Email = styled.div`
   font-size: 25px;
 `;
 
-const SubscriberNumber = styled.div`
+const FollowerNumber = styled.div`
   font-size: 25px;
 `;
 
@@ -83,7 +83,7 @@ const Message = styled.p`
 `;
 
 export default function UserTap({ user }) {
-  const { email, nickname, imageUrl, subscriberList } = user;
+  const { email, nickname, imageUrl, followerList } = user;
 
   const [failureReason, setFailureReason] = useState();
   const reference = useRef();
@@ -126,7 +126,7 @@ export default function UserTap({ user }) {
         <Input type="text" placeholder="수정할 닉네임을 입력해 주세요." ref={reference} />
         <Message>{failureReason}</Message>
         <Email>{email}</Email>
-        <SubscriberNumber>구독자 수 : {subscriberList?.length}</SubscriberNumber>
+        <FollowerNumber>구독자 수 : {followerList?.length}</FollowerNumber>
       </Information>
       <ButtonWrapper>
         <Button variant="edit" children="수정하기" onClick={handleButtonClick} />

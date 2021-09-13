@@ -39,7 +39,7 @@ export default function DetailSnippet() {
     hashtags: ["#some", "#every"],
     profileUrl: "/images/like.png",
     nickname: "Sweet Potato",
-    subscriber: 125,
+    follower: 125,
     language: "Javascript",
     createdAt: "2020.10.10",
   };
@@ -48,7 +48,7 @@ export default function DetailSnippet() {
     hashtags,
     profileUrl,
     nickname,
-    subscriber,
+    follower,
     language,
     createdAt,
   } = mockInfo;
@@ -61,7 +61,7 @@ export default function DetailSnippet() {
         <UserProfile
           profileUrl={profileUrl}
           nickname={nickname}
-          subscriber={subscriber}
+          follower={follower}
         />
         <SnippetInfo language={language} />
       </InfoWrapper>
