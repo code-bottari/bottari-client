@@ -48,10 +48,10 @@ const Side = styled.div`
 `;
 
 const Menu = styled.div`
+  display: grid;
   grid-template-columns: 120px 20px 120px 20px 120px 2fr 1fr;
   grid-template-rows: 2fr 1fr;
   align-items: center;
-  display: grid;
   width: 700px;
 
   * {

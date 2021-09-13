@@ -1,13 +1,14 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
+import Button from "./common/Button";
+import ProfileImage from "./RegisterCard/ProfileImage";
+
 import { postData } from "../api/service";
+import validateNickname from "../utils/validateNickname";
+import addPhoto from "../addPhoto";
 
 import MESSAGES from "../constants/messages";
-import validateNickname from "../utils/validateNickname";
-import Button from "./common/Button";
-import addPhoto from "../addPhoto";
-import ProfileImage from "./RegisterCard/ProfileImage";
 
 const {
   FAILED_UPLOAD_IMAGE,
@@ -101,7 +102,9 @@ export default function UserTap({ user }) {
     addPhoto()
       .then(async (data, error) => {
         if (error) {
-          return alert(FAILED_UPLOAD_IMAGE);
+          alert(FAILED_UPLOAD_IMAGE);
+
+          return;
         }
 
         const imageURL = data.Location;

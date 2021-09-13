@@ -16,11 +16,11 @@ const Bar = styled.div`
 
 const Icon = styled.img`
   position: absolute;
-  outline: none;
   z-index: 2;
   width: 50px;
   height: 80px;
   border-left: 0;
+  outline: none;
 `;
 
 export default function SideBar({ width, height, children, buttonPosition = 20 }) {
@@ -45,14 +45,14 @@ export default function SideBar({ width, height, children, buttonPosition = 20 }
         style={{
           transform: `translatex(${position}px)`,
           width: width,
-          minHeight: height
+          minHeight: height,
         }}
       >
         <Icon
           src="/images/notificationMenu.png"
-          onClick={() => toggleMenu()}
+          onClick={toggleMenu}
           style={{
-            transform: `translate(${width}px, ${buttonPosition}px)`
+            transform: `translate(${width}px, ${buttonPosition}px)`,
           }}
         />
         {children}
