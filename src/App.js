@@ -1,19 +1,15 @@
-import { useState } from "react";
-
 import GlobalStyle from "./constants/styledComponent/GlobalStyle";
 import AppHeader from "./components/AppHeader/AppHeader";
-import SnippetDetailPage from "./components/SnippetDetailPage/SnippetDetailPage";
-import EditorModal from "./components/EditorModal";
-
+import UserInformation from "./components/UserInformation";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 export default function App() {
-  const [isOpen, setOpenStatus] = useState(false);
-
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyle />
       <AppHeader />
-      <SnippetDetailPage />
-      {isOpen && <EditorModal onClick={setOpenStatus} />}
-    </>
+      <Switch>
+        <Route path="/users/:id" component={UserInformation}/>
+      </Switch>
+    </BrowserRouter>
   );
 }

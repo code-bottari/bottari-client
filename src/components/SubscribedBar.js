@@ -7,6 +7,7 @@ const Bar = styled.div`
   z-index: 10;
   flex-direction: column;
   height: 100%;
+  padding-top: 20px;
   border-right: 2px solid;
   border-radius: 0;
   border-color: var(--caret-color);
@@ -23,7 +24,7 @@ const Icon = styled.img`
   outline: none;
 `;
 
-export default function SubscribedBar({ width, height, children, buttonPosition = 100 }) {
+export default function SubscribedBar({ width, height, children, buttonPosition = 80 }) {
   const [position, setPosition] = useState(-width);
 
   const toggleMenu = () => {

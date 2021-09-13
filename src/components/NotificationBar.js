@@ -7,6 +7,7 @@ const Bar = styled.div`
   z-index: 2;
   flex-direction: column;
   height: 100%;
+  padding-top: 20px;
   border-right: 2px solid;
   border-radius: 0;
   border-color: var(--caret-color);
@@ -23,7 +24,11 @@ const Icon = styled.img`
   outline: none;
 `;
 
-export default function NotificationBar({ width, height, children, buttonPosition = 20 }) {
+const Message = styled.div`
+  margin-left: 75px;
+`;
+
+export default function NotificationBar({ width, height, children, buttonPosition = 0 }) {
   const [position, setPosition] = useState(-width);
 
   const toggleMenu = () => {
@@ -55,7 +60,9 @@ export default function NotificationBar({ width, height, children, buttonPositio
             transform: `translate(${width}px, ${buttonPosition}px)`,
           }}
         />
-        {children}
+        <Message>
+          {children}
+        </Message>
       </Bar>
     </>
   );

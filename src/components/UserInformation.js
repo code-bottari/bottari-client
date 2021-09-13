@@ -128,7 +128,9 @@ export default function UserInformation() {
     <Wrapper>
       <Side>
         <NotificationBar width={430} height="100vh">
-          <p>This is Notification List</p>
+          <Button variant="notification">단오님께서 00님의 글에 좋아요를 누르셨습니다.</Button>
+          <Button variant="notification">한나님께서 00님의 글에 좋아요를 누르셨습니다.</Button>
+          <Button variant="notification">환님께서 00님의 글에 좋아요를 누르셨습니다.</Button>
         </NotificationBar>
         <SubscribedBar width={430} height="100vh">
           <p>This is Subscribed List</p>
