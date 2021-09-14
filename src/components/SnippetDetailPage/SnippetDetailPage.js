@@ -13,8 +13,8 @@ const SnippetBox = styled.div`
 `;
 
 export default function SnippetDetailPage() {
-  const [snippet, setSnippet] = useState({});
-  const [userId, setUserId] = useState("");
+  const [snippet, setSnippet] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   const { id } = useParams();
 

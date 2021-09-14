@@ -46,6 +46,7 @@ const Wrapper = styled.div`
 const Side = styled.div`
   display: flex;
   position: absolute;
+  height: 100%;
 `;
 
 const Menu = styled.div`

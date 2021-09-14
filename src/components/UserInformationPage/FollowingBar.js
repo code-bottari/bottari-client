@@ -50,7 +50,7 @@ export default function FollowingBar({ width, height, children, buttonPosition =
         }}
       >
         <Icon
-          src="/images/followingMenu.png"
+          src="/images/followingListMenu.png"
           onClick={toggleMenu}
           style={{
             transform: `translate(${width}px, ${buttonPosition}px)`,

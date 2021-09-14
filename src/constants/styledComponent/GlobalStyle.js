@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     --color-notification-tap: #FDFAFF;
     --color-following-tap: #F9F7F7;
     --color-message: #543FD3;
+    --color-mint-focus: #26BFA6;
   }
 `;
 

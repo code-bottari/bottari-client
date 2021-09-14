@@ -22,9 +22,13 @@ const Wrapper = styled.div`
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 `;
 
+const FixedWrapper = styled.div`
+  position: fixed;
+`;
+
 const BlankBlock = styled.div`
   width: 430px;
-  height: 100px;
+  height: 60px;
 `;
 
 const Information = styled.div`
@@ -33,7 +37,7 @@ const Information = styled.div`
   justify-content: space-between;
   width: 430px;
   height: 200px;
-  margin: 80px 0;
+  margin: 50px 0;
   text-align: center;
 `;
 
@@ -48,13 +52,13 @@ const Input = styled.input`
   height: 30px;
   padding-left: 10px;
   margin-left: 90px;
-  border: 2px solid #543FD3;
+  border: 2px solid var(--color-message);
   border-radius: 4px;
   outline: none;
   transition: 0.2s;
 
   &:focus {
-    border: 2px solid #26BFA6;
+    border: 2px solid var(--color-mint-focus);
   }
 
   &::placeholder {
@@ -117,18 +121,20 @@ export default function UserTap({ user }) {
 
   return (
     <Wrapper>
-      <BlankBlock />
-      <ProfileImage imageUrl={imageUrl} />
-      <Information>
-        <NickName>{nickname}</NickName>
-        <Input type="text" placeholder="수정할 닉네임을 입력해 주세요." ref={reference} />
-        <Message>{failureReason}</Message>
-        <Email>{email}</Email>
-        <FollowerNumber>구독자 수 : {followerList?.length}</FollowerNumber>
-      </Information>
-      <ButtonWrapper>
-        <Button variant="edit" children="수정하기" onClick={handleButtonClick} />
-      </ButtonWrapper>
+      <FixedWrapper>
+        <BlankBlock />
+        <ProfileImage imageUrl={imageUrl} />
+        <Information>
+          <NickName>{nickname}</NickName>
+          <Input type="text" placeholder="수정할 닉네임을 입력해 주세요." ref={reference} />
+          <Message>{failureReason}</Message>
+          <Email>{email}</Email>
+          <FollowerNumber>구독자 수 : {followerList?.length}</FollowerNumber>
+        </Information>
+        <ButtonWrapper>
+          <Button variant="edit" children="수정하기" onClick={handleButtonClick} />
+        </ButtonWrapper>
+      </FixedWrapper>
     </Wrapper>
   );
 }

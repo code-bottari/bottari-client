@@ -44,5 +44,5 @@ export default function UserProfile({ profileUrl, nickname, follower, isFollowed
 UserProfile.propTypes = {
   profileUrl: PropTypes.string.isRequired,
   nickname: PropTypes.string.isRequired,
-  follower: PropTypes.array.isRequired,
+  follower: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
