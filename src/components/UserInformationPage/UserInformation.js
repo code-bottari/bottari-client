@@ -7,7 +7,7 @@ import FollowingBar from "./FollowingBar";
 import UserTap from "./UserTap";
 import SelectBox from "../AligningSelectBox/AligningSelectBox";
 import SnippetList from "../SnippetList/SnippetList";
-import Button from "../Common/Button";
+import Button from "../common/Button";
 
 import { getUserData, getSnippet } from "../../api/service";
 

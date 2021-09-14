@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import Button from "../Common/Button";
+import Button from "../common/Button";
 import ProfileImage from "../RegisterCard/ProfileImage";
 
 import { modifyUserData } from "../../api/service";

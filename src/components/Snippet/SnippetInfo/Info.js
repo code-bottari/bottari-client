@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
-import Button from "../../Common/Button";
+import Button from "../../common/Button";
 
 import { ICON } from "../../../constants/variants";
 

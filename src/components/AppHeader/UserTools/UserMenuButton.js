@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Button from "../../Common/Button";
+import Button from "../../common/Button";
 import UserMenuDropdown from "./UserMenuDropdown";
 
 import { ICON } from "../../../constants/variants";

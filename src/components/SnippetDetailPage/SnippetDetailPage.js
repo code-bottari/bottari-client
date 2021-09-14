@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
 
-import DetailSnippet from "./Snippet";
+import DetailSnippet from "./DetailSnippet";
 
 import { getSnippet } from "../../api/service";
 

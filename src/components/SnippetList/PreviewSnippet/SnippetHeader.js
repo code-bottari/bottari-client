@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Button from "../../Common/Button";
+import Button from "../../common/Button";
 
 import UserProfile from "../../Snippet/UserProfile/UserProfile";
 import HashtagList from "../../Snippet/HashtagList/HashtagList";

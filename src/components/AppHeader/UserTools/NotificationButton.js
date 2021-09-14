@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import Button from "../../Common/Button";
-import Dropdown from "../../Common/Dropdown";
+import Button from "../../common/Button";
+import Dropdown from "../../common/Dropdown";
 
 import { GET } from "../../../constants/methods";
 

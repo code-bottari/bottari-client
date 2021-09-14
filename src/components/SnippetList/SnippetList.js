@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import Snippet from "./PreviewSnippet/Snippet";
+import Snippet from "./PreviewSnippet/PreviewSnippet";
 
 import { getSnippetList } from "../../api/service";
 

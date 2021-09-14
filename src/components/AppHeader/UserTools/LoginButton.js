@@ -1,4 +1,4 @@
-import Button from "../../Common/Button";
+import Button from "../../common/Button";
 
 import firebaseAPI from "../../../api/firebase";
 import { checkMember } from "../../../api/service";

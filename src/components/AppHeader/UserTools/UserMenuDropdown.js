@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import Button from "../../Common/Button";
-import Dropdown from "../../Common/Dropdown";
+import Button from "../../common/Button";
+import Dropdown from "../../common/Dropdown";
 
 import firebaseAPI from "../../../api/firebase";
 import { logout } from "../../../api/service";
