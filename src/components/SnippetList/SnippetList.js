@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import styled from "styled-components";
 
 import Snippet from "./PreviewSnippet/PreviewSnippet";
@@ -15,17 +16,18 @@ const ListBox = styled.div`
 `;
 
 export default function SnippetList() {
+  const { search } = useLocation();
   const [snippets, setSnippets] = useState();
 
   useEffect(() => {
     (async () => {
-      const data = await getSnippetList();
+      const data = await getSnippetList(search);
 
       const { snippetList } = data;
 
       setSnippets(snippetList);
     })();
-  }, []);
+  }, [search]);
 
   return (
     <Wrapper>
