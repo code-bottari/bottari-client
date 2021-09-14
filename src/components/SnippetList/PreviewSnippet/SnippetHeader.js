@@ -65,7 +65,7 @@ export default function SnippetHeader({ profileUrl, nickname, follower, hashtags
 SnippetHeader.propTypes = {
   profileUrl: PropTypes.string.isRequired,
   nickname: PropTypes.string.isRequired,
-  follower: PropTypes.number.isRequired,
+  follower: PropTypes.array.isRequired,
   hashtags: PropTypes.array.isRequired,
   language: PropTypes.string.isRequired,
 };

@@ -29,13 +29,13 @@ const UserName = styled.div`
   cursor: pointer;
 `;
 
-export default function UserProfile({ profileUrl, nickname, follower }) {
+export default function UserProfile({ profileUrl, nickname, follower, isFollowed }) {
   return (
     <ProfileWrapper>
       <UserImage src={profileUrl} />
       <Group>
         <UserName>{nickname}</UserName>
-        <FollowButton variant="default" count={follower} />
+        <FollowButton variant={isFollowed ? "Following" : "default"} count={follower?.length} />
       </Group>
     </ProfileWrapper>
   );
@@ -44,5 +44,5 @@ export default function UserProfile({ profileUrl, nickname, follower }) {
 UserProfile.propTypes = {
   profileUrl: PropTypes.string.isRequired,
   nickname: PropTypes.string.isRequired,
-  follower: PropTypes.number.isRequired,
+  follower: PropTypes.array.isRequired,
 };

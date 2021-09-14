@@ -31,7 +31,7 @@ const Hashtag = styled.a`
 export default function HashtagList({ type, hashtags }) {
   return (
     <HashtagWrapper>
-      {hashtags.map((hashtag) => (
+      {hashtags && hashtags.map((hashtag) => (
         <Hashtag
           key={hashtag}
           type={type}

@@ -4,6 +4,7 @@ const {
   GET,
   POST,
   DELETE,
+  PATCH,
 } = METHODS;
 
 export const getData = async (path) => {
@@ -50,6 +51,27 @@ export const postData = async (path, resource) => {
 export const deleteData = async (path, resource) => {
   const options = {
     method: DELETE,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(resource),
+  };
+
+  try {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}${path}`, options);
+
+    const data = response.json();
+
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const patchData = async (path, resource) => {
+  const options = {
+    method: PATCH,
     headers: {
       "Content-Type": "application/json",
     },
