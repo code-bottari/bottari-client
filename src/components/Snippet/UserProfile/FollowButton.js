@@ -70,7 +70,7 @@ export default function FollowButton({ variant, count }) {
   return (
     <StyledFollowButton variant={variant}>
       <StyledFollowMark variant={variant}>
-        <Mark src="images/subscribeMark.png" alt="구독 마크" />
+        <Mark src="/images/followMark.png" alt="구독 마크" />
       </StyledFollowMark>
       <StyledFollower variant={variant}>
         {count}

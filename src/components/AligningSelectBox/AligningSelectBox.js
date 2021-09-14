@@ -23,7 +23,7 @@ const SelectOption = styled.option`
   color: #fff;
 `;
 
-export default function SelectBox() {
+export default function AligningSelectBox() {
   const [selected, setSelected] = useState("default");
 
   const handleChangeSelect = (event) => {

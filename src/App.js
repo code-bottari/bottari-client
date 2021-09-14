@@ -1,15 +1,19 @@
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+
 import GlobalStyle from "./constants/styledComponent/GlobalStyle";
 import AppHeader from "./components/AppHeader/AppHeader";
-import UserInformation from "./components/UserInformationPage/UserInformation";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import Main from "./components/Main/Main";
+import SnippetDetailPage from "./components/SnippetDetailPage/SnippetDetailPage";
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <GlobalStyle />
       <AppHeader />
       <Switch>
-        <Route path="/users/:id" component={UserInformation}/>
+        <Route exact path="/" component={Main} />
+        <Route path="/snippets/:id" component={SnippetDetailPage} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }

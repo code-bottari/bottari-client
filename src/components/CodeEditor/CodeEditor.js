@@ -17,6 +17,7 @@ export default function CodeEditor({ width, height }) {
     language: "javascript",
     theme: "monokai",
     fontSize: 14,
+    readOnly: false,
     tab: 2,
   });
 
