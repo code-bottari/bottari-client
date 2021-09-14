@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import DetailSnippet from "./Snippet";
 
-import { getData } from "../../api/service";
+import { getSnippet } from "../../api/service";
 
 const SnippetBox = styled.div`
   width: 1100px;
@@ -13,14 +13,14 @@ const SnippetBox = styled.div`
 `;
 
 export default function SnippetDetailPage() {
-  const [snippet, setSnippet] = useState();
-  const [userId, setUserId] = useState();
+  const [snippet, setSnippet] = useState({});
+  const [userId, setUserId] = useState("");
 
   const { id } = useParams();
 
   useEffect(() => {
     (async () => {
-      const data = await getData(`/snippets/${id}`);
+      const data = await getSnippet(id);
 
       const { snippet, userId } = data; // 현재 로그인한 사용자 아이디를 가져오도록 백엔드 수정 필요
 

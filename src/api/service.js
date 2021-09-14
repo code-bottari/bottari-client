@@ -17,6 +17,32 @@ const fetchData = async (url, options) => {
   }
 };
 
+export const getSnippet = async (id) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/${id}`;
+
+  const options = {
+    method: GET,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+
+    if (response.status === 400) { // 리팩토링 예정
+      throw createError(response.status, "message");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const getSnippetList = async (query) => {
   let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
 
