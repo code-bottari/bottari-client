@@ -10,24 +10,18 @@ import validateNickname from "../../utils/validateNickname";
 import firebaseAPI from "../../api/firebase";
 import addPhoto from "../../addPhoto";
 
-import MESSAGES from "../../constants/messages";
-import METHODS from "../../constants/methods";
-import NAMES from "../../constants/names";
-import VARIANTS from "../../constants/variants";
+import { POST } from "../../constants/methods";
+import { REGISTRATION } from "../../constants/names";
 
-const {
+import {
   FAILED_UPLOAD_IMAGE,
   OK,
-} = MESSAGES;
+} from "../../constants/messages";
 
-const { POST } = METHODS;
-
-const { REGISTRATION } = NAMES;
-
-const {
+import {
   NICKNAME,
   BASIC,
-} = VARIANTS;
+} from "../../constants/variants";
 
 const Card = styled.div`
   display: flex;

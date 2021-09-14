@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 import Button from "../../Common/Button";
 
-import VARIANTS from "../../../constants/variants";
-
-const { TOOL } = VARIANTS;
+import { TOOL } from "../../../constants/variants";
 
 const ToolWrapper = styled.div`
   display: flex;

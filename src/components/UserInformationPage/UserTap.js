@@ -8,13 +8,11 @@ import { modifyUserData } from "../../api/service";
 import validateNickname from "../../utils/validateNickname";
 import addPhoto from "../../addPhoto";
 
-import MESSAGES from "../../constants/messages";
-
-const {
+import {
   FAILED_UPLOAD_IMAGE,
   USER_INFORMATION_UPDATED,
   OK,
-} = MESSAGES;
+} from "../../constants/messages";
 
 const Wrapper = styled.div`
   position: absolute;

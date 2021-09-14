@@ -6,9 +6,7 @@ import Button from "../Common/Button";
 
 import validateHashtag from "../../utils/validateHashtag";
 
-import MESSAGES from "../../constants/messages";
-
-const { OK } = MESSAGES;
+import { OK } from "../../constants/messages";
 
 const commonStyle = css`
   display: block;

@@ -3,18 +3,15 @@ import PropTypes from "prop-types";
 import Dropdown from "../Common/Dropdown";
 import Button from "../Common/Button";
 
-import VARIANTS from "../../constants/variants";
-import NAMES from "../../constants/names";
-
-const {
+import {
   CONFIRM,
   UTILITY,
-} = VARIANTS;
+} from "../../constants/variants";
 
-const {
+import {
   CANCEL,
   DELETE,
-} = NAMES;
+} from "../../constants/names";
 
 const buttonNames = [CANCEL, DELETE];
 

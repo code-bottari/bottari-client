@@ -1,12 +1,10 @@
-import MESSAGES from "../../src/constants/messages";
-
-const {
+import {
   INCLUDING_SPECIAL_CHARACTER,
   INCLUDING_SPACE,
-  INSUFFICIENT_LENGTH,
-  EXCESSIVE_LENGTH,
+  INSUFFICIENT_NICKNAME_LENGTH,
+  EXCESSIVE_NICKNAME_LENGTH,
   OK,
-} = MESSAGES;
+} from "../constants/messages";
 
 const validateNickname = (nickname) => {
   const nicknameArray = Array.from(nickname);
@@ -31,11 +29,11 @@ const validateNickname = (nickname) => {
   }
 
   if (nickname.length < 2) {
-    return INSUFFICIENT_LENGTH;
+    return INSUFFICIENT_NICKNAME_LENGTH;
   }
 
   if (nickname.length > 10) {
-    return EXCESSIVE_LENGTH;
+    return EXCESSIVE_NICKNAME_LENGTH;
   }
 
   return OK;

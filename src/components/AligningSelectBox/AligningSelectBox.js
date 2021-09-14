@@ -1,9 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import VARIANTS from "../../constants/variants";
-
-const { SELECT } = VARIANTS;
+import { SELECT } from "../../constants/variants";
 
 const Select = styled.select`
   appearance: none;

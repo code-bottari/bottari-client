@@ -3,9 +3,7 @@ import styled, { css } from "styled-components";
 
 import Button from "../../Common/Button";
 
-import VARIANTS from "../../../constants/variants";
-
-const { ICON } = VARIANTS;
+import { ICON } from "../../../constants/variants";
 
 const buildStyle = ({ cursor }) => css`
   cursor: ${cursor};

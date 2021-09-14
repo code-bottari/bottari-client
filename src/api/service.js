@@ -1,12 +1,11 @@
-import METHODS from "../constants/methods";
 import createError from "../utils/createError";
 
-const {
+import {
   GET,
   POST,
   DELETE,
   PATCH,
-} = METHODS;
+} from "../constants/methods";
 
 const fetchData = async (url, options) => {
   try {

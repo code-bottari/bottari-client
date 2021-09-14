@@ -1,8 +1,11 @@
-const METHODS = {
-  GET: "GET",
-  POST: "POST",
-  DELETE: "DELETE",
-  PATCH: "PATCH",
-};
+const GET = "GET";
+const POST = "POST";
+const DELETE = "DELETE";
+const PATCH = "PATCH";
 
-export default METHODS;
+export {
+  GET,
+  POST,
+  DELETE,
+  PATCH,
+};

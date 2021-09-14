@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 import Button from "../../Common/Button";
 
-import VARIANTS from "../../../constants/variants";
-
-const { SEARCH } = VARIANTS;
+import { SEARCH } from "../../../constants/variants";
 
 const SearchWrapper = styled.div`
   display: flex;

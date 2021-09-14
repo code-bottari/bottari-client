@@ -3,15 +3,12 @@ import Button from "../../Common/Button";
 import firebaseAPI from "../../../api/firebase";
 import { checkMember } from "../../../api/service";
 
-import VARIANTS from "../../../constants/variants";
-import MESSAGES from "../../../constants/messages";
+import { BASIC } from "../../../constants/variants";
 
-const { BASIC } = VARIANTS;
-
-const {
+import {
   FAILURE_LOGIN,
   FAILED_FULFILLMENT,
-} = MESSAGES;
+} from "../../../constants/messages";
 
 export default function LoginButton({ onClick }) {
   const setLoginStatus = (boolean) => {

@@ -6,9 +6,7 @@ import ConfirmingDropdown from "./ConfirmingDropdown";
 
 import { deleteSnippet } from "../../../api/service";
 
-import MESSAGES from "../../../constants/messages";
-
-const { OK } = MESSAGES;
+import { OK } from "../../../constants/messages";
 
 export default function SnippetDeleteButton() {
   const [isClicked, setClickStatus] = useState(false);

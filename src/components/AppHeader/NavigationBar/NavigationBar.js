@@ -2,12 +2,9 @@ import styled from "styled-components";
 
 import Button from "../../Common/Button";
 
-import VARIANTS from "../../../constants/variants";
-import LANGUAGES from "../../../constants/languages";
+import { TOOL } from "../../../constants/variants";
 
-const { TOOL } = VARIANTS;
-
-const {
+import {
   ALL,
   PYTHON,
   JAVA,
@@ -18,7 +15,7 @@ const {
   R,
   OBJECTIVE_C,
   OTHERS
-} = LANGUAGES;
+} from "../../../constants/languages";
 
 const NavigationWrapper = styled.div`
   display: flex;

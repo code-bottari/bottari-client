@@ -6,9 +6,7 @@ import Dropdown from "../../Common/Dropdown";
 import firebaseAPI from "../../../api/firebase";
 import { logout } from "../../../api/service";
 
-import VARIANTS from "../../../constants/variants";
-
-const { LIST } = VARIANTS;
+import { LIST } from "../../../constants/variants";
 
 const DropdownWrapper = styled.div`
   z-index: 1;

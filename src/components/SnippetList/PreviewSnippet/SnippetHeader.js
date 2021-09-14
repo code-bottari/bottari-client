@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 
 import Button from "../../Common/Button";
 
-import VARIANTS from "../../../constants/variants";
 import UserProfile from "../../Snippet/UserProfile/UserProfile";
 import HashtagList from "../../Snippet/HashtagList/HashtagList";
 
-const { TOOL } = VARIANTS;
+import { TOOL } from "../../../constants/variants";
 
 const HeaderBox = styled.div`
   width: 700px;

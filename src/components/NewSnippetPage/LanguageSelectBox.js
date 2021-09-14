@@ -2,13 +2,10 @@ import { useState } from "react";
 
 import styled from "styled-components";
 
-import CONSTANTS from "../../constants/constants";
-import LANGUAGES from "../../constants/languages";
-import VARIANTS from "../../constants/variants";
+import { SELECT_BOX_ARROW_URL } from "../../constants/constants";
+import { LANGUAGE } from "../../constants/variants";
 
-const { SELECT_BOX_ARROW_URL } = CONSTANTS;
-
-const {
+import {
   PYTHON,
   JAVA,
   JAVASCRIPT,
@@ -17,9 +14,7 @@ const {
   PHP,
   R,
   OBJECTIVE_C,
-} = LANGUAGES;
-
-const { LANGUAGE } = VARIANTS;
+} from "../../constants/languages";
 
 const Select = styled.select`
   appearance: none;

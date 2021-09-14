@@ -3,16 +3,13 @@ import { useState } from "react";
 import Button from "../../Common/Button";
 import Dropdown from "../../Common/Dropdown";
 
-import METHODS from "../../../constants/methods";
-import VARIANTS from "../../../constants/variants";
+import { GET } from "../../../constants/methods";
 
-const { GET } = METHODS;
-
-const {
+import {
   ICON,
   LIST,
   NOTIFICATION
-} = VARIANTS;
+} from "../../../constants/variants";
 
 export default function NotificationButton() {
   const [isClicked, setClickStatus] = useState(false);

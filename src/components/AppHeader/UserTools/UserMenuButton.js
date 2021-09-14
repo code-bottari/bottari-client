@@ -3,9 +3,7 @@ import { useState } from "react";
 import Button from "../../Common/Button";
 import UserMenuDropdown from "./UserMenuDropdown";
 
-import VARIANTS from "../../../constants/variants";
-
-const { ICON } = VARIANTS;
+import { ICON } from "../../../constants/variants";
 
 export default function UserMenuButton({ onClick }) {
   const [toggleDropDown, setToggleDropDown] = useState(false);

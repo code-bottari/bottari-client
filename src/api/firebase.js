@@ -1,26 +1,25 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
-import ERRORS from "../constants/errors";
-import MESSAGES from "../constants/messages";
+import {
+  AUTH_CANCELLED_POPUP_REQUEST,
+  AUTH_POPUP_CLOSED_BY_USER,
+  AUTH_POPUP_BLOCKED,
+} from "../constants/errors";
+
+import {
+  DUPLICATE_REQUEST,
+  POPUP_BLOCKED,
+  POPUP_CLOSED,
+  UNEXPECTED_ERROR,
+  FAILURE_LOGOUT,
+  EXPIRED_TOKEN,
+} from "../constants/messages";
 
 const login = async () => {
   const provider = new firebase
     .auth
     .GoogleAuthProvider();
-
-  const {
-    AUTH_CANCELLED_POPUP_REQUEST,
-    AUTH_POPUP_CLOSED_BY_USER,
-    AUTH_POPUP_BLOCKED,
-  } = ERRORS;
-
-  const {
-    DUPLICATE_REQUEST,
-    POPUP_BLOCKED,
-    POPUP_CLOSED,
-    UNEXPECTED_ERROR,
-  } = MESSAGES;
 
   try {
     await firebase
@@ -47,8 +46,6 @@ const login = async () => {
 };
 
 const logout = async () => {
-  const { FAILURE_LOGOUT } = ERRORS;
-
   try {
     await firebase
       .auth()
@@ -60,8 +57,6 @@ const logout = async () => {
 };
 
 const getToken = async () => {
-  const { EXPIRED_TOKEN } = MESSAGES;
-
   const token = await firebase
     .auth()
     .currentUser

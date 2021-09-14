@@ -1,13 +1,11 @@
 import { pascalCase } from "pascal-case";
 
-import MESSAGES from "../constants/messages";
-
-const {
+import {
   DEMAND_INPUT,
   EXCESSIVE_HASHTAG_NUMBER,
   EXCESSIVE_HASHTAG_LENGTH,
   UNSUITABLE_CASE,
-} = MESSAGES;
+} from "../constants/messages";
 
 const MAX_NUMBER = 5;
 const MAX_LENGTH = 16;

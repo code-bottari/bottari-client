@@ -1,5 +1,5 @@
-import CONSTANTS from "./constants/constants";
-import MESSAGES from "./constants/messages";
+import { DEFAULT_IMAGE_URL } from "./constants/constants";
+import { EXCESSIVE_IMAGE_SIZE } from "./constants/messages";
 
 const bucketName = process.env.REACT_APP_S3_BUCKET_NAME;
 const bucketRegion = process.env.REACT_APP_S3_BUCKET_REGION;
@@ -23,9 +23,6 @@ const s3 = new AWS.S3({
 
 export default function addPhoto() {
   const files = document.getElementById("uploader").files;
-
-  const { EXCESSIVE_IMAGE_SIZE } = MESSAGES;
-  const { DEFAULT_IMAGE_URL } = CONSTANTS;
 
   if (!files.length) {
     return DEFAULT_IMAGE_URL;
