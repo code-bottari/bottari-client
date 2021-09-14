@@ -32,7 +32,7 @@ export default function Snippet({ data }) {
       <SnippetHeader
         profileUrl={imageUrl}
         nickname={nickname}
-        follower={followerList.length}
+        follower={followerList}
         language={language}
         hashtags={hashtagList}
       />

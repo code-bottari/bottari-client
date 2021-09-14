@@ -34,45 +34,31 @@ const Date = styled.div`
   font-weight: bold;
 `;
 
-export default function DetailSnippet() {
-  const mockInfo = { // mock
-    hashtags: ["#some", "#every"],
-    profileUrl: "/images/like.png",
-    nickname: "Sweet Potato",
-    follower: 125,
-    language: "Javascript",
-    createdAt: "2020.10.10",
-    likerList: ["1", "2"],
-    commentList: ["1", "2"],
-  };
+export default function DetailSnippet({ snippet, userId }) {
+  const { hashtagList, poster, language, likerList, commentList, createdAt } = snippet;
+  const { nickname, imageUrl, followerList } = poster;
 
-  const {
-    hashtags,
-    profileUrl,
-    nickname,
-    follower,
-    language,
-    createdAt,
-    likerList,
-    commentList,
-  } = mockInfo;
+  const isLiked = likerList.indexOf(userId) !== -1;
+  const isFollowed = followerList.indexOf(userId) !== -1;
 
   return (
     <>
       <HashtagList
         type="detail"
-        hashtags={hashtags} />
+        hashtags={hashtagList} />
       <CodeEditor />
       <InfoWrapper>
         <UserProfile
-          profileUrl={profileUrl}
+          profileUrl={imageUrl}
           nickname={nickname}
-          follower={follower}
+          follower={followerList}
+          isFollowed={isFollowed}
         />
         <SnippetInfo
           language={language}
           likeCount={likerList.length}
           commentCount={commentList.length}
+          isLiked={isLiked}
         />
       </InfoWrapper>
       <Footer>

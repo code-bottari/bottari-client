@@ -20,10 +20,10 @@ const Language = styled.div`
   text-align: center;
 `;
 
-export default function SnippetInfo({ language, likeCount, commentCount }) {
+export default function SnippetInfo({ language, likeCount, commentCount, isLiked }) {
   return (
     <InfoWrapper>
-      <Info type="like" image="/images/like.png" count={likeCount} />
+      <Info type="like" image={isLiked ? "/images/like.png" : "/images/dislike.png"} count={likeCount} />
       <Info type="comment" image="/images/comment.png" count={commentCount} />
       <Language>{language}</Language>
     </InfoWrapper>
