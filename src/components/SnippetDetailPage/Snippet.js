@@ -58,6 +58,7 @@ export default function DetailSnippet({ snippet, userId }) {
           language={language}
           likeCount={likerList.length}
           commentCount={commentList.length}
+          isLiked={isLiked}
         />
       </InfoWrapper>
       <Footer>
