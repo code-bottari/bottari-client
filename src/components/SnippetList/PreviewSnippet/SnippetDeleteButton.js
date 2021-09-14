@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import Button from "../../common/Button";
 import ConfirmingDropdown from "./ConfirmingDropdown";
 
-import { deleteData } from "../../../api/service";
+import { deleteSnippet } from "../../../api/service";
 
 import MESSAGES from "../../../constants/messages";
 
@@ -19,7 +19,7 @@ export default function SnippetDeleteButton() {
 
   const deletionHandler = async () => {
     try {
-      const data = await deleteData("/snippets");
+      const data = await deleteSnippet("/snippets");
 
       if (data.result === OK) {
         history.push("/");

@@ -4,7 +4,7 @@ import Button from "../../Common/Button";
 import Dropdown from "../../Common/Dropdown";
 
 import firebaseAPI from "../../../api/firebase";
-import { postData } from "../../../api/service";
+import { logout } from "../../../api/service";
 
 import VARIANTS from "../../../constants/variants";
 
@@ -21,7 +21,7 @@ export default function UserMenuDropdown({ onClick }) {
 
   const handleLogout = async () => {
     try {
-      const data = await postData("/users/logout");
+      const data = await logout("/users/logout");
 
       if (data.status) {
         throw new Error(data.message);

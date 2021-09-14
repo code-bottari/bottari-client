@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "../Common/Button";
 import ProfileImage from "../RegisterCard/ProfileImage";
 
-import { postData } from "../../api/service";
+import { modifyUserData } from "../../api/service";
 import validateNickname from "../../utils/validateNickname";
 import addPhoto from "../../addPhoto";
 
@@ -109,7 +109,7 @@ export default function UserTap({ user }) {
 
         const imageURL = data.Location;
         const resource = { nickname, imageURL };
-        const response = await postData(`/users/detail/${user._id}`, resource);
+        const response = await modifyUserData(user._id, resource);
 
         if (response === OK) {
           alert(USER_INFORMATION_UPDATED);

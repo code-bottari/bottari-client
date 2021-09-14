@@ -1,7 +1,7 @@
 import Button from "../../Common/Button";
 
 import firebaseAPI from "../../../api/firebase";
-import { postData } from "../../../api/service";
+import { checkMember } from "../../../api/service";
 
 import VARIANTS from "../../../constants/variants";
 import MESSAGES from "../../../constants/messages";
@@ -24,7 +24,7 @@ export default function LoginButton({ onClick }) {
 
       const idToken = await firebaseAPI.getToken();
 
-      const data = await postData("/users/check-member", { idToken });
+      const data = await checkMember("/users/check-member", { idToken });
 
       if (data.status === 401) {
         throw new Error(FAILURE_LOGIN);

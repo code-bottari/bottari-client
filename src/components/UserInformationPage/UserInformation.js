@@ -9,7 +9,7 @@ import SelectBox from "../AligningSelectBox/AligningSelectBox";
 import SnippetList from "../SnippetList/SnippetList";
 import Button from "../Common/Button";
 
-import { getData } from "../../api/service";
+import { getUserData, getSnippet } from "../../api/service";
 
 const Wrapper = styled.div`
   display: grid;
@@ -94,11 +94,11 @@ export default function UserInformation() {
 
   useEffect(() => {
     async function fetchData () {
-      const userData = await getData(`/users/${id}`);
+      const userData = await getUserData(id);
 
       setUser(userData.user);
 
-      const snippetsData = await getData("/snippets");
+      const snippetsData = await getSnippet();
 
       setSnippets(snippetsData);
     }

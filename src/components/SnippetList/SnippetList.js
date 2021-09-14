@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Snippet from "./PreviewSnippet/Snippet";
 
-import { getData } from "../../api/service";
+import { getSnippetList } from "../../api/service";
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ export default function SnippetList() {
 
   useEffect(() => {
     (async () => {
-      const data = await getData("/snippets");
+      const data = await getSnippetList();
 
       const { snippetList } = data;
 
