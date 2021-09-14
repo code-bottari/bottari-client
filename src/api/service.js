@@ -171,6 +171,7 @@ export const modifyUserData = async (id, resource) => {
       "Content-Type": "application/json",
     },
     credentials: "include",
+    body: JSON.stringify(resource),
   };
 
   try {
@@ -185,26 +186,5 @@ export const modifyUserData = async (id, resource) => {
     return data;
   } catch (error) {
     return error;
-  }
-};
-
-export const patchData = async (path, resource) => {
-  const options = {
-    method: PATCH,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-    body: JSON.stringify(resource),
-  };
-
-  try {
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}${path}`, options);
-
-    const data = response.json();
-
-    return data;
-  } catch (error) {
-    throw new Error(error.message);
   }
 };
