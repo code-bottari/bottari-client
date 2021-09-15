@@ -109,8 +109,9 @@ export default function UserTap({ user }) {
       return;
     }
 
-    const imageURL = typeof(data) === String ? data : data.Location;
+    const imageURL = typeof data === "string" ? data : data.Location;
     const resource = { nickname, imageURL };
+
     const response = await modifyUserData(user._id, resource);
 
     if (response === OK) {

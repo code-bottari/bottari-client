@@ -189,6 +189,34 @@ export const createSnippet = async (resource) => {
   }
 };
 
+export const registerUser = async (idToken, resource) => {
+  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/register`;
+
+  const options = {
+    method: POST,
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${idToken}`,
+    },
+    credentials: "include",
+    body: JSON.stringify(resource),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+
+    if (response.status === 400) {
+      throw createError(response.status, "message");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const getUserData = async (id) => {
   let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/${id}`;
 
