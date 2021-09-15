@@ -17,7 +17,7 @@ export default function UserTools() {
 
   const [isLogin, setLoginStatus] = useState(queryClient.getQueryData("login"));
 
-  const hasUserId = queryClient.getQueryData("login")?.userId;
+  const hasUserId = !!queryClient.getQueryData("login")?.userId;
 
   const handleClick = () => setLoginStatus(hasUserId);
 
