@@ -47,8 +47,7 @@ function NavigationBar() {
             </Button>
           </a>
         );
-      }
-      )}
+      })}
     </NavigationWrapper>
   );
 }
