@@ -5,17 +5,13 @@ import UserMenuDropdown from "./UserMenuDropdown";
 
 import { ICON } from "../../../constants/variants";
 
-export default function UserMenuButton({ onClick }) {
+export default function UserMenuButton({ handleLoginStatus }) {
   const [toggleDropDown, setToggleDropDown] = useState(false);
 
   const UserMenuIcon = <img alt="사용자 메뉴 아이콘" src="/images/user_menu_icon.png" width="40" height="40" />;
 
   const handleDropDown = () => {
     setToggleDropDown(!toggleDropDown);
-  };
-
-  const handleLoginStatus = (boolean) => {
-    onClick(boolean);
   };
 
   return (
