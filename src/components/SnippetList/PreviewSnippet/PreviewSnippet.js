@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import SnippetHeader from "./SnippetHeader";
@@ -7,8 +8,8 @@ import Editor from "../../CodeEditor/Editor";
 
 const SnippetBox = styled.div`
   width: 700px;
-  height: 370px;
-  margin-bottom: 30px;
+  height: 380px;
+  margin: 20px 0px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 `;
 
@@ -36,13 +37,13 @@ export default function PreviewSnippet({ data }) {
         language={language}
         hashtags={hashtagList}
       />
-      <a href={`/snippets/${_id}`}>
+      <Link to={`/snippets/${_id}`}>
         <Editor
           editorOptions={editorOptions}
           width="700px"
           height="230px"
         />
-      </a>
+      </Link>
       <SnippetFooter
         createdAt={formatDate}
         likeCount={likerList.length}

@@ -5,6 +5,8 @@ import Info from "../../Snippet/SnippetInfo/Info";
 
 const FooterBox = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 700px;
   height: 50px;
 `;
@@ -12,17 +14,23 @@ const FooterBox = styled.div`
 const Date = styled.div`
   width: 100px;
   height: 20px;
-  padding: 12px;
-  margin-right: 440px;
+  padding-left: 15px;
   font-weight: bold;
+`;
+
+const SnippetInfoWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export default function SnippetFooter({ createdAt, likeCount, commentCount }) {
   return (
     <FooterBox>
       <Date>{createdAt}</Date>
-      <Info type="like" image="/images/like.png" count={likeCount}/>
-      <Info type="comment" image="/images/comment.png" count={commentCount}/>
+      <SnippetInfoWrapper>
+        <Info type="like" image="/images/like.png" count={likeCount} />
+        <Info type="comment" image="/images/comment.png" count={commentCount} />
+      </SnippetInfoWrapper>
     </FooterBox>
   );
 }

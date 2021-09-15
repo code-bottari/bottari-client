@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import styled from "styled-components";
 
 import Snippet from "./PreviewSnippet/PreviewSnippet";
 
 import { getSnippetList } from "../../api/service";
+import { useQuery } from "react-query";
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,22 +17,19 @@ const ListBox = styled.div`
 
 export default function SnippetList() {
   const { search } = useLocation();
-  const [snippets, setSnippets] = useState();
 
-  useEffect(() => {
-    (async () => {
-      const data = await getSnippetList(search);
+  const { data, isLoading } = useQuery("snippetList", async () => await getSnippetList(search));
 
-      const { snippetList } = data;
+  if (isLoading) {
+    return <div>로딩중 입니다.</div>;
+  }
 
-      setSnippets(snippetList);
-    })();
-  }, [search]);
+  const { snippetList } = data;
 
   return (
     <Wrapper>
       <ListBox>
-        {snippets && snippets.map((snippet) => (
+        {snippetList && snippetList.map((snippet) => (
           <Snippet key={snippet._id} data={snippet} />
         ))}
       </ListBox>

@@ -9,16 +9,16 @@ const EditorWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0px 40px 0px;
 `;
 
-export default function CodeEditor({ width, height }) {
+export default function CodeEditor({ width, height, code }) {
   const [editorOptions, setEditorOption] = useState({
     language: "javascript",
     theme: "monokai",
     fontSize: 14,
     readOnly: false,
     tab: 2,
+    code,
   });
 
   const updateOption = (optionName) => {
@@ -32,8 +32,17 @@ export default function CodeEditor({ width, height }) {
 
   return (
     <EditorWrapper>
-      <EditorBar optionTypes={editorOptions} onOptionSelected={updateOption} width={width} height={height} />
-      <Editor editorOptions={editorOptions} width={width} height={height} />
+      <EditorBar
+        optionTypes={editorOptions}
+        onOptionSelected={updateOption}
+        width={width}
+        height={height}
+      />
+      <Editor
+        editorOptions={editorOptions}
+        width={width}
+        height={height}
+      />
     </EditorWrapper>
   );
 }
