@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useQueryClient } from "react-query";
 import styled from "styled-components";
 
 import LoginButton from "./LoginButton";
@@ -13,13 +12,9 @@ const ToolWrapper = styled.div`
 `;
 
 export default function UserTools() {
-  const queryClient = useQueryClient();
+  const [isLogin, setLoginStatus] = useState(false);
 
-  const [isLogin, setLoginStatus] = useState(queryClient.getQueryData("login"));
-
-  const hasUserId = !!queryClient.getQueryData("login")?.userId;
-
-  const handleClick = () => setLoginStatus(hasUserId);
+  const handleClick = (boolean) => setLoginStatus(boolean);
 
   return (
     <ToolWrapper>
