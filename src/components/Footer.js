@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { COMPANY_INFORMATION, COMPANY_NAME } from "../constants/constants";
 
 const Line = styled.hr`
