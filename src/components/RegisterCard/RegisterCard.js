@@ -10,7 +10,6 @@ import validateNickname from "../../utils/validateNickname";
 import firebaseAPI from "../../api/firebase";
 import addPhoto from "../../addPhoto";
 
-import { POST } from "../../constants/methods";
 import { REGISTRATION } from "../../constants/names";
 import { BASIC } from "../../constants/variants";
 
@@ -18,6 +17,7 @@ import {
   FAILED_UPLOAD_IMAGE,
   OK,
 } from "../../constants/messages";
+import { registerUser } from "../../api/service";
 
 const Card = styled.div`
   display: flex;
@@ -38,8 +38,6 @@ const Card = styled.div`
 `;
 
 export default function RegisterCard() {
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
   const [failureReason, setFailureReason] = useState("");
   const referenceTarget = useRef();
   const history = useHistory();
@@ -51,38 +49,27 @@ export default function RegisterCard() {
 
     if (validationResult !== OK) {
       setFailureReason(validationResult);
+
       return;
     }
 
-    addPhoto()
-      .then(async (data, error) => {
-        if (error) {
-          return alert(FAILED_UPLOAD_IMAGE);
-        }
+    const data = await addPhoto();
 
-        const imageURL = data.Location;
+    if (!data) {
+      alert(FAILED_UPLOAD_IMAGE);
 
-        const idToken = await firebaseAPI.getToken();
+      return;
+    }
 
-        const resource = { nickname, imageURL, idToken };
+    const imageURL = typeof data === "string" ? data : data.Location;
+    const idToken = await firebaseAPI.getToken();
+    const resource = { idToken, nickname, imageURL };
 
-        const options = {
-          method: POST,
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(resource),
-        };
+    const response = await registerUser(idToken, resource);
 
-        const response = await fetch(`${SERVER_URL}users/register`, options);
-
-        const result = await response.json();
-
-        if (result === OK) {
-          history.push("/");
-        }
-      });
+    if (response === OK) {
+      history.push("/");
+    }
   };
 
   return (
