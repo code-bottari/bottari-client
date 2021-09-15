@@ -7,7 +7,7 @@ const StyledAceEditor = styled(AceEditor)`
   border-radius: 0px 0px 5px 5px;
 `;
 
-export default function Editor({ editorOptions, width, height }) {
+export default function Editor({ editorOptions, width, height, onEdit }) {
   const {
     language,
     theme,
@@ -16,6 +16,10 @@ export default function Editor({ editorOptions, width, height }) {
     code,
     tab,
   } = editorOptions;
+
+  const editCode = (value) => {
+    onEdit(value);
+  };
 
   return (
     <StyledAceEditor
@@ -36,6 +40,7 @@ export default function Editor({ editorOptions, width, height }) {
         showLineNumbers: true,
         tabSize: Number(tab),
       }}
+      onChange={(value) => editCode(value)}
     />
   );
 }

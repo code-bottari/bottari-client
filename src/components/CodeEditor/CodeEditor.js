@@ -11,7 +11,7 @@ const EditorWrapper = styled.div`
   align-items: center;
 `;
 
-export default function CodeEditor({ width, height, code }) {
+export default function CodeEditor({ width, height, code, onEdit }) {
   const [editorOptions, setEditorOption] = useState({
     language: "javascript",
     theme: "monokai",
@@ -42,6 +42,7 @@ export default function CodeEditor({ width, height, code }) {
         editorOptions={editorOptions}
         width={width}
         height={height}
+        onEdit={onEdit}
       />
     </EditorWrapper>
   );
