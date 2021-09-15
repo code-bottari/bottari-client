@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import createError from "../utils/createError";
 
 import {
@@ -7,10 +8,15 @@ import {
   PATCH,
 } from "../constants/methods";
 
+import {
+  FAILURE_LOGIN,
+  FAILED_FULFILLMENT,
+} from "../constants/messages";
+
 const fetchData = async (url, options) => {
   try {
     const response = await fetch(url, options);
-
+    console.log("fetchData", response);
     return response;
   } catch (error) {
     throw new Error(error.message);
@@ -81,27 +87,38 @@ export const getSnippetList = async (query) => {
   }
 };
 
-export const checkMember = async (resource) => {
+export const checkMember = async (idToken) => {
   let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/check-member`;
 
   const options = {
     method: POST,
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${idToken}`,
     },
     credentials: "include",
-    body: JSON.stringify({ resource }),
   };
 
   try {
+    console.log("fetchData 실행 전");
     const response = await fetchData(requestUrl, options);
+    const { status } = response;
+    console.log("respons", response);
+    if (status === 401) {
+      throw createError(status, FAILURE_LOGIN);
+    }
 
-    if (response.status === 400) { // 리팩토링 예정
-      throw createError(response.status, "message");
+    if (status === 403) {
+      throw createError(status, FAILURE_LOGIN);
+    }
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
     }
 
     const data = await response.json();
-
+    // eslint-disable-next-line no-console
+    console.log("여기는 check member");
     return data;
   } catch (error) {
     return error;

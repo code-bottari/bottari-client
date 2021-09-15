@@ -1,3 +1,8 @@
+/* eslint-disable no-console */
+import { useState } from "react";
+import { useHistory } from "react-router";
+import { useQuery } from "react-query";
+
 import Button from "../../common/Button";
 
 import firebaseAPI from "../../../api/firebase";
@@ -5,12 +10,26 @@ import { checkMember } from "../../../api/service";
 
 import { BASIC } from "../../../constants/variants";
 
-import {
-  FAILURE_LOGIN,
-  FAILED_FULFILLMENT,
-} from "../../../constants/messages";
-
 export default function LoginButton({ onClick }) {
+  const [idToken, setIdToken] = useState(null);
+
+  const history = useHistory();
+
+  const result = useQuery("login", async () => {
+    const result = await checkMember(idToken);
+    return result;
+    // if (result.userId) {
+    //   history.push("/");
+
+    //   return;
+    // }
+
+    // history.push("/users/register");
+  }, {
+    enabled: !!idToken,
+  });
+  console.log(result);
+
   const setLoginStatus = (boolean) => {
     onClick(boolean);
   };
@@ -21,19 +40,7 @@ export default function LoginButton({ onClick }) {
 
       const idToken = await firebaseAPI.getToken();
 
-      const data = await checkMember("/users/check-member", { idToken });
-
-      if (data.status === 401) {
-        throw new Error(FAILURE_LOGIN);
-      }
-
-      if (data.status === 403) {
-        throw new Error(FAILURE_LOGIN);
-      }
-
-      if (data.status === 500) {
-        throw new Error(FAILED_FULFILLMENT);
-      }
+      setIdToken(idToken);
     } catch (error) {
       alert(error.message);
       return;
