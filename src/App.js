@@ -20,7 +20,7 @@ export default function App() {
           <Route exact path="/" component={Main} />
           <Route path="/snippets/:id" component={SnippetDetailPage} />
           <Route path="/users/register" component={RegisterCard} />
-          <Route path="/users/:id" component={UserInformation}/>
+          <Route path="/users/:id" component={UserInformation} />
         </Switch>
       </Router>
     </QueryClientProvider>

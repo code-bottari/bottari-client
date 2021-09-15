@@ -7,10 +7,14 @@ import {
   PATCH,
 } from "../constants/methods";
 
+import {
+  FAILURE_LOGIN,
+  FAILED_FULFILLMENT,
+} from "../constants/messages";
+
 const fetchData = async (url, options) => {
   try {
     const response = await fetch(url, options);
-
     return response;
   } catch (error) {
     throw new Error(error.message);
@@ -70,7 +74,7 @@ export const getSnippetList = async (query) => {
 };
 
 export const checkMember = async (idToken) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/check-member`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/check-member`;
 
   const options = {
     method: POST,
@@ -83,9 +87,18 @@ export const checkMember = async (idToken) => {
 
   try {
     const response = await fetchData(requestUrl, options);
+    const { status } = response;
 
-    if (response.status === 400) { // 리팩토링 예정
-      throw createError(response.status, "message");
+    if (status === 401) {
+      throw createError(status, FAILURE_LOGIN);
+    }
+
+    if (status === 403) {
+      throw createError(status, FAILURE_LOGIN);
+    }
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
     }
 
     const data = await response.json();
