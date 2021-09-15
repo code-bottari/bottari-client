@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { useQuery } from "react-query";
@@ -15,24 +14,19 @@ export default function LoginButton({ onClick }) {
 
   const history = useHistory();
 
-  const result = useQuery("login", async () => {
-    const result = await checkMember(idToken);
-    return result;
-    // if (result.userId) {
-    //   history.push("/");
+  const { data, isSuccess } = useQuery(
+    "login",
+    async () => await checkMember(idToken),
+    {
+      enabled: !!idToken,
+    }
+  );
 
-    //   return;
-    // }
+  if (isSuccess) {
+    onClick();
 
-    // history.push("/users/register");
-  }, {
-    enabled: !!idToken,
-  });
-  console.log(result);
-
-  const setLoginStatus = (boolean) => {
-    onClick(boolean);
-  };
+    history.push(data.userId ? "/" : "/users/register");
+  }
 
   const handleLogin = async () => {
     try {
@@ -43,10 +37,9 @@ export default function LoginButton({ onClick }) {
       setIdToken(idToken);
     } catch (error) {
       alert(error.message);
+
       return;
     }
-
-    setLoginStatus(true);
   };
 
   return <Button variant={BASIC} onClick={handleLogin}>로그인</Button>;

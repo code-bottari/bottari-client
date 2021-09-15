@@ -19,7 +19,6 @@ import {
 } from "../../constants/messages";
 
 import {
-  NICKNAME,
   BASIC,
 } from "../../constants/variants";
 
@@ -93,7 +92,7 @@ export default function RegisterCard() {
     <Card>
       <h1 className="title">사용자 정보 등록</h1>
       <ProfileImage />
-      <Nickname variant={NICKNAME} reference={referenceTarget} message={failureReason} />
+      <Nickname reference={referenceTarget} message={failureReason} />
       <Button variant={BASIC} onClick={handleButtonClick}>{REGISTRATION}</Button>
     </Card>
   );

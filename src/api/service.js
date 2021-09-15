@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import createError from "../utils/createError";
 
 import {
@@ -16,7 +15,6 @@ import {
 const fetchData = async (url, options) => {
   try {
     const response = await fetch(url, options);
-    console.log("fetchData", response);
     return response;
   } catch (error) {
     throw new Error(error.message);
@@ -88,7 +86,7 @@ export const getSnippetList = async (query) => {
 };
 
 export const checkMember = async (idToken) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/check-member`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/check-member`;
 
   const options = {
     method: POST,
@@ -100,10 +98,9 @@ export const checkMember = async (idToken) => {
   };
 
   try {
-    console.log("fetchData 실행 전");
     const response = await fetchData(requestUrl, options);
     const { status } = response;
-    console.log("respons", response);
+
     if (status === 401) {
       throw createError(status, FAILURE_LOGIN);
     }
@@ -117,8 +114,7 @@ export const checkMember = async (idToken) => {
     }
 
     const data = await response.json();
-    // eslint-disable-next-line no-console
-    console.log("여기는 check member");
+
     return data;
   } catch (error) {
     return error;
