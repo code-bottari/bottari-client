@@ -7,8 +7,8 @@ import Editor from "../../CodeEditor/Editor";
 
 const SnippetBox = styled.div`
   width: 700px;
-  height: 370px;
-  margin-bottom: 30px;
+  height: 380px;
+  margin: 20px 0px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 `;
 

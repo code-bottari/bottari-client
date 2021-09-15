@@ -1,15 +1,11 @@
+import { useQueryClient } from "react-query";
 import styled from "styled-components";
 
 import HashtagList from "../Snippet/HashtagList/HashtagList";
 import UserProfile from "../Snippet/UserProfile/UserProfile";
 import SnippetTool from "../Snippet/SnippetTool/SnippetTool";
 import SnippetInfo from "../Snippet/SnippetInfo/SnippetInfo";
-
-const CodeEditor = styled.div`
-  width: 1100px;
-  height: 300px;
-  background-color: black;
-`;
+import CodeEditor from "../CodeEditor/CodeEditor";
 
 const InfoWrapper = styled.div`
   display: flex;
@@ -28,25 +24,31 @@ const Footer = styled.footer`
 `;
 
 const Date = styled.div`
-  width: 80px;
+  width: 100px;
   height: 20px;
   padding-left: 15px;
   font-weight: bold;
 `;
 
-export default function DetailSnippet({ snippet, userId }) {
-  const { hashtagList, poster, language, likerList, commentList, createdAt } = snippet;
+export default function DetailSnippet({ snippet }) {
+  const queryClient = useQueryClient();
+
+  const userId = queryClient.getQueryData("login")?.userId;
+
+  const { hashtagList, poster, language, likerList, commentList, createdAt, code } = snippet;
   const { nickname, imageUrl, followerList } = poster;
 
   const isLiked = likerList.indexOf(userId) !== -1;
   const isFollowed = followerList.indexOf(userId) !== -1;
+
+  const formatDate = createdAt.slice(0, 10);
 
   return (
     <>
       <HashtagList
         type="detail"
         hashtags={hashtagList} />
-      <CodeEditor />
+      <CodeEditor width="1100px" height="400px" code={code} />
       <InfoWrapper>
         <UserProfile
           profileUrl={imageUrl}
@@ -62,7 +64,7 @@ export default function DetailSnippet({ snippet, userId }) {
         />
       </InfoWrapper>
       <Footer>
-        <Date>{createdAt}</Date>
+        <Date>{formatDate}</Date>
         <SnippetTool />
       </Footer>
     </>

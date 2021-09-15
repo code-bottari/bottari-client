@@ -22,18 +22,20 @@ const CreatorBox = styled.div`
 `;
 
 const TitleBox = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 700px;
   height: 35px;
 `;
 
 const Language = styled.div`
-  display: inline-block;
-  width: 100px;
-  height: 10px;
-  line-height: 12px;
-  padding: 10px;
+  /* display: inline-block; */
+  width: 120px;
+  height: 23px;
+  padding-top: 7px;
+  margin: 0px 15px;
+  border-radius: 20px;
   background-color: black;
-  border-radius: 13px;
   color: #FFFFFF;
   font-weight: bold;
   text-align: center;

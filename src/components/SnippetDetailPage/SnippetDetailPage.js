@@ -14,7 +14,6 @@ const SnippetBox = styled.div`
 
 export default function SnippetDetailPage() {
   const [snippet, setSnippet] = useState(null);
-  const [userId, setUserId] = useState(null);
 
   const { id } = useParams();
 
@@ -22,16 +21,15 @@ export default function SnippetDetailPage() {
     (async () => {
       const data = await getSnippet(id);
 
-      const { snippet, userId } = data; // 현재 로그인한 사용자 아이디를 가져오도록 백엔드 수정 필요
+      const { snippet } = data;
 
       setSnippet(snippet);
-      setUserId(userId);
     })();
   }, [id]);
 
   return (
     <SnippetBox>
-      {snippet && <DetailSnippet snippet={snippet} userId={userId} />}
+      {snippet && <DetailSnippet snippet={snippet} />}
     </SnippetBox>
   );
 };
