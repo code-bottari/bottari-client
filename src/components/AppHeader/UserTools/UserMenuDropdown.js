@@ -7,33 +7,23 @@ import firebaseAPI from "../../../api/firebase";
 import { logout } from "../../../api/service";
 
 import { LIST } from "../../../constants/variants";
+import { OK } from "../../../constants/messages";
 
 const DropdownWrapper = styled.div`
   z-index: 1;
 `;
 
-export default function UserMenuDropdown({ onClick }) {
-  const handleLoginStatus = () => {
-    onClick(false);
-  };
-
+export default function UserMenuDropdown({ handleLoginStatus }) {
   const handleLogout = async () => {
-    try {
-      const data = await logout("/users/logout");
+    const { result } = await logout();
 
-      if (data.status) {
-        throw new Error(data.message);
-      }
-
+    if (result === OK) {
       await firebaseAPI.logout();
-    } catch (error) {
-      alert(error); // 에러처리
-      return;
+
+      localStorage.removeItem("userId");
+
+      handleLoginStatus(false);
     }
-
-    await firebaseAPI.logout();
-
-    handleLoginStatus();
   };
 
   const userMenuList = ["New Snippet", "My page", "Logout"].map((text) => {

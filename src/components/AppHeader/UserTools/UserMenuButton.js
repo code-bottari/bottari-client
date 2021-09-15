@@ -14,14 +14,10 @@ export default function UserMenuButton({ onClick }) {
     setToggleDropDown(!toggleDropDown);
   };
 
-  const handleLoginStatus = (boolean) => {
-    onClick(boolean);
-  };
-
   return (
     <>
       <Button variant={ICON} onClick={handleDropDown} children={UserMenuIcon} />
-      {toggleDropDown && <UserMenuDropdown onClick={handleLoginStatus} />}
+      {toggleDropDown && <UserMenuDropdown handleLoginStatus={onClick} />}
     </>
   );
 }

@@ -10,6 +10,7 @@ import {
 import {
   FAILURE_LOGIN,
   FAILED_FULFILLMENT,
+  FAILURE_LOGOUT,
 } from "../constants/messages";
 
 const fetchData = async (url, options) => {
@@ -120,19 +121,11 @@ export const logout = async () => {
     credentials: "include",
   };
 
-  try {
-    const response = await fetchData(requestUrl, options);
+  const response = await fetchData(requestUrl, options);
 
-    if (response.status === 400) { // 리팩토링 예정
-      throw createError(response.status, "message");
-    }
+  const data = await response.json();
 
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    return error;
-  }
+  return data;
 };
 
 export const deleteSnippet = async (id) => {

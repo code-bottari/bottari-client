@@ -24,7 +24,7 @@ export default function UserTools() {
       {isLogin && (
         <>
           <NotificationButton />
-          <UserMenuButton />
+          <UserMenuButton onClick={handleClick} />
         </>
       )}
     </ToolWrapper>
