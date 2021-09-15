@@ -152,12 +152,14 @@ export default function Button({
   variant,
   onClick,
   children,
+  className,
 }) {
   return (
     <StyledButton
       type={type}
       variant={variant}
       onClick={onClick}
+      className={className}
     >
       {children}
     </StyledButton>
@@ -169,6 +171,7 @@ Button.propTypes = {
   variant: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {
