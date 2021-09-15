@@ -12,7 +12,9 @@ const ToolWrapper = styled.div`
 `;
 
 export default function UserTools() {
-  const [isLogin, setLoginStatus] = useState(false);
+  const hasUserId = !!localStorage.getItem("userId");
+
+  const [isLogin, setLoginStatus] = useState(hasUserId);
 
   const handleClick = (boolean) => setLoginStatus(boolean);
 
