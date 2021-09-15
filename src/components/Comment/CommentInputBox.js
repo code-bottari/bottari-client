@@ -3,7 +3,11 @@ import styled from "styled-components";
 
 import { createComment, getUserData } from "../../api/service";
 
-import { OK } from "../../constants/messages";
+import {
+  INSUFFICIENT_COMMENT_LENGTH,
+  CREATE_COMMENT_SUCCEEDED,
+  OK,
+} from "../../constants/messages";
 
 const CommentInputBox = styled.div`
   display: flex;
@@ -51,7 +55,7 @@ const SearchIcon = styled.img`
 `;
 
 export default function CommentInput({ snippetId }) {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const [inputText, setInputText] = useState("");
 
   const userId = localStorage.getItem("userId");
@@ -76,7 +80,7 @@ export default function CommentInput({ snippetId }) {
 
   const handleButtonClick = async () => {
     if (!inputText.length) {
-      alert("한 글자 이상 작성해주세요.");
+      alert(INSUFFICIENT_COMMENT_LENGTH);
 
       return;
     }
@@ -86,7 +90,7 @@ export default function CommentInput({ snippetId }) {
     const response = await createComment(resource);
 
     if (response.result === OK) {
-      alert("댓글이 작성되었습니다.");
+      alert(CREATE_COMMENT_SUCCEEDED);
 
       onReset();
     }

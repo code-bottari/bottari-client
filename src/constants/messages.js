@@ -17,6 +17,8 @@ const UNSUITABLE_CASE = "모든 해시태그는 PascalCase로 입력되어야 �
 const EXCESSIVE_IMAGE_SIZE = "첨부파일 사이즈는 1MB 이내로 등록 가능합니다.";
 const FAILED_UPLOAD_IMAGE = "이미지를 업로드하실 수 없습니다.";
 const USER_INFORMATION_UPDATED = "정보가 수정되었습니다.";
+const INSUFFICIENT_COMMENT_LENGTH = "한 글자 이상 작성해주세요.";
+const CREATE_COMMENT_SUCCEEDED = "댓글이 작성되었습니다.";
 const OK = "ok";
 
 export {
@@ -39,5 +41,7 @@ export {
   EXCESSIVE_IMAGE_SIZE,
   FAILED_UPLOAD_IMAGE,
   USER_INFORMATION_UPDATED,
+  INSUFFICIENT_COMMENT_LENGTH,
+  CREATE_COMMENT_SUCCEEDED,
   OK,
 };

@@ -26,7 +26,7 @@ const UserName = styled.div`
 
 const Content = styled.div`
   width: 900px;
-  padding-left: 10px;
+  padding-left: 18px;
   margin-top: 4px;
   font-size: 20px;
 `;
