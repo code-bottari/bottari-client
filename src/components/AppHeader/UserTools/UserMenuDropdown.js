@@ -13,7 +13,11 @@ const DropdownWrapper = styled.div`
   z-index: 1;
 `;
 
-export default function UserMenuDropdown({ handleLoginStatus }) {
+export default function UserMenuDropdown({ onClick }) {
+  const handleLoginStatus = () => {
+    onClick(false);
+  };
+
   const handleLogout = async () => {
     const { result } = await logout();
 
@@ -22,7 +26,7 @@ export default function UserMenuDropdown({ handleLoginStatus }) {
 
       localStorage.removeItem("userId");
 
-      handleLoginStatus(false);
+      handleLoginStatus();
     }
   };
 
@@ -32,7 +36,8 @@ export default function UserMenuDropdown({ handleLoginStatus }) {
     return (
       <Button
         variant="userMenu"
-        onClick={isLogoutButton && handleLogout}
+        onClick={isLogoutButton ? handleLogout : undefined}
+        key={text}
       >
         {text}
       </Button >

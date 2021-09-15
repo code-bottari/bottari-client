@@ -5,7 +5,7 @@ import UserMenuDropdown from "./UserMenuDropdown";
 
 import { ICON } from "../../../constants/variants";
 
-export default function UserMenuButton({ onClick }) {
+export default function UserMenuButton({ handleLoginStatus }) {
   const [toggleDropDown, setToggleDropDown] = useState(false);
 
   const UserMenuIcon = <img alt="사용자 메뉴 아이콘" src="/images/user_menu_icon.png" width="40" height="40" />;
@@ -17,7 +17,7 @@ export default function UserMenuButton({ onClick }) {
   return (
     <>
       <Button variant={ICON} onClick={handleDropDown} children={UserMenuIcon} />
-      {toggleDropDown && <UserMenuDropdown handleLoginStatus={onClick} />}
+      {toggleDropDown && <UserMenuDropdown onClick={handleLoginStatus} />}
     </>
   );
 }

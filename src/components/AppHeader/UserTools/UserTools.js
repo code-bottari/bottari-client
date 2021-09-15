@@ -20,11 +20,11 @@ export default function UserTools() {
 
   return (
     <ToolWrapper>
-      {!isLogin && <LoginButton onClick={handleClick} />}
+      {!isLogin && <LoginButton handleLoginStatus={handleClick} />}
       {isLogin && (
         <>
           <NotificationButton />
-          <UserMenuButton onClick={handleClick} />
+          <UserMenuButton handleLoginStatus={handleClick} />
         </>
       )}
     </ToolWrapper>

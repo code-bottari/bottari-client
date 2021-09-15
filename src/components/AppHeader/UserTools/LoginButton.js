@@ -8,7 +8,7 @@ import { checkMember } from "../../../api/service";
 
 import { BASIC } from "../../../constants/variants";
 
-export default function LoginButton({ onClick }) {
+export default function LoginButton({ handleLoginStatus }) {
   const [idToken, setIdToken] = useState(null);
 
   const history = useHistory();
@@ -18,7 +18,7 @@ export default function LoginButton({ onClick }) {
       if (userId) {
         localStorage.setItem("userId", userId);
 
-        onClick(true);
+        handleLoginStatus(true);
 
         history.push("/");
 

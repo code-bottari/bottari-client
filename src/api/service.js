@@ -10,7 +10,6 @@ import {
 import {
   FAILURE_LOGIN,
   FAILED_FULFILLMENT,
-  FAILURE_LOGOUT,
 } from "../constants/messages";
 
 const fetchData = async (url, options) => {
