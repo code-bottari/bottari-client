@@ -29,7 +29,6 @@ const TitleBox = styled.div`
 `;
 
 const Language = styled.div`
-  /* display: inline-block; */
   width: 120px;
   height: 23px;
   padding-top: 7px;

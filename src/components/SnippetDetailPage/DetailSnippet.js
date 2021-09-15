@@ -1,4 +1,3 @@
-import { useQueryClient } from "react-query";
 import styled from "styled-components";
 
 import HashtagList from "../Snippet/HashtagList/HashtagList";
@@ -31,16 +30,12 @@ const Date = styled.div`
 `;
 
 export default function DetailSnippet({ snippet }) {
-  const queryClient = useQueryClient();
-
-  const userId = queryClient.getQueryData("login")?.userId;
-
   const { hashtagList, poster, language, likerList, commentList, createdAt, code } = snippet;
   const { nickname, imageUrl, followerList } = poster;
 
+  const userId = localStorage.getItem("userId");
   const isLiked = likerList.indexOf(userId) !== -1;
   const isFollowed = followerList.indexOf(userId) !== -1;
-
   const formatDate = createdAt.slice(0, 10);
 
   return (

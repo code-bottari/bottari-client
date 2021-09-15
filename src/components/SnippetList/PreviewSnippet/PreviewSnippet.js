@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import SnippetHeader from "./SnippetHeader";
@@ -36,13 +37,13 @@ export default function PreviewSnippet({ data }) {
         language={language}
         hashtags={hashtagList}
       />
-      <a href={`/snippets/${_id}`}>
+      <Link to={`/snippets/${_id}`}>
         <Editor
           editorOptions={editorOptions}
           width="700px"
           height="230px"
         />
-      </a>
+      </Link>
       <SnippetFooter
         createdAt={formatDate}
         likeCount={likerList.length}
