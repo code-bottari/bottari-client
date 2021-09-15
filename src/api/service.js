@@ -44,19 +44,7 @@ export const getSnippet = async (id) => {
 };
 
 export const getSnippetList = async (query) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
-
-  if (query) {
-    let convertedQuery = "?";
-
-    for (const [key, value] of Object.entries(query)) {
-      const convertedValue = value.join("+");
-
-      convertedQuery += `${key}=${convertedValue}`;
-    }
-
-    requestUrl += convertedQuery;
-  };
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets${query}`;
 
   const options = {
     method: GET,

@@ -1,6 +1,9 @@
+import { useLocation } from "react-router";
 import styled from "styled-components";
 
 import Button from "../../common/Button";
+
+import getQuery from "../../../utils/getQuery";
 
 import { TOOL } from "../../../constants/variants";
 
@@ -24,13 +27,27 @@ const NavigationWrapper = styled.div`
 `;
 
 function NavigationBar() {
+  const { search } = useLocation();
+
   const languageList = [ALL, PYTHON, JAVA, JAVASCRIPT, CSHARP, C_CPP, PHP, R, OBJECTIVE_C, OTHERS];
 
   return (
     <NavigationWrapper>
-      {languageList.map((language) => (
-        <Button key={language} variant={TOOL} >{language}</Button>
-      ))}
+      {languageList.map((language) => {
+        const formatLanguage = `language=${language}`;
+
+        const query = getQuery(formatLanguage, search);
+
+        return (
+          <a key={language} href={query}>
+            <Button
+              variant={TOOL}
+            >
+              {language}
+            </Button>
+          </a>
+        );
+      })}
     </NavigationWrapper>
   );
 }
