@@ -14,7 +14,7 @@ import {
   COPY,
   SAVE,
   SHARE,
-  DELETE
+  DELETE,
 } from "../../../constants/names";
 
 const ToolWrapper = styled.div`
@@ -27,8 +27,8 @@ export default function SnippetTool({ creator, language, code, snippetId }) {
   const history = useHistory();
   const [isOpened, setIsOpened] = useState(false);
 
-  const handleClick = async (event) => {
-    const buttonName = event.target.textContent;
+  const handleClick = async ({ target }) => {
+    const buttonName = target.textContent;
 
     if (buttonName === SAVE) {
       setIsOpened(true);

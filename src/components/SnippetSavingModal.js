@@ -74,7 +74,7 @@ export default function SnippetSavingModal({ creator, language, code, onClick })
   const hashtagInput = useRef();
   const history = useHistory();
 
-  const userId = localStorage.getItem("userId") && "61375a7cb180fd6530a0a907";
+  const userId = localStorage.getItem("userId");
 
   const saveSnippet = async (hashtagList) => {
     const data = {
@@ -82,7 +82,7 @@ export default function SnippetSavingModal({ creator, language, code, onClick })
       poster: userId,
       language,
       code,
-      hashtagList
+      hashtagList,
     };
 
     const { result, snippet: savedSnippet } = await createSnippet(data);
