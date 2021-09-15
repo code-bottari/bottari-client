@@ -7,6 +7,7 @@ import Main from "./components/Main/Main";
 import SnippetDetailPage from "./components/SnippetDetailPage/SnippetDetailPage";
 import RegisterCard from "./components/RegisterCard/RegisterCard";
 import UserInformation from "./components/UserInformationPage/UserInformation";
+import Footer from "./components/Footer";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/users/register" component={RegisterCard} />
           <Route path="/users/:id" component={UserInformation} />
         </Switch>
+        <Footer />
       </Router>
     </QueryClientProvider>
   );
