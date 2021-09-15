@@ -12,15 +12,12 @@ import addPhoto from "../../addPhoto";
 
 import { POST } from "../../constants/methods";
 import { REGISTRATION } from "../../constants/names";
+import { BASIC } from "../../constants/variants";
 
 import {
   FAILED_UPLOAD_IMAGE,
   OK,
 } from "../../constants/messages";
-
-import {
-  BASIC,
-} from "../../constants/variants";
 
 const Card = styled.div`
   display: flex;

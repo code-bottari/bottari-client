@@ -48,19 +48,7 @@ export const getSnippet = async (id) => {
 };
 
 export const getSnippetList = async (query) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
-
-  if (query) {
-    let convertedQuery = "?";
-
-    for (const [key, value] of Object.entries(query)) {
-      const convertedValue = value.join("+");
-
-      convertedQuery += `${key}=${convertedValue}`;
-    }
-
-    requestUrl += convertedQuery;
-  };
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets${query}`;
 
   const options = {
     method: GET,
@@ -163,6 +151,33 @@ export const deleteSnippet = async (id) => {
     const response = await fetchData(requestUrl, options);
 
     if (response.status === 400) { // 리팩토링 예정
+      throw createError(response.status, "message");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const createSnippet = async (resource) => {
+  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/new`;
+
+  const options = {
+    method: POST,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(resource),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+
+    if (response.status === 400) {
       throw createError(response.status, "message");
     }
 
