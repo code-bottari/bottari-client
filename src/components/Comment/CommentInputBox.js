@@ -1,11 +1,17 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+
+import { createComment, getUserData } from "../../api/service";
+
+import { OK } from "../../constants/messages";
 
 const CommentInputBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1000px;
+  width: 1100px;
   height: 40px;
+  margin-bottom: 10px;
   border: 2px solid #543FD3;
   border-radius: 8px;
 `;
@@ -25,7 +31,7 @@ const UserName = styled.div`
 `;
 
 const InputArea = styled.input`
-  width: 750px;
+  width: 850px;
   height: 40px;
   padding-left: 10px;
   padding-bottom: 3px;
@@ -41,15 +47,61 @@ const SearchIcon = styled.img`
   height: 25px;
   margin-top: 1px;
   margin-left: 20px;
+  cursor: pointer;
 `;
 
-export default function CommentInput() {
+export default function CommentInput({ snippetId }) {
+  const [user, setUser] = useState();
+  const [inputText, setInputText] = useState("");
+
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    async function getUser() {
+      const { user } = await getUserData(userId);
+
+      setUser(user);
+    }
+
+    getUser();
+  }, []);
+
+  const onChangeInput = (event) => {
+    setInputText(event.target.value);
+  };
+
+  const onReset = () => {
+    setInputText("");
+  };
+
+  const handleButtonClick = async () => {
+    if (!inputText.length) {
+      alert("한 글자 이상 작성해주세요.");
+
+      return;
+    }
+
+    const resource = { userId, snippetId, comment: inputText };
+
+    const response = await createComment(resource);
+
+    if (response.result === OK) {
+      alert("댓글이 작성되었습니다.");
+
+      onReset();
+    }
+  };
+
   return (
     <CommentInputBox>
-      <UserImage src="/images/bottari.png" alt="프로필 이미지" width="25px" height="25px" />
-      <UserName>Bottari</UserName>
-      <InputArea />
-      <SearchIcon src="/images/send_button.png" alt="프로필 이미지" width="25px" height="25px" />
+      {user &&
+        <>
+          <UserImage src={user.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
+          <UserName>{user.nickname}</UserName>
+          <InputArea onChange={onChangeInput} />
+          <SearchIcon src="/images/send_button.png" alt="프로필 이미지" width="25px" height="25px" onClick={() => handleButtonClick()} />
+        </>
+      }
     </CommentInputBox>
   );
 }

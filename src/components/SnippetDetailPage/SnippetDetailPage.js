@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import styled from "styled-components";
 
 import DetailSnippet from "./DetailSnippet";
+import CommentBox from "../Comment/CommentBox";
 
 import { getSnippet } from "../../api/service";
 
@@ -28,8 +29,11 @@ export default function SnippetDetailPage() {
   }, [id]);
 
   return (
-    <SnippetBox>
-      {snippet && <DetailSnippet snippet={snippet} />}
-    </SnippetBox>
+    <>
+      <SnippetBox>
+        {snippet && <DetailSnippet snippet={snippet} />}
+      </SnippetBox>
+      {snippet && <CommentBox snippet={snippet} />}
+    </>
   );
 };
