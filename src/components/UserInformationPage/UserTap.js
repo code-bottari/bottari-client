@@ -101,22 +101,21 @@ export default function UserTap({ user }) {
       return;
     }
 
-    addPhoto()
-      .then(async (data, error) => {
-        if (error) {
-          alert(FAILED_UPLOAD_IMAGE);
+    const data = await addPhoto();
 
-          return;
-        }
+    if (!data) {
+      alert(FAILED_UPLOAD_IMAGE);
 
-        const imageURL = data.Location;
-        const resource = { nickname, imageURL };
-        const response = await modifyUserData(user._id, resource);
+      return;
+    }
 
-        if (response === OK) {
-          alert(USER_INFORMATION_UPDATED);
-        }
-      });
+    const imageURL = typeof(data) === String ? data : data.Location;
+    const resource = { nickname, imageURL };
+    const response = await modifyUserData(user._id, resource);
+
+    if (response === OK) {
+      alert(USER_INFORMATION_UPDATED);
+    }
   };
 
   return (
