@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { useQuery } from "react-query";
 
 import Button from "../../common/Button";
 
@@ -14,18 +13,20 @@ export default function LoginButton({ onClick }) {
 
   const history = useHistory();
 
-  const { data, isSuccess } = useQuery(
-    "login",
-    async () => await checkMember(idToken),
-    {
-      enabled: !!idToken,
-    }
-  );
+  if (idToken) {
+    checkMember(idToken).then(({ userId }) => {
+      if (userId) {
+        localStorage.setItem("userId", userId);
 
-  if (isSuccess) {
-    onClick();
+        onClick(true);
 
-    history.push(data.userId ? "/" : "/users/register");
+        history.push("/");
+
+        return;
+      }
+
+      history.push("/users/register");
+    });
   }
 
   const handleLogin = async () => {
