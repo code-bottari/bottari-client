@@ -52,7 +52,7 @@ const Message = styled.p`
   text-align: right;
 `;
 
-export default function NewSnippet() {
+export default function NewSnippetPage() {
   const [failureReason, setFailureReason] = useState("");
 
   const hashtagInput = useRef();
