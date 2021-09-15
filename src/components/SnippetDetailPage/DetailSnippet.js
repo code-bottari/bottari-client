@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import HashtagList from "../Snippet/HashtagList/HashtagList";
@@ -5,7 +6,6 @@ import UserProfile from "../Snippet/UserProfile/UserProfile";
 import SnippetTool from "../Snippet/SnippetTool/SnippetTool";
 import SnippetInfo from "../Snippet/SnippetInfo/SnippetInfo";
 import CodeEditor from "../CodeEditor/CodeEditor";
-import { useState } from "react";
 
 const InfoWrapper = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ export default function DetailSnippet({ snippet }) {
       <HashtagList
         type="detail"
         hashtags={hashtagList} />
-      <CodeEditor width="1100px" height="400px" code={code} onEdit={setCode} />
+      <CodeEditor width="1100px" height="400px" language={language} code={code} onEdit={setCode} />
       <InfoWrapper>
         <UserProfile
           profileUrl={imageUrl}

@@ -5,6 +5,7 @@ import {
   EXCESSIVE_HASHTAG_NUMBER,
   EXCESSIVE_HASHTAG_LENGTH,
   UNSUITABLE_CASE,
+  OK,
 } from "../constants/messages";
 
 const MAX_NUMBER = 5;
@@ -30,6 +31,8 @@ const validateHashtag = (hashtagList) => {
   if (hasNonePascalCase) {
     return UNSUITABLE_CASE;
   }
+
+  return OK;
 };
 
 export default validateHashtag;

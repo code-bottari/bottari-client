@@ -155,7 +155,7 @@ export const deleteSnippet = async (id) => {
 };
 
 export const createSnippet = async (resource) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/new`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/new`;
 
   const options = {
     method: POST,
