@@ -21,7 +21,7 @@ export default function LoginButton({ onClick }) {
 
       const idToken = await firebaseAPI.getToken();
 
-      const data = await checkMember("/users/check-member", { idToken });
+      const data = await checkMember(idToken);
 
       if (data.status === 401) {
         throw new Error(FAILURE_LOGIN);

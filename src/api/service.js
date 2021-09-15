@@ -69,16 +69,16 @@ export const getSnippetList = async (query) => {
   }
 };
 
-export const checkMember = async (resource) => {
+export const checkMember = async (idToken) => {
   let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/check-member`;
 
   const options = {
     method: POST,
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${idToken}`,
     },
     credentials: "include",
-    body: JSON.stringify({ resource }),
   };
 
   try {
