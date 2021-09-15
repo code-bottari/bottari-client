@@ -149,6 +149,33 @@ export const deleteSnippet = async (id) => {
   }
 };
 
+export const createSnippet = async (resource) => {
+  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/new`;
+
+  const options = {
+    method: POST,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(resource),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+
+    if (response.status === 400) {
+      throw createError(response.status, "message");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const getUserData = async (id) => {
   let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/${id}`;
 

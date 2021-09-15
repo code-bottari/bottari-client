@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     --color-following-tap: #F9F7F7;
     --color-message: #543FD3;
     --color-mint-focus: #26BFA6;
+    --color-saving-background: #F3F2F9;
   }
 `;
 
