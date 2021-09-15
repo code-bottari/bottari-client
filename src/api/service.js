@@ -161,7 +161,7 @@ export const deleteSnippet = async (id) => {
   }
 };
 
-export const postSnippet = async (resource) => {
+export const createSnippet = async (resource) => {
   let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/new`;
 
   const options = {
@@ -170,7 +170,7 @@ export const postSnippet = async (resource) => {
       "Content-Type": "application/json",
     },
     credentials: "include",
-    body: JSON.stringify({ resource }),
+    body: JSON.stringify(resource),
   };
 
   try {

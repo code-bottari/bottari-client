@@ -9,7 +9,7 @@ import validateHashtag from "../utils/validateHashtag";
 import { EDIT, TOOL } from "../constants/variants";
 import { OK } from "../constants/messages";
 
-import { postSnippet } from "../api/service";
+import { createSnippet } from "../api/service";
 
 const Modal = styled.div`
   width: 800px;
@@ -69,7 +69,7 @@ export default function SaveSnippet({ snippet, userId }) {
 
   const { creator, language, code } = snippet;
 
-  const createSnippet = async (hashtagList) => {
+  const saveSnippet = async (hashtagList) => {
     const data = {
       creator,
       poster: userId,
@@ -78,7 +78,7 @@ export default function SaveSnippet({ snippet, userId }) {
       hashtagList
     };
 
-    const savedSnippet = await postSnippet(data);
+    const savedSnippet = await createSnippet(data);
 
     if (savedSnippet.result === OK) {
       const id = savedSnippet._id;
@@ -99,7 +99,7 @@ export default function SaveSnippet({ snippet, userId }) {
       return;
     }
 
-    await createSnippet(splitedHashtags);
+    await saveSnippet(splitedHashtags);
   };
 
   return (
