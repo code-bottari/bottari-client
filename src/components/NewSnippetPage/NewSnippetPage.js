@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import styled, { css } from "styled-components";
 
 import CodeEditor from "../CodeEditor/CodeEditor";
-import Button from "../Common/Button";
+import Button from "../common/Button";
 
 import validateHashtag from "../../utils/validateHashtag";
 
@@ -52,6 +52,10 @@ const Message = styled.p`
   text-align: right;
 `;
 
+const StyledButton = styled(Button)`
+  margin-top: 20px;
+`;
+
 export default function NewSnippetPage() {
   const [failureReason, setFailureReason] = useState("");
 
@@ -78,7 +82,7 @@ export default function NewSnippetPage() {
         </label>
       </InputContainer>
       <CodeEditor width="1000px" height="500px" />
-      <Button variant="edit" onClick={() => handleButtonClick(hashtagInput)} children="생성하기" />
+      <StyledButton variant="edit" onClick={() => handleButtonClick(hashtagInput)} children="생성하기" />
     </SnippetToolWrapper>
   );
 }
