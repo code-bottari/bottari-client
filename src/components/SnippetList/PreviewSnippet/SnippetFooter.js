@@ -23,12 +23,14 @@ const SnippetInfoWrapper = styled.div`
   align-items: center;
 `;
 
-export default function SnippetFooter({ createdAt, likeCount, commentCount }) {
+export default function SnippetFooter({ createdAt, likeCount, commentCount, isLiked, snippetId }) {
+  const likeIcon = isLiked ? "/images/like.png" : "/images/dislike.png";
+
   return (
     <FooterBox>
       <Date>{createdAt}</Date>
       <SnippetInfoWrapper>
-        <Info type="like" image="/images/like.png" count={likeCount} />
+        <Info type="like" image={likeIcon} count={likeCount} isLiked={isLiked} snippetId={snippetId} />
         <Info type="comment" image="/images/comment.png" count={commentCount} />
       </SnippetInfoWrapper>
     </FooterBox>
@@ -39,4 +41,6 @@ SnippetFooter.propTypes = {
   createdAt: PropTypes.string.isRequired,
   likeCount: PropTypes.number.isRequired,
   commentCount: PropTypes.number.isRequired,
+  isLiked: PropTypes.bool.isRequired,
+  snippetId: PropTypes.string.isRequired,
 };

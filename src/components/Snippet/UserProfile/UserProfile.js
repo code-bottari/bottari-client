@@ -17,7 +17,7 @@ import {
 import {
   ADD,
   REMOVE,
-} from "../../../constants/types";
+} from "../../../constants/tasks";
 
 const ProfileWrapper = styled.div`
   display: flex;

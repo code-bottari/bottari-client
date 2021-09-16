@@ -1,7 +1,7 @@
-const ADD = "add";
-const REMOVE = "remove";
+const LIKE = "like";
+const COMMENT = "comment";
 
 export {
-  ADD,
-  REMOVE,
+  LIKE,
+  COMMENT,
 };

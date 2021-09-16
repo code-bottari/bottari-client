@@ -30,7 +30,7 @@ export default function SnippetList() {
     <Wrapper>
       <ListBox>
         {snippetList && snippetList.map((snippet) => (
-          <PreviewSnippet key={snippet._id} data={snippet} />
+          <PreviewSnippet key={snippet._id} data={snippet} snippetId={snippet._id} />
         ))}
       </ListBox>
     </Wrapper>

@@ -32,7 +32,7 @@ const Date = styled.div`
 `;
 
 export default function DetailSnippet({ snippet }) {
-  const { hashtagList, creator, poster, language, likerList, commentList, createdAt, _id, code: defaultCode } = snippet;
+  const { hashtagList, creator, poster, language, likerList, commentList, createdAt, _id: snippetId, code: defaultCode } = snippet;
 
   const { _id: posterId, nickname, imageUrl, followerList } = poster;
 
@@ -64,6 +64,7 @@ export default function DetailSnippet({ snippet }) {
           likeCount={likerList.length}
           commentCount={commentList.length}
           isLiked={isLiked}
+          snippetId={snippetId}
         />
       </InfoWrapper>
       <Footer>
@@ -72,7 +73,7 @@ export default function DetailSnippet({ snippet }) {
           creator={creator._id}
           language={language}
           code={code}
-          snippetId={_id}
+          snippetId={snippetId}
         />
       </Footer>
     </>

@@ -1,9 +1,20 @@
+import { useState } from "react";
+import { useMutation } from "react-query";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 import Button from "../../common/Button";
 
+import { setLiker } from "../../../api/service";
+
 import { ICON } from "../../../constants/variants";
+import { LIKE } from "../../../constants/types";
+import { OK } from "../../../constants/messages";
+
+import {
+  ADD,
+  REMOVE,
+} from "../../../constants/tasks";
 
 const buildStyle = ({ cursor }) => css`
   cursor: ${cursor};
@@ -39,21 +50,48 @@ const Icon = styled.img`
   ${({ type }) => buildStyle(IconType[type])}
 `;
 
-export default function Info({ type, image, count }) {
-  const isLike = type === "like";
+const LIKE_IMAGE = "/images/like.png";
+const DISLIKE_IMAGE = "/images/dislike.png";
 
-  const handleLike = () => {
-    // 좋아요 클릭 기능
+export default function Info({ type, image, count, isLiked, snippetId }) {
+  const isLike = type === LIKE;
+
+  const [likeStatus, setLikeStatus] = useState({
+    isLiking: isLiked,
+    showingNumber: count,
+    likeIcon: isLiked ? LIKE_IMAGE : DISLIKE_IMAGE,
+  });
+
+  const { mutate } = useMutation(({ snippetId, taskType }) => setLiker(snippetId, taskType), {
+    onSuccess: (data) => {
+      if (data.result === OK) {
+        setLikeStatus({
+          isLiking: !likeStatus.isLiking,
+          showingNumber: data.likerNumber,
+          likeIcon: likeStatus.likeIcon === LIKE_IMAGE ? DISLIKE_IMAGE : LIKE_IMAGE,
+        });
+      }
+    },
+  });
+
+  const handleClick = () => {
+    if (likeStatus.isLiking) {
+      mutate({ snippetId, taskType: REMOVE });
+
+      return;
+    }
+
+    mutate({ snippetId, taskType: ADD });
   };
 
   return (
     <StyledInfoWrapper>
       <Button
         variant={ICON}
-        onClick={isLike ? handleLike : undefined}
-        children={<Icon type={type} src={image} />}
+        onClick={isLike ? handleClick : undefined}
+        children={<Icon type={type} src={isLike ? likeStatus.likeIcon : image} />}
       />
-      <Count>{count}</Count>
+      <Count>{likeStatus.showingNumber}</Count>
     </StyledInfoWrapper>
   );
 }
@@ -62,4 +100,6 @@ Info.propTypes = {
   type: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
+  isLiked: PropTypes.bool,
+  snippetId: PropTypes.string.isRequired,
 };

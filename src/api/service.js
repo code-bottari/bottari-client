@@ -12,7 +12,9 @@ import {
   FAILED_FULFILLMENT,
   FORBIDDEN_FOLLOWING,
   NOT_FOUND_USER,
+  NOT_FOUND_SNIPPET,
   UNKNOWN_FOLLOWING_STATUS,
+  UNKNOWN_LIKE_STATUS,
 } from "../constants/messages";
 
 const fetchData = async (url, options) => {
@@ -319,6 +321,42 @@ export const setFollower = async (id, taskType) => {
 
     if (status === 422) {
       throw createError(status, UNKNOWN_FOLLOWING_STATUS);
+    }
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const setLiker = async (id, taskType) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/liker/${id}`;
+
+  const options = {
+    method: PATCH,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ taskType }),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (status === 404) {
+      throw createError(status, NOT_FOUND_SNIPPET);
+    }
+
+    if (status === 422) {
+      throw createError(status, UNKNOWN_LIKE_STATUS);
     }
 
     if (status === 500) {
