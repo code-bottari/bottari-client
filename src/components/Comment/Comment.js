@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+import { deleteComment } from "../../api/service";
+
+import {
+  DELETE_COMMENT_SUCCEEDED,
+  OK,
+} from "../../constants/messages";
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: left;
@@ -40,9 +47,28 @@ const Date = styled.div`
   font-weight: bold;
 `;
 
-export default function Comment({ data }) {
-  const { creator, content, createdAt } = data;
+const DeleteButton = styled.div`
+  height: 20px;
+  padding-left: 10px;
+  color: red;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+export default function Comment({ data, snippetId, userId }) {
+  const { _id: commentId, creator, content, createdAt } = data;
+
   const formatDate = createdAt.slice(0, 10);
+  const isCreator = creator._id === userId;
+
+  const handleOnclick = async () => {
+    const response = await deleteComment({ userId, commentId, snippetId });
+
+    if (response.result === OK) {
+      alert(DELETE_COMMENT_SUCCEEDED);
+    }
+  };
 
   return (
     <Wrapper>
@@ -50,6 +76,7 @@ export default function Comment({ data }) {
       <UserName>{creator.nickname}</UserName>
       <Content>{content}</Content>
       <Date>{formatDate}</Date>
+      {isCreator && <DeleteButton onClick={handleOnclick}>X</DeleteButton>}
     </Wrapper>
   );
 }

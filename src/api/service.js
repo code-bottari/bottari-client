@@ -10,6 +10,7 @@ import {
 import {
   FAILURE_LOGIN,
   FAILED_FULFILLMENT,
+  COMMENT_FORBIDDEN,
   FORBIDDEN_FOLLOWING,
   NOT_FOUND_USER,
   UNKNOWN_FOLLOWING_STATUS,
@@ -280,9 +281,46 @@ export const createComment = async (resource) => {
 
   try {
     const response = await fetchData(requestUrl, options);
+    const { status } = response;
 
-    if (response.status === 400) {
-      throw createError(response.status, "message");
+    if (status === 403) {
+      throw createError(status, COMMENT_FORBIDDEN);
+    }
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteComment = async (resource) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/comment`;
+
+  const options = {
+    method: DELETE,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(resource),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (status === 403) {
+      throw createError(status, COMMENT_FORBIDDEN);
+    }
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
     }
 
     const data = await response.json();
