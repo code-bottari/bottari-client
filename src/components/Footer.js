@@ -29,7 +29,12 @@ const Logo = styled.img`
   opacity: 50%;
 `;
 
-const Text = styled.div`
+const Name = styled.p`
+  margin-left: 80px;
+  font-size: 19px
+`;
+
+const Information = styled.p`
   margin: 0 auto;
 `;
 
@@ -39,8 +44,8 @@ export default function Footer() {
       <Line />
       <FooterWrapper>
         <Logo src={"/images/logo.png"} />
-        <Text>{COMPANY_NAME}</Text>
-        <Text>{COMPANY_INFORMATION}</Text>
+        <Name>{COMPANY_NAME}</Name>
+        <Information>{COMPANY_INFORMATION}</Information>
       </FooterWrapper>
     </FixedWrapper>
   );
