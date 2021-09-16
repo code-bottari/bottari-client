@@ -40,7 +40,10 @@ const Language = styled.div`
   text-align: center;
 `;
 
-export default function SnippetHeader({ profileUrl, nickname, follower, language, code, hashtags }) {
+export default function SnippetHeader({ posterId, profileUrl, nickname, follower, language, code, hashtags }) {
+  const userId = localStorage.getItem("userId");
+  const isFollowed = follower.includes(userId);
+
   const handleClick = async () => {
     await navigator.clipboard.writeText(code);
 
@@ -53,9 +56,11 @@ export default function SnippetHeader({ profileUrl, nickname, follower, language
     <HeaderBox>
       <CreatorBox>
         <UserProfile
+          posterId={posterId}
           profileUrl={profileUrl}
           nickname={nickname}
           follower={follower}
+          isFollowed={isFollowed}
         />
         <Button variant={TOOL} onClick={handleClick}>복사</Button>
       </CreatorBox>
@@ -71,9 +76,11 @@ export default function SnippetHeader({ profileUrl, nickname, follower, language
 }
 
 SnippetHeader.propTypes = {
+  posterId: PropTypes.string.isRequired,
   profileUrl: PropTypes.string.isRequired,
   nickname: PropTypes.string.isRequired,
   follower: PropTypes.array.isRequired,
-  hashtags: PropTypes.array.isRequired,
   language: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
+  hashtags: PropTypes.array.isRequired,
 };

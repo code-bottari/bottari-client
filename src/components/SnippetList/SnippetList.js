@@ -1,7 +1,7 @@
 import { useLocation } from "react-router";
 import styled from "styled-components";
 
-import Snippet from "./PreviewSnippet/PreviewSnippet";
+import PreviewSnippet from "./PreviewSnippet/PreviewSnippet";
 
 import { getSnippetList } from "../../api/service";
 import { useQuery } from "react-query";
@@ -30,7 +30,7 @@ export default function SnippetList() {
     <Wrapper>
       <ListBox>
         {snippetList && snippetList.map((snippet) => (
-          <Snippet key={snippet._id} data={snippet} />
+          <PreviewSnippet key={snippet._id} data={snippet} />
         ))}
       </ListBox>
     </Wrapper>

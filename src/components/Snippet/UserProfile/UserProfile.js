@@ -1,7 +1,23 @@
+import { useState } from "react";
+import { useMutation } from "react-query";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import FollowButton from "./FollowButton";
+
+import { setFollower } from "../../../api/service";
+
+import { OK } from "../../../constants/messages";
+
+import {
+  DEFAULT,
+  FOLLOWING,
+} from "../../../constants/variants";
+
+import {
+  ADD,
+  REMOVE,
+} from "../../../constants/types";
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -29,20 +45,55 @@ const UserName = styled.div`
   cursor: pointer;
 `;
 
-export default function UserProfile({ profileUrl, nickname, follower, isFollowed }) {
+export default function UserProfile({ posterId, profileUrl, nickname, follower, isFollowed }) {
+  const userId = localStorage.getItem("userId");
+  const isMySelf = userId === posterId;
+
+  const [followerStatus, setFollowerStatus] = useState({
+    variant: isFollowed ? FOLLOWING : DEFAULT,
+    followerNumber: follower?.length,
+  });
+
+  const { mutate } = useMutation(({ posterId, taskType }) => setFollower(posterId, taskType), {
+    onSuccess: (data) => {
+      if (data.result === OK) {
+        setFollowerStatus({
+          variant: followerStatus.variant === DEFAULT ? FOLLOWING : DEFAULT,
+          followerNumber: data.followerNumber,
+        });
+
+        return;
+      }
+
+      alert(data.message); // 에러 페이지 생성 후 처리
+    },
+  });
+
+  const handleClick = () => {
+    if (followerStatus.variant === FOLLOWING) {
+      mutate({ posterId, taskType: REMOVE });
+
+      return;
+    }
+
+    mutate({ posterId, taskType: ADD });
+  };
+
   return (
     <ProfileWrapper>
       <UserImage src={profileUrl} />
       <Group>
         <UserName>{nickname}</UserName>
-        <FollowButton variant={isFollowed ? "Following" : "default"} count={follower?.length} />
+        <FollowButton variant={followerStatus.variant} count={followerStatus.followerNumber} onClick={!isMySelf ? handleClick : undefined} />
       </Group>
     </ProfileWrapper>
   );
 };
 
 UserProfile.propTypes = {
+  posterId: PropTypes.string.isRequired,
   profileUrl: PropTypes.string.isRequired,
   nickname: PropTypes.string.isRequired,
   follower: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isFollowed: PropTypes.bool.isRequired,
 };

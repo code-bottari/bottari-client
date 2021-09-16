@@ -14,7 +14,7 @@ const MarkType = {
     border: "1px solid #999090",
     backgroundColor: "#999090",
   },
-  Following: {
+  following: {
     border: "1px solid #F9675D",
     backgroundColor: "#F9675D",
   },
@@ -24,7 +24,7 @@ const FollowerType = {
   default: {
     border: "1px solid #999090",
   },
-  Following: {
+  following: {
     border: "1px solid #F9675D",
   },
 };
@@ -66,9 +66,11 @@ const Mark = styled.img`
   height: 15px;
 `;
 
-export default function FollowButton({ variant, count }) {
+export default function FollowButton({ variant, count, onClick }) {
+  const handleFollowing = () => onClick();
+
   return (
-    <StyledFollowButton variant={variant}>
+    <StyledFollowButton variant={variant} onClick={handleFollowing}>
       <StyledFollowMark variant={variant}>
         <Mark src="/images/followMark.png" alt="구독 마크" />
       </StyledFollowMark>
@@ -82,4 +84,9 @@ export default function FollowButton({ variant, count }) {
 FollowButton.propTypes = {
   variant: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
+  onClick: PropTypes.func,
+};
+
+FollowButton.defaultProps = {
+  onClick: () => {},
 };
