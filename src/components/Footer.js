@@ -2,8 +2,16 @@ import styled from "styled-components";
 
 import { COMPANY_INFORMATION, COMPANY_NAME } from "../constants/constants";
 
+const FixedWrapper = styled.div`
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: white;
+`;
+
 const Line = styled.hr`
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 const FooterWrapper = styled.div`
@@ -11,7 +19,7 @@ const FooterWrapper = styled.div`
   align-items: center;
   justify-content: space-evenly;
   padding: 10px 30px;
-  height: 70px;
+  height: 40px;
 `;
 
 const Logo = styled.img`
@@ -27,13 +35,13 @@ const Text = styled.div`
 
 export default function Footer() {
   return (
-    <>
+    <FixedWrapper>
       <Line />
       <FooterWrapper>
-        <Logo src={"images/logo.png"} />
+        <Logo src={"/images/logo.png"} />
         <Text>{COMPANY_NAME}</Text>
         <Text>{COMPANY_INFORMATION}</Text>
       </FooterWrapper>
-    </>
+    </FixedWrapper>
   );
 };

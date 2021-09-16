@@ -61,9 +61,9 @@ export default function RegisterCard() {
       return;
     }
 
-    const imageURL = typeof data === "string" ? data : data.Location;
+    const imageUrl = typeof data === "string" ? data : data.Location;
     const idToken = await firebaseAPI.getToken();
-    const resource = { idToken, nickname, imageURL };
+    const resource = { idToken, nickname, imageUrl };
 
     const response = await registerUser(idToken, resource);
 

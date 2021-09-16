@@ -109,12 +109,12 @@ export default function UserTap({ user }) {
       return;
     }
 
-    const imageURL = typeof data === "string" ? data : data.Location;
-    const resource = { nickname, imageURL };
+    const imageUrl = typeof data === "string" ? data : data.Location;
+    const resource = { nickname, imageUrl };
 
     const response = await modifyUserData(user._id, resource);
 
-    if (response === OK) {
+    if (response.result === OK) {
       alert(USER_INFORMATION_UPDATED);
     }
   };
