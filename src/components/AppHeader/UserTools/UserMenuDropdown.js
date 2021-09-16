@@ -16,7 +16,7 @@ const DropdownWrapper = styled.div`
 `;
 
 export default function UserMenuDropdown({ onClick }) {
-  const [isDroped, setDropStatus] = useState(true);
+  const [idOpened, setIsOpened] = useState(true);
 
   const history = useHistory();
 
@@ -28,7 +28,7 @@ export default function UserMenuDropdown({ onClick }) {
     if (buttonName === "New Snippet") {
       history.push("/snippets/new");
 
-      setDropStatus(false);
+      setIsOpened(false);
     }
 
     if (buttonName === "My page") {
@@ -36,7 +36,7 @@ export default function UserMenuDropdown({ onClick }) {
 
       history.push(`/users/${userId}`);
 
-      setDropStatus(false);
+      setIsOpened(false);
     }
 
     if (buttonName === "Logout") {
@@ -49,7 +49,7 @@ export default function UserMenuDropdown({ onClick }) {
 
         handleLoginStatus();
 
-        setDropStatus(false);
+        setIsOpened(false);
       }
     }
   };
@@ -66,7 +66,7 @@ export default function UserMenuDropdown({ onClick }) {
 
   return (
     <DropdownWrapper>
-      {isDroped && (
+      {idOpened && (
         <Dropdown variant={LIST} children={userMenuList} />
       )}
     </DropdownWrapper>

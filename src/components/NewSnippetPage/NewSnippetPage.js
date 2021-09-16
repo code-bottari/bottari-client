@@ -67,7 +67,13 @@ export default function NewSnippetPage() {
   const history = useHistory();
   const hashtagInput = useRef();
 
-  const { mutate } = useMutation(async (data) => await createSnippet(data));
+  const { mutate } = useMutation((data) => createSnippet(data), {
+    onSuccess: (data) => {
+      if (data.result === OK) {
+        history.push("/");
+      }
+    },
+  });
 
   const handleButtonClick = async () => {
     const hashtags = hashtagInput.current.value;
@@ -91,13 +97,7 @@ export default function NewSnippetPage() {
       hashtagList: splittedHashtags,
     };
 
-    mutate(data, {
-      onSuccess: (data) => {
-        if (data.result === OK) {
-          history.push("/");
-        }
-      },
-    });
+    mutate(data);
   };
 
   return (
