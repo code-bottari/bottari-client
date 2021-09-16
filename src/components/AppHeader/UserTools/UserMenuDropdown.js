@@ -12,7 +12,9 @@ import { LIST } from "../../../constants/variants";
 import { OK } from "../../../constants/messages";
 
 const DropdownWrapper = styled.div`
-  z-index: 1;
+  position: absolute;
+  top: 80px;
+  right: 15px;
 `;
 
 export default function UserMenuDropdown({ onClick }) {

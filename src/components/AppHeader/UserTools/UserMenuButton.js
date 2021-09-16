@@ -1,9 +1,15 @@
 import { useState } from "react";
+import styled from "styled-components";
 
 import Button from "../../common/Button";
 import UserMenuDropdown from "./UserMenuDropdown";
 
 import { ICON } from "../../../constants/variants";
+
+const UserMenuWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default function UserMenuButton({ handleLoginStatus }) {
   const [toggleDropDown, setToggleDropDown] = useState(false);
@@ -15,9 +21,9 @@ export default function UserMenuButton({ handleLoginStatus }) {
   };
 
   return (
-    <>
+    <UserMenuWrapper>
       <Button variant={ICON} onClick={handleDropDown} children={UserMenuIcon} />
       {toggleDropDown && <UserMenuDropdown onClick={handleLoginStatus} />}
-    </>
+    </UserMenuWrapper>
   );
 }
