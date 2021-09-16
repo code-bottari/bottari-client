@@ -54,11 +54,9 @@ const SearchIcon = styled.img`
   cursor: pointer;
 `;
 
-export default function CommentInput({ snippetId }) {
+export default function CommentInput({ snippetId, userId }) {
   const [user, setUser] = useState({});
   const [inputText, setInputText] = useState("");
-
-  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     async function getUser() {
@@ -70,7 +68,7 @@ export default function CommentInput({ snippetId }) {
     getUser();
   }, []);
 
-  const onChangeInput = (event) => {
+  const handleInputChange = (event) => {
     setInputText(event.target.value);
   };
 
@@ -102,7 +100,7 @@ export default function CommentInput({ snippetId }) {
         <>
           <UserImage src={user.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
           <UserName>{user.nickname}</UserName>
-          <InputArea onChange={onChangeInput} />
+          <InputArea onChange={handleInputChange} />
           <SearchIcon src="/images/send_button.png" alt="프로필 이미지" width="25px" height="25px" onClick={() => handleButtonClick()} />
         </>
       }

@@ -10,11 +10,13 @@ const CommentInputBox = styled.div`
   border-radius: 8px;
 `;
 
-export default function CommentList({ commentList }) {
+export default function CommentList({ snippet, userId }) {
+  const { _id, commentList } = snippet;
+
   return (
     <CommentInputBox>
       {commentList.map((comment) => (
-        <Comment data={comment} />
+        <Comment data={comment} snippetId={_id} userId={userId} />
       ))}
     </CommentInputBox>
   );

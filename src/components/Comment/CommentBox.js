@@ -8,12 +8,14 @@ const Wrapper = styled.div`
 `;
 
 export default function CommentBox({ snippet }) {
-  const { _id, commentList } = snippet;
+  const { _id } = snippet;
+
+  const userId = localStorage.getItem("userId");
 
   return (
     <Wrapper>
-      <CommentInput snippetId={_id} />
-      <CommentList commentList={commentList} />
+      <CommentInput snippetId={_id} userId={userId} />
+      <CommentList snippet={snippet} userId={userId} />
     </Wrapper>
   );
 }
