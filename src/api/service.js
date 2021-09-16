@@ -128,7 +128,7 @@ export const logout = async () => {
 };
 
 export const deleteSnippet = async (id) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/`;
+  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
 
   const options = {
     method: DELETE,
