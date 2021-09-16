@@ -20,6 +20,7 @@ const USER_INFORMATION_UPDATED = "정보가 수정되었습니다.";
 const INSUFFICIENT_COMMENT_LENGTH = "한 글자 이상 작성해주세요.";
 const CREATE_COMMENT_SUCCEEDED = "댓글이 작성되었습니다.";
 const DELETE_COMMENT_SUCCEEDED = "댓글이 삭제되었습니다.";
+const COMMENT_FORBIDDEN = "다시 로그인해주십시오.";
 const OK = "ok";
 
 export {
@@ -45,5 +46,6 @@ export {
   INSUFFICIENT_COMMENT_LENGTH,
   CREATE_COMMENT_SUCCEEDED,
   DELETE_COMMENT_SUCCEEDED,
+  COMMENT_FORBIDDEN,
   OK,
 };

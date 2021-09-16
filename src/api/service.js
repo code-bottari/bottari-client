@@ -10,6 +10,7 @@ import {
 import {
   FAILURE_LOGIN,
   FAILED_FULFILLMENT,
+  COMMENT_FORBIDDEN,
 } from "../constants/messages";
 
 const fetchData = async (url, options) => {
@@ -263,7 +264,7 @@ export const modifyUserData = async (id, resource) => {
 };
 
 export const createComment = async (resource) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/comment`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/comment`;
 
   const options = {
     method: POST,
@@ -276,9 +277,14 @@ export const createComment = async (resource) => {
 
   try {
     const response = await fetchData(requestUrl, options);
+    const { status } = response;
 
-    if (response.status === 400) {
-      throw createError(response.status, "message");
+    if (status === 403) {
+      throw createError(status, COMMENT_FORBIDDEN);
+    }
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
     }
 
     const data = await response.json();
@@ -290,7 +296,7 @@ export const createComment = async (resource) => {
 };
 
 export const deleteComment = async (resource) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/comment`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/comment`;
 
   const options = {
     method: DELETE,
@@ -303,9 +309,14 @@ export const deleteComment = async (resource) => {
 
   try {
     const response = await fetchData(requestUrl, options);
+    const { status } = response;
 
-    if (response.status === 400) {
-      throw createError(response.status, "message");
+    if (status === 403) {
+      throw createError(status, COMMENT_FORBIDDEN);
+    }
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
     }
 
     const data = await response.json();
