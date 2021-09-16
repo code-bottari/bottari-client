@@ -39,6 +39,7 @@ export default function SnippetTool({ creator, language, code, snippetId }) {
       await navigator.clipboard.writeText(code);
 
       alert("copied!");
+
       return;
     }
 

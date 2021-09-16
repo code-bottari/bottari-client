@@ -40,7 +40,15 @@ const Language = styled.div`
   text-align: center;
 `;
 
-export default function SnippetHeader({ profileUrl, nickname, follower, hashtags, language }) {
+export default function SnippetHeader({ profileUrl, nickname, follower, language, code, hashtags }) {
+  const handleClick = async () => {
+    await navigator.clipboard.writeText(code);
+
+    alert("copied!");
+
+    return;
+  };
+
   return (
     <HeaderBox>
       <CreatorBox>
@@ -49,7 +57,7 @@ export default function SnippetHeader({ profileUrl, nickname, follower, hashtags
           nickname={nickname}
           follower={follower}
         />
-        <Button variant={TOOL}>복사</Button>
+        <Button variant={TOOL} onClick={handleClick}>복사</Button>
       </CreatorBox>
       <TitleBox>
         <HashtagList

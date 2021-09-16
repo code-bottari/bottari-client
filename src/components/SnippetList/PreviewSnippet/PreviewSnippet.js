@@ -35,6 +35,7 @@ export default function PreviewSnippet({ data }) {
         nickname={nickname}
         follower={followerList}
         language={language}
+        code={code}
         hashtags={hashtagList}
       />
       <Link to={`/snippets/${_id}`}>
