@@ -261,3 +261,30 @@ export const modifyUserData = async (id, resource) => {
     return error;
   }
 };
+
+export const createComment = async (resource) => {
+  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/comment`;
+
+  const options = {
+    method: POST,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(resource),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+
+    if (response.status === 400) {
+      throw createError(response.status, "message");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
