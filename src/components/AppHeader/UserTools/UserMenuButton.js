@@ -12,18 +12,18 @@ const UserMenuWrapper = styled.div`
 `;
 
 export default function UserMenuButton({ handleLoginStatus }) {
-  const [toggleDropDown, setToggleDropDown] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const UserMenuIcon = <img alt="사용자 메뉴 아이콘" src="/images/user_menu_icon.png" width="40" height="40" />;
 
   const handleDropDown = () => {
-    setToggleDropDown(!toggleDropDown);
+    setIsClicked(!isClicked);
   };
 
   return (
     <UserMenuWrapper>
       <Button variant={ICON} onClick={handleDropDown} children={UserMenuIcon} />
-      {toggleDropDown && <UserMenuDropdown onClick={handleLoginStatus} />}
+      {isClicked && <UserMenuDropdown onClick={handleLoginStatus} />}
     </UserMenuWrapper>
   );
 }
