@@ -100,7 +100,7 @@ export default function SnippetSavingModal({ creator, language, code, onClick })
 
     const validationResult = validateHashtag(splittedHashtags);
 
-    if (validationResult) {
+    if (validationResult !== OK) {
       setFailureReason(validationResult);
 
       return;

@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
+import { useHistory } from "react-router";
+import { useMutation } from "react-query";
 import styled, { css } from "styled-components";
 
 import CodeEditor from "../CodeEditor/CodeEditor";
 import Button from "../common/Button";
 
 import validateHashtag from "../../utils/validateHashtag";
+import { createSnippet } from "../../api/service";
 
 import { OK } from "../../constants/messages";
 
@@ -58,18 +61,43 @@ const StyledButton = styled(Button)`
 
 export default function NewSnippetPage() {
   const [failureReason, setFailureReason] = useState("");
+  const [code, setCode] = useState("");
+  const [language, setLanguage] = useState("Python");
 
+  const history = useHistory();
   const hashtagInput = useRef();
 
-  const handleButtonClick = () => {
-    const hashtags = hashtagInput.current.value;
-    const splitedHashtags = hashtags.split(" ");
+  const { mutate } = useMutation((data) => createSnippet(data), {
+    onSuccess: (data) => {
+      if (data.result === OK) {
+        history.push("/");
+      }
+    },
+  });
 
-    const validationResult = validateHashtag(splitedHashtags);
+  const handleButtonClick = async () => {
+    const hashtags = hashtagInput.current.value;
+    const splittedHashtags = hashtags.split(" ");
+
+    const validationResult = validateHashtag(splittedHashtags);
 
     if (validationResult !== OK) {
       setFailureReason(validationResult);
+
+      return;
     }
+
+    const userId = localStorage.getItem("userId");
+
+    const data = {
+      creator: userId,
+      poster: userId,
+      language,
+      code,
+      hashtagList: splittedHashtags,
+    };
+
+    mutate(data);
   };
 
   return (
@@ -81,8 +109,8 @@ export default function NewSnippetPage() {
           <Message>{failureReason}</Message>
         </label>
       </InputContainer>
-      <CodeEditor width="1000px" height="500px" />
-      <StyledButton variant="edit" onClick={() => handleButtonClick(hashtagInput)} children="생성하기" />
+      <CodeEditor width="1000px" height="500px" code={code} onEdit={setCode} onLanguageSelect={setLanguage} />
+      <StyledButton variant="edit" onClick={() => handleButtonClick()} children="생성하기" />
     </SnippetToolWrapper>
   );
 }

@@ -1,3 +1,5 @@
+import { useState } from "react/cjs/react.development";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 
 import Button from "../../common/Button";
@@ -14,39 +16,59 @@ const DropdownWrapper = styled.div`
 `;
 
 export default function UserMenuDropdown({ onClick }) {
+  const [idOpened, setIsOpened] = useState(true);
+
+  const history = useHistory();
+
   const handleLoginStatus = () => {
     onClick(false);
   };
 
-  const handleLogout = async () => {
-    const { result } = await logout();
+  const handleUserMenuButton = async (buttonName) => {
+    if (buttonName === "New Snippet") {
+      history.push("/snippets/new");
 
-    if (result === OK) {
-      await firebaseAPI.logout();
+      setIsOpened(false);
+    }
 
-      localStorage.removeItem("userId");
+    if (buttonName === "My page") {
+      const userId = localStorage.getItem("userId");
 
-      handleLoginStatus();
+      history.push(`/users/${userId}`);
+
+      setIsOpened(false);
+    }
+
+    if (buttonName === "Logout") {
+      const { result } = await logout();
+
+      if (result === OK) {
+        await firebaseAPI.logout();
+
+        localStorage.removeItem("userId");
+
+        handleLoginStatus();
+
+        setIsOpened(false);
+      }
     }
   };
 
-  const userMenuList = ["New Snippet", "My page", "Logout"].map((text) => {
-    const isLogoutButton = text === "Logout";
-
-    return (
-      <Button
-        variant="userMenu"
-        onClick={isLogoutButton ? handleLogout : undefined}
-        key={text}
-      >
-        {text}
-      </Button >
-    );
-  });
+  const userMenuList = ["New Snippet", "My page", "Logout"].map((text) => (
+    <Button
+      variant="userMenu"
+      onClick={() => handleUserMenuButton(text)}
+      key={text}
+    >
+      {text}
+    </Button >
+  ));
 
   return (
     <DropdownWrapper>
-      <Dropdown variant={LIST} children={userMenuList} />
+      {idOpened && (
+        <Dropdown variant={LIST} children={userMenuList} />
+      )}
     </DropdownWrapper>
   );
 }
