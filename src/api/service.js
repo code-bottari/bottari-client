@@ -288,3 +288,30 @@ export const createComment = async (resource) => {
     return error;
   }
 };
+
+export const deleteComment = async (resource) => {
+  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/comment`;
+
+  const options = {
+    method: DELETE,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(resource),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+
+    if (response.status === 400) {
+      throw createError(response.status, "message");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

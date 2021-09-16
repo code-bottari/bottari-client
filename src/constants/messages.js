@@ -19,6 +19,7 @@ const FAILED_UPLOAD_IMAGE = "이미지를 업로드하실 수 없습니다.";
 const USER_INFORMATION_UPDATED = "정보가 수정되었습니다.";
 const INSUFFICIENT_COMMENT_LENGTH = "한 글자 이상 작성해주세요.";
 const CREATE_COMMENT_SUCCEEDED = "댓글이 작성되었습니다.";
+const DELETE_COMMENT_SUCCEEDED = "댓글이 삭제되었습니다.";
 const OK = "ok";
 
 export {
@@ -43,5 +44,6 @@ export {
   USER_INFORMATION_UPDATED,
   INSUFFICIENT_COMMENT_LENGTH,
   CREATE_COMMENT_SUCCEEDED,
+  DELETE_COMMENT_SUCCEEDED,
   OK,
 };
