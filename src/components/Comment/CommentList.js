@@ -16,7 +16,7 @@ export default function CommentList({ snippet, userId }) {
   return (
     <CommentInputBox>
       {commentList.map((comment) => (
-        <Comment data={comment} snippetId={_id} userId={userId} />
+        <Comment key={_id} data={comment} snippetId={_id} userId={userId} />
       ))}
     </CommentInputBox>
   );
