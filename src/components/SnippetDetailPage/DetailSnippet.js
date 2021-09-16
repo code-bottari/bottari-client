@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import HashtagList from "../Snippet/HashtagList/HashtagList";
 import UserProfile from "../Snippet/UserProfile/UserProfile";
@@ -32,13 +33,16 @@ const Date = styled.div`
 
 export default function DetailSnippet({ snippet }) {
   const { hashtagList, creator, poster, language, likerList, commentList, createdAt, _id, code: defaultCode } = snippet;
-  const { nickname, imageUrl, followerList } = poster;
+
+  const { _id: posterId, nickname, imageUrl, followerList } = poster;
 
   const [code, setCode] = useState(defaultCode);
 
   const userId = localStorage.getItem("userId");
-  const isLiked = likerList.indexOf(userId) !== -1;
-  const isFollowed = followerList.indexOf(userId) !== -1;
+
+  const isLiked = likerList.includes(userId);
+  const isFollowed = followerList.includes(userId);
+
   const formatDate = createdAt.slice(0, 10);
 
   return (
@@ -49,6 +53,7 @@ export default function DetailSnippet({ snippet }) {
       <CodeEditor width="1100px" height="400px" language={language} code={code} onEdit={setCode} />
       <InfoWrapper>
         <UserProfile
+          posterId={posterId}
           profileUrl={imageUrl}
           nickname={nickname}
           follower={followerList}
@@ -73,3 +78,17 @@ export default function DetailSnippet({ snippet }) {
     </>
   );
 }
+
+DetailSnippet.propTypes = {
+  snippet: PropTypes.shape({
+    hashtagList: PropTypes.array.isRequired,
+    creator: PropTypes.object.isRequired,
+    poster: PropTypes.object.isRequired,
+    language: PropTypes.string.isRequired,
+    likerList: PropTypes.array,
+    commentList: PropTypes.array,
+    createdAt: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+    defaultCode: PropTypes.string,
+  }),
+};

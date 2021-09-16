@@ -21,6 +21,9 @@ const INSUFFICIENT_COMMENT_LENGTH = "한 글자 이상 작성해주세요.";
 const CREATE_COMMENT_SUCCEEDED = "댓글이 작성되었습니다.";
 const DELETE_COMMENT_SUCCEEDED = "댓글이 삭제되었습니다.";
 const COMMENT_FORBIDDEN = "다시 로그인해주십시오.";
+const UNKNOWN_FOLLOWING_STATUS = "현재 팔로우 상태가 확인되지 않았습니다.";
+const NOT_FOUND_USER = "존재하지 않는 사용자입니다.";
+const FORBIDDEN_FOLLOWING = "다른 사용자만 팔로우할 수 있습니다.";
 const OK = "ok";
 
 export {
@@ -47,5 +50,8 @@ export {
   CREATE_COMMENT_SUCCEEDED,
   DELETE_COMMENT_SUCCEEDED,
   COMMENT_FORBIDDEN,
+  UNKNOWN_FOLLOWING_STATUS,
+  NOT_FOUND_USER,
+  FORBIDDEN_FOLLOWING,
   OK,
 };

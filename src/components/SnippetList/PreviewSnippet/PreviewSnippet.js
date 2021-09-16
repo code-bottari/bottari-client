@@ -15,7 +15,7 @@ const SnippetBox = styled.div`
 
 export default function PreviewSnippet({ data }) {
   const { _id, poster, language, createdAt, likerList, commentList, code, hashtagList } = data;
-  const { imageUrl, nickname, followerList } = poster;
+  const { _id: posterId, imageUrl, nickname, followerList } = poster;
 
   const formatDate = createdAt.slice(0, 10);
 
@@ -31,6 +31,7 @@ export default function PreviewSnippet({ data }) {
   return (
     <SnippetBox>
       <SnippetHeader
+        posterId={posterId}
         profileUrl={imageUrl}
         nickname={nickname}
         follower={followerList}

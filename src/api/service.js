@@ -11,11 +11,15 @@ import {
   FAILURE_LOGIN,
   FAILED_FULFILLMENT,
   COMMENT_FORBIDDEN,
+  FORBIDDEN_FOLLOWING,
+  NOT_FOUND_USER,
+  UNKNOWN_FOLLOWING_STATUS,
 } from "../constants/messages";
 
 const fetchData = async (url, options) => {
   try {
     const response = await fetch(url, options);
+
     return response;
   } catch (error) {
     throw new Error(error.message);
@@ -111,7 +115,7 @@ export const checkMember = async (idToken) => {
 };
 
 export const logout = async () => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/logout`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/logout`;
 
   const options = {
     method: GET,
@@ -129,7 +133,7 @@ export const logout = async () => {
 };
 
 export const deleteSnippet = async (id) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
 
   const options = {
     method: DELETE,
@@ -183,7 +187,7 @@ export const createSnippet = async (resource) => {
 };
 
 export const registerUser = async (idToken, resource) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/register`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/register`;
 
   const options = {
     method: POST,
@@ -211,7 +215,7 @@ export const registerUser = async (idToken, resource) => {
 };
 
 export const getUserData = async (id) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/${id}`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/${id}`;
 
   const options = {
     method: GET,
@@ -237,7 +241,7 @@ export const getUserData = async (id) => {
 };
 
 export const modifyUserData = async (id, resource) => {
-  let requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/${id}`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/${id}`;
 
   const options = {
     method: PATCH,
@@ -313,6 +317,46 @@ export const deleteComment = async (resource) => {
 
     if (status === 403) {
       throw createError(status, COMMENT_FORBIDDEN);
+    }
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const setFollower = async (id, taskType) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/follower/${id}`;
+
+  const options = {
+    method: PATCH,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ taskType }),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (status === 403) {
+      throw createError(status, FORBIDDEN_FOLLOWING);
+    }
+
+    if (status === 404) {
+      throw createError(status, NOT_FOUND_USER);
+    }
+
+    if (status === 422) {
+      throw createError(status, UNKNOWN_FOLLOWING_STATUS);
     }
 
     if (status === 500) {

@@ -12,6 +12,8 @@ const LIST = "list";
 const CONFIRM = "confirm";
 const SELECT = "select";
 const MESSAGE = "message";
+const DEFAULT = "default";
+const FOLLOWING = "following";
 
 export {
   BASIC,
@@ -28,4 +30,6 @@ export {
   CONFIRM,
   SELECT,
   MESSAGE,
+  DEFAULT,
+  FOLLOWING,
 };
