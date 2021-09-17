@@ -76,6 +76,7 @@ export default function DetailSnippet({ snippet }) {
           language={language}
           code={code}
           snippetId={snippetId}
+          hashtagList={hashtagList}
         />
       </Footer>
     </>
