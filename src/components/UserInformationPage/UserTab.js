@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 
 import Button from "../common/Button";
-import ProfileImage from "../RegisterCard/ProfileImage";
+import ProfileImage from "../../components/RegisterPage/RegisterCard/ProfileImage";
 
 import { modifyUserData } from "../../api/service";
 import validateNickname from "../../utils/validateNickname";

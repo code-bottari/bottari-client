@@ -6,7 +6,7 @@ import AppHeader from "./components/AppHeader/AppHeader";
 import Main from "./components/Main/Main";
 import SnippetDetailPage from "./components/SnippetDetailPage/SnippetDetailPage";
 import NewSnippetPage from "./components/NewSnippetPage/NewSnippetPage";
-import RegisterCard from "./components/RegisterCard/RegisterCard";
+import RegisterPage from "./components/RegisterPage/RegisterPage";
 import UserInformation from "./components/UserInformationPage/UserInformation";
 import Footer from "./components/Footer";
 
@@ -22,7 +22,7 @@ export default function App() {
           <Route exact path="/" component={Main} />
           <Route path="/snippets/new" component={NewSnippetPage} />
           <Route path="/snippets/:id" component={SnippetDetailPage} />
-          <Route path="/users/register" component={RegisterCard} />
+          <Route path="/users/register" component={RegisterPage} />
           <Route path="/users/:id" component={UserInformation} />
         </Switch>
         <Footer />
