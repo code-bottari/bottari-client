@@ -96,24 +96,24 @@ const Message = styled.p`
   color: var(--color-message);
 `;
 
-export default function UserTap({ user }) {
+export default function UserTab({ user }) {
   const { _id: userId, email, nickname, imageUrl, followerList } = user;
 
   const [failureReason, setFailureReason] = useState();
-  const [editing, setEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const reference = useRef();
 
   const loggedInId = localStorage.getItem("userId");
   const canEdit = loggedInId === userId;
 
   const handleEditClick = () => {
-    if (editing) {
-      setEditing(false);
+    if (isEditing) {
+      setIsEditing(false);
 
       return;
     }
 
-    setEditing(true);
+    setIsEditing(true);
   };
 
   const handleSubmitClick = async () => {
@@ -143,7 +143,7 @@ export default function UserTap({ user }) {
     if (response.result === OK) {
       alert(USER_INFORMATION_UPDATED);
 
-      setEditing(false);
+      setIsEditing(false);
     }
   };
 
@@ -151,18 +151,18 @@ export default function UserTap({ user }) {
     <Wrapper>
       <FixedWrapper>
         <BlankBlock />
-        <ProfileImage imageUrl={imageUrl} canSelectImage={editing} />
+        <ProfileImage imageUrl={imageUrl} canSelectImage={isEditing} />
         <Information>
           <NickName>{nickname}</NickName>
-          {(canEdit && !editing) && <EditButton onClick={handleEditClick}>내 정보 수정</EditButton>}
-          {editing && <Input type="text" placeholder="수정할 닉네임을 입력해 주세요." ref={reference} />}
+          {(canEdit && !isEditing) && <EditButton onClick={handleEditClick}>내 정보 수정</EditButton>}
+          {isEditing && <Input type="text" placeholder="수정할 닉네임을 입력해 주세요." ref={reference} />}
           <Message>{failureReason}</Message>
           <Email>{email}</Email>
           <FollowerNumber>구독자 수 : {followerList?.length}</FollowerNumber>
         </Information>
         <ButtonWrapper>
-          {editing && <Button variant="edit" children="수정하기" onClick={handleSubmitClick} />}
-          {editing && <Button variant="edit" children="수정취소" onClick={handleEditClick} />}
+          {isEditing && <Button variant="edit" children="수정하기" onClick={handleSubmitClick} />}
+          {isEditing && <Button variant="edit" children="수정취소" onClick={handleEditClick} />}
         </ButtonWrapper>
       </FixedWrapper>
     </Wrapper>
