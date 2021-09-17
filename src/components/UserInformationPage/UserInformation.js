@@ -6,10 +6,10 @@ import NotificationBar from "./NotificationBar";
 import FollowingBar from "./FollowingBar";
 import UserTap from "./UserTap";
 import SelectBox from "../AligningSelectBox/AligningSelectBox";
-import SnippetList from "../SnippetList/SnippetList";
+import UserSnippetList from "./UserSnippetList";
 import Button from "../common/Button";
 
-import { getUserData, getSnippet } from "../../api/service";
+import { getUserData, getUserSnippetList } from "../../api/service";
 
 const Wrapper = styled.div`
   display: grid;
@@ -46,7 +46,7 @@ const Wrapper = styled.div`
 const Side = styled.div`
   display: flex;
   position: absolute;
-  height: 100%;
+  height: 2000px;
 `;
 
 const Menu = styled.div`
@@ -90,6 +90,7 @@ const Menu = styled.div`
 export default function UserInformation() {
   const [user, setUser] = useState();
   const [snippets, setSnippets] = useState([]);
+  const [filtered, setFiltered] = useState();
 
   const { id } = useParams();
 
@@ -99,30 +100,31 @@ export default function UserInformation() {
 
       setUser(userData.user);
 
-      const snippetsData = await getSnippet();
+      const snippetsData = await getUserSnippetList(id);
 
-      setSnippets(snippetsData);
+      setSnippets(snippetsData.snippetList);
+      setFiltered(snippetsData.snippetList);
     }
 
     fetchData();
   }, [id]);
 
-  const handleAllClick = () => {
-    const allSnippets = snippets.filter((snippet) => snippet.creator === id || snippet.poster === id);
+  const handleFilterClick = (filter) => {
+    let filteredSnippets;
 
-    setSnippets(allSnippets);
-  };
+    if (filter === "all") {
+      filteredSnippets = snippets.filter((snippet) => snippet.poster._id === id || snippet.creator._id === id);
+    }
 
-  const handleMyClick = () => {
-    const mySnippets = snippets.filter((snippet) => snippet.creator === id && snippet.poster === id);
+    if (filter === "my") {
+      filteredSnippets = snippets.filter((snippet) => snippet.creator._id === id && snippet.poster._id === id);
+    }
 
-    setSnippets(mySnippets);
-  };
+    if (filter === "saved") {
+      filteredSnippets = snippets.filter((snippet) => snippet.creator._id !== id && snippet.poster._id === id);
+    }
 
-  const handleSavedClick = () => {
-    const savedSnippets = snippets.filter((snippet) => snippet.creator !== id && snippet.poster === id);
-
-    setSnippets(savedSnippets);
+    setFiltered(filteredSnippets);
   };
 
   return (
@@ -139,12 +141,12 @@ export default function UserInformation() {
         {user && <UserTap user={user} />}
       </Side>
       <Menu>
-        <Button variant="filter" onClick={handleAllClick} children="ALL" />
-        <Button variant="filter" onClick={handleMyClick} children="MY" />
-        <Button variant="filter" onClick={handleSavedClick} children="SAVED" />
+        <Button variant="filter" onClick={() => handleFilterClick("all")} children="ALL" />
+        <Button variant="filter" onClick={() => handleFilterClick("my")} children="MY" />
+        <Button variant="filter" onClick={() => handleFilterClick("saved")} children="SAVED" />
         <SelectBox />
       </Menu>
-      <SnippetList snippets={snippets} />
+      <UserSnippetList snippets={filtered} />
     </Wrapper>
   );
 }
