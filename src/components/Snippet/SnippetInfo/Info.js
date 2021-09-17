@@ -101,5 +101,5 @@ Info.propTypes = {
   image: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
   isLiked: PropTypes.bool,
-  snippetId: PropTypes.string.isRequired,
+  snippetId: PropTypes.string,
 };
