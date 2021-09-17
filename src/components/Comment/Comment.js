@@ -6,6 +6,7 @@ import {
   DELETE_COMMENT_SUCCEEDED,
   OK,
 } from "../../constants/messages";
+import getDate from "../../utils/getDate";
 
 const Wrapper = styled.div`
   display: flex;
@@ -58,8 +59,7 @@ const DeleteButton = styled.div`
 
 export default function Comment({ data, snippetId, userId }) {
   const { _id: commentId, creator, content, createdAt } = data;
-
-  const formatDate = createdAt.slice(0, 10);
+  const dateFormat = getDate(createdAt);;
   const isCreator = creator._id === userId;
 
   const handleOnclick = async () => {
@@ -75,7 +75,7 @@ export default function Comment({ data, snippetId, userId }) {
       <UserImage src={creator.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
       <UserName>{creator.nickname}</UserName>
       <Content>{content}</Content>
-      <Date>{formatDate}</Date>
+      <Date>{dateFormat}</Date>
       {isCreator && <DeleteButton onClick={handleOnclick}>X</DeleteButton>}
     </Wrapper>
   );
