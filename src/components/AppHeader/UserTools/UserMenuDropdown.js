@@ -15,6 +15,7 @@ const DropdownWrapper = styled.div`
   position: absolute;
   top: 80px;
   right: 15px;
+  z-index: 100;
 `;
 
 export default function UserMenuDropdown({ onClick }) {
@@ -52,6 +53,7 @@ export default function UserMenuDropdown({ onClick }) {
         handleLoginStatus();
 
         setIsOpened(false);
+        history.push("/");
       }
     }
   };
