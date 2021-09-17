@@ -8,6 +8,8 @@ import SnippetTool from "../Snippet/SnippetTool/SnippetTool";
 import SnippetInfo from "../Snippet/SnippetInfo/SnippetInfo";
 import CodeEditor from "../CodeEditor/CodeEditor";
 
+import getDate from "../../utils/getDate";
+
 const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -43,7 +45,7 @@ export default function DetailSnippet({ snippet }) {
   const isLiked = likerList.includes(userId);
   const isFollowed = followerList.includes(userId);
 
-  const formatDate = createdAt.slice(0, 10);
+  const dateFormat = getDate(createdAt);
 
   return (
     <>
@@ -68,7 +70,7 @@ export default function DetailSnippet({ snippet }) {
         />
       </InfoWrapper>
       <Footer>
-        <Date>{formatDate}</Date>
+        <Date>{dateFormat}</Date>
         <SnippetTool
           creator={creator._id}
           language={language}
