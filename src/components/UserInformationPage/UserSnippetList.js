@@ -16,7 +16,7 @@ export default function UserSnippetList({ snippets }) {
     <Wrapper>
       <ListBox>
         {snippets && snippets.map((snippet) => (
-          <PreviewSnippet key={snippet._id} data={snippet} />
+          <PreviewSnippet key={snippet._id} data={snippet} snippetId={snippet._id} />
         ))}
       </ListBox>
     </Wrapper>
