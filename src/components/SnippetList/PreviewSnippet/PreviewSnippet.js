@@ -13,11 +13,15 @@ const SnippetBox = styled.div`
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 `;
 
-export default function PreviewSnippet({ data }) {
+export default function PreviewSnippet({ data, snippetId }) {
   const { _id, poster, language, createdAt, likerList, commentList, code, hashtagList } = data;
   const { _id: posterId, imageUrl, nickname, followerList } = poster;
 
   const formatDate = createdAt.slice(0, 10);
+
+  const userId = localStorage.getItem("userId");
+
+  const isLiked = likerList.includes(userId);
 
   const editorOptions = {
     language: language.toLowerCase(),
@@ -50,6 +54,8 @@ export default function PreviewSnippet({ data }) {
         createdAt={formatDate}
         likeCount={likerList.length}
         commentCount={commentList.length}
+        isLiked={isLiked}
+        snippetId={snippetId}
       />
     </SnippetBox>
   );
@@ -57,4 +63,5 @@ export default function PreviewSnippet({ data }) {
 
 PreviewSnippet.propTypes = {
   data: PropTypes.object.isRequired,
+  snippetId: PropTypes.string.isRequired,
 };
