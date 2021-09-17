@@ -24,31 +24,25 @@ export default function SnippetList() {
 
   const snippetList = data?.snippetList;
 
-  const getExtraSnippetList = () => {
-    if (!snippetList.length) {
-      refetch();
-
-      return;
-    }
-  };
-
-  const handleObserver = ([entry]) => {
-    if (entry.isIntersecting) {
-      getExtraSnippetList();
-    }
-  };
-
   useEffect(() => {
     const currentObservingTarget = observingTarget.current;
 
-    const observer = new IntersectionObserver(handleObserver);
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!snippetList.length) {
+          refetch();
+
+          return;
+        };
+      }
+    });
 
     if (currentObservingTarget) {
       observer.observe(currentObservingTarget);
     }
 
     return () => observer && observer.disconnect();
-  }, [snippetList]);
+  }, [refetch, snippetList.length]);
 
   if (isLoading) {
     return <div>로딩중 입니다.</div>;

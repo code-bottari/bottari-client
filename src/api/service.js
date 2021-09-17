@@ -446,8 +446,8 @@ export const getNotificationList = async () => {
     const response = await fetchData(requestUrl, options);
     const { status } = response;
 
-    if (response.status === 400) { // 리팩토링 예정
-      throw createError(response.status, "message");
+    if (status === 400) { // 리팩토링 예정
+      throw createError(status, "message");
     }
 
     const data = await response.json();
@@ -474,8 +474,8 @@ export const shareSnippet = async (resource) => {
     const response = await fetchData(requestUrl, options);
     const { status } = response;
 
-    if (response.status === 400) { // 리팩토링 예정
-      throw createError(response.status, "message");
+    if (status === 400) { // 리팩토링 예정
+      throw createError(status, "message");
     }
 
     const data = await response.json();
