@@ -22,7 +22,7 @@ const Message = styled.div`
   line-height: 100px;
 `;
 
-export default function CommentList({ snippet, userId }) {
+export default function CommentList({ snippet, userId, updateCommentList }) {
   const { _id, commentList, poster } = snippet;
 
   if (commentList.length === 0) {
@@ -32,7 +32,7 @@ export default function CommentList({ snippet, userId }) {
   return (
     <CommentListBox>
       {commentList.map((comment) => (
-        <Comment key={_id} data={comment} snippetId={_id} userId={userId} />
+        <Comment key={comment._id} data={comment} snippetId={_id} userId={userId} updateCommentList={updateCommentList} />
       ))}
     </CommentListBox>
   );

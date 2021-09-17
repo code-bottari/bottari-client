@@ -26,6 +26,7 @@ const UNKNOWN_LIKE_STATUS = "현재 좋아요 상태가 확인되지 않았습�
 const NOT_FOUND_USER = "존재하지 않는 사용자입니다.";
 const NOT_FOUND_SNIPPET = "존재하지 않는 게시물입니다.";
 const FORBIDDEN_FOLLOWING = "다른 사용자만 팔로우할 수 있습니다.";
+const COMMENT_INPUT_BLOCKED = "로그인 후 댓글을 작성할 수 있습니다.";
 const OK = "ok";
 
 export {
@@ -57,5 +58,6 @@ export {
   NOT_FOUND_USER,
   NOT_FOUND_SNIPPET,
   FORBIDDEN_FOLLOWING,
+  COMMENT_INPUT_BLOCKED,
   OK,
 };
