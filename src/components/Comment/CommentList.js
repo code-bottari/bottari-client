@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Comment from "./Comment";
 
-const CommentInputBox = styled.div`
+const CommentListBox = styled.div`
   align-items: center;
   width: 1100px;
   margin-bottom: 200px;
@@ -30,10 +30,10 @@ export default function CommentList({ snippet, userId }) {
   }
 
   return (
-    <CommentInputBox>
+    <CommentListBox>
       {commentList.map((comment) => (
         <Comment key={_id} data={comment} snippetId={_id} userId={userId} />
       ))}
-    </CommentInputBox>
+    </CommentListBox>
   );
 }
