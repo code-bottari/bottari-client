@@ -11,7 +11,7 @@ const FixedWrapper = styled.div`
 `;
 
 const Line = styled.hr`
-  margin-top: 20px;
+  margin-top: 0px;
 `;
 
 const FooterWrapper = styled.div`
