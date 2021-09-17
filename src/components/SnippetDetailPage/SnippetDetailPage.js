@@ -15,6 +15,7 @@ const SnippetBox = styled.div`
 
 export default function SnippetDetailPage() {
   const [snippet, setSnippet] = useState(null);
+  const [isCommentChanged, setIsCommentChanged] = useState(false);
 
   const { id } = useParams();
 
@@ -25,15 +26,20 @@ export default function SnippetDetailPage() {
       const { snippet } = data;
 
       setSnippet(snippet);
+      setIsCommentChanged(false);
     })();
-  }, [id]);
+  }, [id, isCommentChanged]);
+
+  const updateCommentList = () => {
+    setIsCommentChanged(true);
+  };
 
   return (
     <>
       <SnippetBox>
         {snippet && <DetailSnippet snippet={snippet} />}
       </SnippetBox>
-      {snippet && <CommentBox snippet={snippet} />}
+      {snippet && <CommentBox snippet={snippet} updateCommentList={updateCommentList} />}
     </>
   );
 };

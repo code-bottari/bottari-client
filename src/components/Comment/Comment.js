@@ -57,7 +57,7 @@ const DeleteButton = styled.div`
   cursor: pointer;
 `;
 
-export default function Comment({ data, snippetId, userId }) {
+export default function Comment({ data, snippetId, userId, updateCommentList }) {
   const { _id: commentId, creator, content, createdAt } = data;
   const dateFormat = getDate(createdAt);
   const isCreator = creator._id === userId;
@@ -67,6 +67,8 @@ export default function Comment({ data, snippetId, userId }) {
 
     if (response.result === OK) {
       alert(DELETE_COMMENT_SUCCEEDED);
+
+      updateCommentList(true);
     }
   };
 
