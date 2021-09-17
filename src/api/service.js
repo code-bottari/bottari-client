@@ -431,6 +431,33 @@ export const setLiker = async (id, taskType) => {
   }
 };
 
+export const getNotificationList = async () => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/notification`;
+
+  const options = {
+    method: GET,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (response.status === 400) { // 리팩토링 예정
+      throw createError(response.status, "message");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const shareSnippet = async (resource) => {
   const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
 
@@ -445,6 +472,7 @@ export const shareSnippet = async (resource) => {
 
   try {
     const response = await fetchData(requestUrl, options);
+    const { status } = response;
 
     if (response.status === 400) { // 리팩토링 예정
       throw createError(response.status, "message");
