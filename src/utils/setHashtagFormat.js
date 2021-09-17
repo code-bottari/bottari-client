@@ -14,6 +14,7 @@ function setHashtagFormat(event) {
   if (value === "") {
     value = "#";
   }
+
   return value;
 }
 
