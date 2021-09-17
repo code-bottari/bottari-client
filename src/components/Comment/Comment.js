@@ -2,11 +2,12 @@ import styled, { css } from "styled-components";
 
 import { deleteComment } from "../../api/service";
 
+import getDate from "../../utils/getDate";
+
 import {
   DELETE_COMMENT_SUCCEEDED,
   OK,
 } from "../../constants/messages";
-import getDate from "../../utils/getDate";
 
 const setPadding = (size) => css`
   padding-right: ${size};

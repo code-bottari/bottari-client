@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import CommentInput from "./CommentInputBox";
 import CommentList from "./CommentList";
