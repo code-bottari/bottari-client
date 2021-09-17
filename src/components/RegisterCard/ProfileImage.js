@@ -32,17 +32,19 @@ const Uploader = styled.input`
   display: none;
 `;
 
-export default function ProfileImage({ imageUrl }) {
+export default function ProfileImage({ imageUrl, canSelectImage = true }) {
   return (
     <Wrapper>
       <ProfileImageTool>
         <Image src={imageUrl || "/images/arbitrary_profile_image.jpeg"} alt="프로필 이미지" width="180" height="180" />
-        <ImageUploader>
-          <label htmlFor="uploader">
-            <img src="/images/image_uploader_icon.png" alt="이미지 첨부" width="45px" height="40px" />
-          </label>
-          <Uploader type="file" id="uploader" accept=".png, .jpg, .jpeg" />
-        </ImageUploader>
+        {canSelectImage &&
+          <ImageUploader>
+            <label htmlFor="uploader">
+              <img src="/images/image_uploader_icon.png" alt="이미지 첨부" width="45px" height="40px" />
+            </label>
+            <Uploader type="file" id="uploader" accept=".png, .jpg, .jpeg" />
+          </ImageUploader>
+        }
       </ProfileImageTool>
     </Wrapper>
   );

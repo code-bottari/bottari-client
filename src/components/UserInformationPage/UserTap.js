@@ -46,6 +46,16 @@ const NickName = styled.div`
   font-size: 35px;
 `;
 
+const EditButton = styled.button`
+  width: 90px;
+  margin: 10px auto;
+  border: 1px solid var(--color-message);
+  border-radius: 5px;
+  font-size: 15px;
+  color: var(--color-message);
+  cursor: pointer;
+`;
+
 const Input = styled.input`
   display: block;
   width: 230px;
@@ -75,8 +85,10 @@ const FollowerNumber = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  margin-left: 160px;
-  margin-bottom: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 250px;
+  margin-left: 85px;
 `;
 
 const Message = styled.p`
@@ -85,12 +97,26 @@ const Message = styled.p`
 `;
 
 export default function UserTap({ user }) {
-  const { email, nickname, imageUrl, followerList } = user;
+  const { _id: userId, email, nickname, imageUrl, followerList } = user;
 
   const [failureReason, setFailureReason] = useState();
+  const [editing, setEditing] = useState(false);
   const reference = useRef();
 
-  const handleButtonClick = async () => {
+  const loggedInId = localStorage.getItem("userId");
+  const canEdit = loggedInId === userId;
+
+  const handleEditClick = () => {
+    if (editing) {
+      setEditing(false);
+
+      return;
+    }
+
+    setEditing(true);
+  };
+
+  const handleSubmitClick = async () => {
     const nickname = reference.current.value;
 
     const validationResult = validateNickname(nickname);
@@ -116,6 +142,8 @@ export default function UserTap({ user }) {
 
     if (response.result === OK) {
       alert(USER_INFORMATION_UPDATED);
+
+      setEditing(false);
     }
   };
 
@@ -123,16 +151,18 @@ export default function UserTap({ user }) {
     <Wrapper>
       <FixedWrapper>
         <BlankBlock />
-        <ProfileImage imageUrl={imageUrl} />
+        <ProfileImage imageUrl={imageUrl} canSelectImage={editing} />
         <Information>
           <NickName>{nickname}</NickName>
-          <Input type="text" placeholder="수정할 닉네임을 입력해 주세요." ref={reference} />
+          {(canEdit && !editing) && <EditButton onClick={handleEditClick}>내 정보 수정</EditButton>}
+          {editing && <Input type="text" placeholder="수정할 닉네임을 입력해 주세요." ref={reference} />}
           <Message>{failureReason}</Message>
           <Email>{email}</Email>
           <FollowerNumber>구독자 수 : {followerList?.length}</FollowerNumber>
         </Information>
         <ButtonWrapper>
-          <Button variant="edit" children="수정하기" onClick={handleButtonClick} />
+          {editing && <Button variant="edit" children="수정하기" onClick={handleSubmitClick} />}
+          {editing && <Button variant="edit" children="수정취소" onClick={handleEditClick} />}
         </ButtonWrapper>
       </FixedWrapper>
     </Wrapper>
