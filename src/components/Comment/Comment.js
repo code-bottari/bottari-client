@@ -1,11 +1,17 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { deleteComment } from "../../api/service";
+
+import getDate from "../../utils/getDate";
 
 import {
   DELETE_COMMENT_SUCCEEDED,
   OK,
 } from "../../constants/messages";
+
+const setPadding = (size) => css`
+  padding-right: ${size};
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -45,6 +51,12 @@ const Date = styled.div`
   color: gray;
   font-size: 15px;
   font-weight: bold;
+
+  ${({ isCreator }) => {
+    if (!isCreator) {
+      return setPadding("17px");
+    }
+  }}
 `;
 
 const DeleteButton = styled.div`
@@ -56,10 +68,9 @@ const DeleteButton = styled.div`
   cursor: pointer;
 `;
 
-export default function Comment({ data, snippetId, userId }) {
+export default function Comment({ data, snippetId, userId, updateCommentList }) {
   const { _id: commentId, creator, content, createdAt } = data;
-
-  const formatDate = createdAt.slice(0, 10);
+  const dateFormat = getDate(createdAt);
   const isCreator = creator._id === userId;
 
   const handleOnclick = async () => {
@@ -67,6 +78,8 @@ export default function Comment({ data, snippetId, userId }) {
 
     if (response.result === OK) {
       alert(DELETE_COMMENT_SUCCEEDED);
+
+      updateCommentList(true);
     }
   };
 
@@ -75,7 +88,7 @@ export default function Comment({ data, snippetId, userId }) {
       <UserImage src={creator.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
       <UserName>{creator.nickname}</UserName>
       <Content>{content}</Content>
-      <Date>{formatDate}</Date>
+      <Date isCreator={isCreator}>{dateFormat}</Date>
       {isCreator && <DeleteButton onClick={handleOnclick}>X</DeleteButton>}
     </Wrapper>
   );

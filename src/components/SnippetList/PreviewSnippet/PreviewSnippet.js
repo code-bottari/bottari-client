@@ -6,6 +6,8 @@ import SnippetHeader from "./SnippetHeader";
 import SnippetFooter from "./SnippetFooter";
 import Editor from "../../CodeEditor/Editor";
 
+import getDate from "../../../utils/getDate";
+
 const SnippetBox = styled.div`
   width: 700px;
   height: 380px;
@@ -13,11 +15,11 @@ const SnippetBox = styled.div`
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 `;
 
-export default function PreviewSnippet({ data, snippetId }) {
+export default function PreviewSnippet({ data, snippetId, changedProfileImage, changedNickname }) {
   const { _id, poster, language, createdAt, likerList, commentList, code, hashtagList } = data;
   const { _id: posterId, imageUrl, nickname, followerList } = poster;
 
-  const formatDate = createdAt.slice(0, 10);
+  const dateFormat = getDate(createdAt);
 
   const userId = localStorage.getItem("userId");
 
@@ -36,8 +38,8 @@ export default function PreviewSnippet({ data, snippetId }) {
     <SnippetBox>
       <SnippetHeader
         posterId={posterId}
-        profileUrl={imageUrl}
-        nickname={nickname}
+        profileUrl={changedProfileImage || imageUrl}
+        nickname={changedNickname || nickname}
         follower={followerList}
         language={language}
         code={code}
@@ -51,7 +53,7 @@ export default function PreviewSnippet({ data, snippetId }) {
         />
       </Link>
       <SnippetFooter
-        createdAt={formatDate}
+        createdAt={dateFormat}
         likeCount={likerList.length}
         commentCount={commentList.length}
         isLiked={isLiked}

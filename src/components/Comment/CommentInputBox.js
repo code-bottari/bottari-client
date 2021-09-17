@@ -6,6 +6,7 @@ import { createComment, getUserData } from "../../api/service";
 import {
   INSUFFICIENT_COMMENT_LENGTH,
   CREATE_COMMENT_SUCCEEDED,
+  COMMENT_INPUT_BLOCKED,
   OK,
 } from "../../constants/messages";
 
@@ -46,7 +47,7 @@ const InputArea = styled.input`
   outline: none;
 `;
 
-const SearchIcon = styled.img`
+const SubmitIcon = styled.img`
   width: 30px;
   height: 25px;
   margin-top: 1px;
@@ -54,7 +55,7 @@ const SearchIcon = styled.img`
   cursor: pointer;
 `;
 
-export default function CommentInput({ snippetId, userId }) {
+export default function CommentInput({ snippetId, userId, updateCommentList }) {
   const [user, setUser] = useState({});
   const [inputText, setInputText] = useState("");
 
@@ -66,7 +67,7 @@ export default function CommentInput({ snippetId, userId }) {
     }
 
     getUser();
-  }, []);
+  }, [userId]);
 
   const handleInputChange = (event) => {
     setInputText(event.target.value);
@@ -90,6 +91,7 @@ export default function CommentInput({ snippetId, userId }) {
     if (response.result === OK) {
       alert(CREATE_COMMENT_SUCCEEDED);
 
+      updateCommentList(true);
       onReset();
     }
   };
@@ -100,10 +102,11 @@ export default function CommentInput({ snippetId, userId }) {
         <>
           <UserImage src={user.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
           <UserName>{user.nickname}</UserName>
-          <InputArea onChange={handleInputChange} />
-          <SearchIcon src="/images/send_button.png" alt="프로필 이미지" width="25px" height="25px" onClick={() => handleButtonClick()} />
+          <InputArea onChange={handleInputChange} value={inputText} />
+          <SubmitIcon src="/images/send_button.png" alt="프로필 이미지" width="25px" height="25px" onClick={() => handleButtonClick()} />
         </>
       }
+      {!user && <div>{COMMENT_INPUT_BLOCKED}</div>}
     </CommentInputBox>
   );
 }

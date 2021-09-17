@@ -446,8 +446,36 @@ export const getNotificationList = async () => {
     const response = await fetchData(requestUrl, options);
     const { status } = response;
 
-    if (status === 400) { // 리팩토링 예정
-      throw createError(status, "message");
+    if (response.status === 400) { // 리팩토링 예정
+      throw createError(response.status, "message");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const shareSnippet = async (resource) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
+
+  const options = {
+    method: POST,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(resource),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (response.status === 400) { // 리팩토링 예정
+      throw createError(response.status, "message");
     }
 
     const data = await response.json();
