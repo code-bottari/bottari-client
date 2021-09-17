@@ -11,12 +11,12 @@ const ListBox = styled.div`
   width: 700px;
 `;
 
-export default function UserSnippetList({ snippets }) {
+export default function UserSnippetList({ snippets, changedProfileImage, changedNickname }) {
   return (
     <Wrapper>
       <ListBox>
         {snippets && snippets.map((snippet) => (
-          <PreviewSnippet key={snippet._id} data={snippet} snippetId={snippet._id} />
+          <PreviewSnippet key={snippet._id} data={snippet} snippetId={snippet._id} changedProfileImage={changedProfileImage} changedNickname={changedNickname} />
         ))}
       </ListBox>
     </Wrapper>

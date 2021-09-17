@@ -15,7 +15,7 @@ const SnippetBox = styled.div`
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 `;
 
-export default function PreviewSnippet({ data, snippetId }) {
+export default function PreviewSnippet({ data, snippetId, changedProfileImage, changedNickname }) {
   const { _id, poster, language, createdAt, likerList, commentList, code, hashtagList } = data;
   const { _id: posterId, imageUrl, nickname, followerList } = poster;
 
@@ -38,8 +38,8 @@ export default function PreviewSnippet({ data, snippetId }) {
     <SnippetBox>
       <SnippetHeader
         posterId={posterId}
-        profileUrl={imageUrl}
-        nickname={nickname}
+        profileUrl={changedProfileImage || imageUrl}
+        nickname={changedNickname || nickname}
         follower={followerList}
         language={language}
         code={code}

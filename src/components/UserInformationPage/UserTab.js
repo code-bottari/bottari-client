@@ -96,24 +96,27 @@ const Message = styled.p`
   color: var(--color-message);
 `;
 
-export default function UserTab({ user }) {
+export default function UserTab({ user, changeUserImage, changeNickname, changedNickname }) {
   const { _id: userId, email, nickname, imageUrl, followerList } = user;
 
-  const [failureReason, setFailureReason] = useState();
+  const [failureReason, setFailureReason] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [profileImage, setProfileImage] = useState(imageUrl);
   const reference = useRef();
 
   const loggedInId = localStorage.getItem("userId");
   const canEdit = loggedInId === userId;
 
+  let data;
+
   const handleEditClick = () => {
-    if (isEditing) {
-      setIsEditing(false);
-
-      return;
-    }
-
     setIsEditing(true);
+  };
+
+  const handleCancelClick = () => {
+    setIsEditing(false);
+    setFailureReason("");
+    setProfileImage(imageUrl);
   };
 
   const handleSubmitClick = async () => {
@@ -127,16 +130,11 @@ export default function UserTab({ user }) {
       return;
     }
 
-    const data = await addPhoto();
+    setFailureReason("");
 
-    if (!data) {
-      alert(FAILED_UPLOAD_IMAGE);
-
-      return;
-    }
-
-    const imageUrl = typeof data === "string" ? data : data.Location;
-    const resource = { nickname, imageUrl };
+    const resource = typeof data === "string"
+      ? { nickname }
+      : { nickname, imageUrl: profileImage };
 
     const response = await modifyUserData(user._id, resource);
 
@@ -144,6 +142,22 @@ export default function UserTab({ user }) {
       alert(USER_INFORMATION_UPDATED);
 
       setIsEditing(false);
+      changeUserImage(profileImage);
+      changeNickname(nickname);
+    }
+  };
+
+  const changeProfileImage = async () => {
+    data = await addPhoto();
+
+    if (!data) {
+      alert(FAILED_UPLOAD_IMAGE);
+
+      return;
+    }
+
+    if (typeof data !== "string") {
+      setProfileImage(data.Location);
     }
   };
 
@@ -151,9 +165,9 @@ export default function UserTab({ user }) {
     <Wrapper>
       <FixedWrapper>
         <BlankBlock />
-        <ProfileImage imageUrl={imageUrl} canSelectImage={isEditing} />
+        <ProfileImage imageUrl={profileImage} canSelectImage={isEditing} changeImage={changeProfileImage} />
         <Information>
-          <NickName>{nickname}</NickName>
+          <NickName>{changedNickname || nickname}</NickName>
           {(canEdit && !isEditing) && <EditButton onClick={handleEditClick}>내 정보 수정</EditButton>}
           {isEditing && <Input type="text" placeholder="수정할 닉네임을 입력해 주세요." ref={reference} />}
           <Message>{failureReason}</Message>
@@ -162,7 +176,7 @@ export default function UserTab({ user }) {
         </Information>
         <ButtonWrapper>
           {isEditing && <Button variant="edit" children="수정하기" onClick={handleSubmitClick} />}
-          {isEditing && <Button variant="edit" children="수정취소" onClick={handleEditClick} />}
+          {isEditing && <Button variant="edit" children="수정취소" onClick={handleCancelClick} />}
         </ButtonWrapper>
       </FixedWrapper>
     </Wrapper>

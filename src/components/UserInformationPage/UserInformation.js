@@ -90,7 +90,9 @@ const Menu = styled.div`
 export default function UserInformation() {
   const [user, setUser] = useState();
   const [snippets, setSnippets] = useState([]);
-  const [filtered, setFiltered] = useState();
+  const [filtered, setFiltered] = useState(null);
+  const [profileImage, setProfileImage] = useState("");
+  const [nickname, setNickname] = useState(user?.nickname);
 
   const { id } = useParams();
 
@@ -108,6 +110,14 @@ export default function UserInformation() {
 
     fetchData();
   }, [id]);
+
+  const changeProfileImage = (image) => {
+    setProfileImage(image);
+  };
+
+  const changeNickname = (nickname) => {
+    setNickname(nickname);
+  };
 
   const handleFilterClick = (filter) => {
     let filteredSnippets;
@@ -138,7 +148,7 @@ export default function UserInformation() {
         <FollowingBar width={430} height="100vh">
           <p>This is Following List</p>
         </FollowingBar>
-        {user && <UserTab user={user} />}
+        {user && <UserTab user={user} changeUserImage={changeProfileImage} changeNickname={changeNickname} changedNickname={nickname} />}
       </Side>
       <Menu>
         <Button variant="filter" onClick={() => handleFilterClick("all")} children="ALL" />
@@ -146,7 +156,7 @@ export default function UserInformation() {
         <Button variant="filter" onClick={() => handleFilterClick("saved")} children="SAVED" />
         <SelectBox />
       </Menu>
-      <UserSnippetList snippets={filtered} />
+      <UserSnippetList snippets={filtered} changedProfileImage={profileImage} changedNickname={nickname} />
     </Wrapper>
   );
 }
