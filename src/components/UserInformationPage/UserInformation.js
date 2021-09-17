@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import NotificationBar from "./NotificationBar";
 import FollowingBar from "./FollowingBar";
-import UserTap from "./UserTap";
+import UserTab from "./UserTab";
 import SelectBox from "../AligningSelectBox/AligningSelectBox";
 import SnippetList from "../SnippetList/SnippetList";
 import Button from "../common/Button";
@@ -136,7 +136,7 @@ export default function UserInformation() {
         <FollowingBar width={430} height="100vh">
           <p>This is Following List</p>
         </FollowingBar>
-        {user && <UserTap user={user} />}
+        {user && <UserTab user={user} />}
       </Side>
       <Menu>
         <Button variant="filter" onClick={handleAllClick} children="ALL" />
