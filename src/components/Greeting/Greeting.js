@@ -22,7 +22,6 @@ const GreetMessage = styled.div`
 `;
 
 export default function Greeting() {
-
   return (
     <Background>
       <Title>BOTTARI</Title>
