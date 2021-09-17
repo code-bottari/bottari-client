@@ -27,6 +27,7 @@ const NOT_FOUND_USER = "존재하지 않는 사용자입니다.";
 const NOT_FOUND_SNIPPET = "존재하지 않는 게시물입니다.";
 const FORBIDDEN_FOLLOWING = "다른 사용자만 팔로우할 수 있습니다.";
 const COMMENT_INPUT_BLOCKED = "로그인 후 댓글을 작성할 수 있습니다.";
+const FOLLOWING_NOBODY = "구독 중인 사람이 없습니다.";
 const OK = "ok";
 
 export {
@@ -59,5 +60,6 @@ export {
   NOT_FOUND_SNIPPET,
   FORBIDDEN_FOLLOWING,
   COMMENT_INPUT_BLOCKED,
+  FOLLOWING_NOBODY,
   OK,
 };
