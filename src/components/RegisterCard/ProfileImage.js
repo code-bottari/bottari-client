@@ -32,7 +32,7 @@ const Uploader = styled.input`
   display: none;
 `;
 
-export default function ProfileImage({ imageUrl, canSelectImage = true }) {
+export default function ProfileImage({ imageUrl, canSelectImage = true, changeImage }) {
   return (
     <Wrapper>
       <ProfileImageTool>
@@ -42,7 +42,7 @@ export default function ProfileImage({ imageUrl, canSelectImage = true }) {
             <label htmlFor="uploader">
               <img src="/images/image_uploader_icon.png" alt="이미지 첨부" width="45px" height="40px" />
             </label>
-            <Uploader type="file" id="uploader" accept=".png, .jpg, .jpeg" />
+            <Uploader type="file" id="uploader" accept=".png, .jpg, .jpeg" onChange={changeImage} />
           </ImageUploader>
         }
       </ProfileImageTool>
