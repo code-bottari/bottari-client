@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 import { useMutation } from "react-query";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -46,6 +47,7 @@ const UserName = styled.div`
 `;
 
 export default function UserProfile({ posterId, profileUrl, nickname, follower, isFollowed }) {
+  const history = useHistory();
   const userId = localStorage.getItem("userId");
   const isMySelf = userId === posterId;
 
@@ -69,7 +71,11 @@ export default function UserProfile({ posterId, profileUrl, nickname, follower, 
     },
   });
 
-  const handleClick = () => {
+  const handleProfileClick = () => {
+    history.push(`/users/${posterId}`);
+  };
+
+  const handleFollowClick = () => {
     if (followerStatus.variant === FOLLOWING) {
       mutate({ posterId, taskType: REMOVE });
 
@@ -81,10 +87,10 @@ export default function UserProfile({ posterId, profileUrl, nickname, follower, 
 
   return (
     <ProfileWrapper>
-      <UserImage src={profileUrl} />
+      <UserImage src={profileUrl} onClick={handleProfileClick} />
       <Group>
-        <UserName>{nickname}</UserName>
-        <FollowButton variant={followerStatus.variant} count={followerStatus.followerNumber} onClick={!isMySelf ? handleClick : undefined} />
+        <UserName onClick={handleProfileClick}>{nickname}</UserName>
+        <FollowButton variant={followerStatus.variant} count={followerStatus.followerNumber} onClick={!isMySelf ? handleFollowClick : undefined} />
       </Group>
     </ProfileWrapper>
   );
