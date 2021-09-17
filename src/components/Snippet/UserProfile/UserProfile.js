@@ -46,7 +46,7 @@ const UserName = styled.div`
   cursor: pointer;
 `;
 
-export default function UserProfile({ posterId, profileUrl, nickname, follower, isFollowed }) {
+export default function UserProfile({ posterId, profileUrl, nickname, follower, isFollowed, isLogin }) {
   const history = useHistory();
   const userId = localStorage.getItem("userId");
   const isMySelf = userId === posterId;
@@ -90,7 +90,7 @@ export default function UserProfile({ posterId, profileUrl, nickname, follower, 
       <UserImage src={profileUrl} onClick={handleProfileClick} />
       <Group>
         <UserName onClick={handleProfileClick}>{nickname}</UserName>
-        <FollowButton variant={followerStatus.variant} count={followerStatus.followerNumber} onClick={!isMySelf ? handleFollowClick : undefined} />
+        <FollowButton variant={followerStatus.variant} count={followerStatus.followerNumber} onClick={isLogin && !isMySelf ? handleFollowClick : undefined} />
       </Group>
     </ProfileWrapper>
   );

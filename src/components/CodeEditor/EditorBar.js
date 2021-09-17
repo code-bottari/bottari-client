@@ -119,7 +119,7 @@ EditorBar.propTypes = {
   optionTypes: PropTypes.shape({
     language: PropTypes.string.isRequired,
     theme: PropTypes.string.isRequired,
-    fontSize: PropTypes.string.isRequired,
+    fontSize: PropTypes.number.isRequired,
     tab: PropTypes.number.isRequired,
   }),
   onOptionSelected: PropTypes.func.isRequired,

@@ -54,6 +54,9 @@ const LIKE_IMAGE = "/images/like.png";
 const DISLIKE_IMAGE = "/images/dislike.png";
 
 export default function Info({ type, image, count, isLiked, snippetId }) {
+  const userId = localStorage.getItem("userId");
+
+  const isLogin = userId !== null;
   const isLike = type === LIKE;
 
   const [likeStatus, setLikeStatus] = useState({
@@ -88,7 +91,7 @@ export default function Info({ type, image, count, isLiked, snippetId }) {
     <StyledInfoWrapper>
       <Button
         variant={ICON}
-        onClick={isLike ? handleClick : undefined}
+        onClick={isLogin && isLike ? handleClick : undefined}
         children={<Icon type={type} src={isLike ? likeStatus.likeIcon : image} />}
       />
       <Count>{likeStatus.showingNumber}</Count>
@@ -98,7 +101,7 @@ export default function Info({ type, image, count, isLiked, snippetId }) {
 
 Info.propTypes = {
   type: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   count: PropTypes.number.isRequired,
   isLiked: PropTypes.bool,
   snippetId: PropTypes.string,

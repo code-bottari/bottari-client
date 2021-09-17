@@ -44,6 +44,8 @@ export default function SnippetHeader({ posterId, profileUrl, nickname, follower
   const userId = localStorage.getItem("userId");
   const isFollowed = follower.includes(userId);
 
+  const isLogin = userId !== null;
+
   const handleClick = async () => {
     await navigator.clipboard.writeText(code);
 
@@ -61,6 +63,7 @@ export default function SnippetHeader({ posterId, profileUrl, nickname, follower
           nickname={nickname}
           follower={follower}
           isFollowed={isFollowed}
+          isLogin={isLogin}
         />
         <Button variant={TOOL} onClick={handleClick}>복사</Button>
       </CreatorBox>
