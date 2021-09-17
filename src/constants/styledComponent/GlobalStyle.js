@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0;
+    margin: 0 0 100px 0;
   }
 
   :root {
