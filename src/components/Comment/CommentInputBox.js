@@ -102,7 +102,7 @@ export default function CommentInput({ snippetId, userId, updateCommentList }) {
         <>
           <UserImage src={user.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
           <UserName>{user.nickname}</UserName>
-          <InputArea onChange={handleInputChange} />
+          <InputArea onChange={handleInputChange} value={inputText} />
           <SubmitIcon src="/images/send_button.png" alt="프로필 이미지" width="25px" height="25px" onClick={() => handleButtonClick()} />
         </>
       }
