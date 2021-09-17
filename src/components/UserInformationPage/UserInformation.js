@@ -90,8 +90,8 @@ const Menu = styled.div`
 export default function UserInformation() {
   const [user, setUser] = useState();
   const [snippets, setSnippets] = useState([]);
-  const [filtered, setFiltered] = useState();
-  const [profileImage, setProfileImage] = useState(user?.imageUrl);
+  const [filtered, setFiltered] = useState(null);
+  const [profileImage, setProfileImage] = useState("");
   const [nickname, setNickname] = useState(user?.nickname);
 
   const { id } = useParams();

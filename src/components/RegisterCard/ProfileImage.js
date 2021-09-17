@@ -22,6 +22,10 @@ const Image = styled.img`
   border-radius: 100%;
 `;
 
+const UploaderImage = styled.img`
+  cursor: pointer;
+`;
+
 const ImageUploader = styled.div`
   position: absolute;
   width: 45px;
@@ -32,15 +36,15 @@ const Uploader = styled.input`
   display: none;
 `;
 
-export default function ProfileImage({ imageUrl, canSelectImage = true, changeImage }) {
+export default function ProfileImage({ imageUrl, canSelectImage = true, changeImage, profileImage }) {
   return (
     <Wrapper>
       <ProfileImageTool>
-        <Image src={imageUrl || "/images/arbitrary_profile_image.jpeg"} alt="프로필 이미지" width="180" height="180" />
+        <Image src={imageUrl || profileImage} alt="프로필 이미지" width="180" height="180" />
         {canSelectImage &&
           <ImageUploader>
             <label htmlFor="uploader">
-              <img src="/images/image_uploader_icon.png" alt="이미지 첨부" width="45px" height="40px" />
+              <UploaderImage src="/images/image_uploader_icon.png" alt="이미지 첨부" width="45px" height="40px" />
             </label>
             <Uploader type="file" id="uploader" accept=".png, .jpg, .jpeg" onChange={changeImage} />
           </ImageUploader>
