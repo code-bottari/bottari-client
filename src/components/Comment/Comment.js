@@ -59,7 +59,7 @@ const DeleteButton = styled.div`
 
 export default function Comment({ data, snippetId, userId }) {
   const { _id: commentId, creator, content, createdAt } = data;
-  const dateFormat = getDate(createdAt);;
+  const dateFormat = getDate(createdAt);
   const isCreator = creator._id === userId;
 
   const handleOnclick = async () => {
