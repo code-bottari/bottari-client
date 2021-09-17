@@ -6,6 +6,7 @@ import Button from "../../common/Button";
 import { SEARCH } from "../../../constants/variants";
 
 import wordConverter from "../../../utils/wordConverter";
+import setHashtagFormat from "../../../utils/setHashtagFormat";
 
 const SearchWrapper = styled.div`
   display: flex;
@@ -36,10 +37,13 @@ const SearchInput = styled.input`
 `;
 
 export default function SearchBar() {
+  const [inputValue, setInputValue] = useState("#");
   const [searchValue, setSearchValue] = useState("");
 
-  const handleInputValue = ({ target }) => {
-    const { value } = target;
+  const handleInputValue = (event) => {
+    const value = setHashtagFormat(event);
+
+    setInputValue(value);
 
     const query = wordConverter(value);
 
@@ -49,7 +53,7 @@ export default function SearchBar() {
   return (
     <SearchWrapper>
       <SearchIcon src="/images/search_icon.png" alt="돋보기 아이콘" />
-      <SearchInput type="text" placeholder="#HashTag" onChange={handleInputValue} />
+      <SearchInput type="text" placeholder="#HashTag" onChange={handleInputValue} value={inputValue} />
       <a href={searchValue}>
         <Button variant={SEARCH} children={"검 색"} />
       </a>
