@@ -9,6 +9,7 @@ import NewSnippetPage from "./components/NewSnippetPage/NewSnippetPage";
 import RegisterCard from "./components/RegisterCard/RegisterCard";
 import UserInformation from "./components/UserInformationPage/UserInformation";
 import Footer from "./components/Footer";
+import Greeting from "./components/Greeting/Greeting";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/snippets/:id" component={SnippetDetailPage} />
           <Route path="/users/register" component={RegisterCard} />
           <Route path="/users/:id" component={UserInformation} />
+          <Route path="/slack/greeting" component={Greeting} />
         </Switch>
         <Footer />
       </Router>
