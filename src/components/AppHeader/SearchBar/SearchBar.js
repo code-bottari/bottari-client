@@ -1,12 +1,16 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import Button from "../../common/Button";
 
 import { SEARCH } from "../../../constants/variants";
 
+import wordConverter from "../../../utils/wordConverter";
+
 const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
+  width: 500px;
   height: 28px;
   padding: 5px 0px 5px 10px;
   border: solid rgba(134, 64, 249, 0.48);
@@ -22,6 +26,7 @@ const SearchIcon = styled.img`
 
 const SearchInput = styled.input`
   padding: 0px 10px;
+  width: 340px;
   border: none;
   font-size: 20px;
 
@@ -31,11 +36,23 @@ const SearchInput = styled.input`
 `;
 
 export default function SearchBar() {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleInputValue = ({ target }) => {
+    const { value } = target;
+
+    const query = wordConverter(value);
+
+    setSearchValue(query);
+  };
+
   return (
     <SearchWrapper>
       <SearchIcon src="/images/search_icon.png" alt="돋보기 아이콘" />
-      <SearchInput type="text" placeholder="#HashTag" />
-      <Button variant={SEARCH}>검 색</Button>
+      <SearchInput type="text" placeholder="#HashTag" onChange={handleInputValue} />
+      <a href={searchValue}>
+        <Button variant={SEARCH} children={"검 색"} />
+      </a>
     </SearchWrapper>
   );
 };
