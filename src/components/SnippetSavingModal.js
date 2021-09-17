@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Button from "./common/Button";
 
 import validateHashtag from "../utils/validateHashtag";
+import setHashtagFormat from "../utils/setHashtagFormat";
 
 import { EDIT } from "../constants/variants";
 import { OK } from "../constants/messages";
@@ -69,6 +70,7 @@ const Message = styled.p`
 `;
 
 export default function SnippetSavingModal({ creator, language, code, onClick }) {
+  const [inputValue, setInputValue] = useState("#");
   const [failureReason, setFailureReason] = useState("");
 
   const hashtagInput = useRef();
@@ -92,6 +94,12 @@ export default function SnippetSavingModal({ creator, language, code, onClick })
 
       history.push(`/snippets/${_id}`);
     }
+  };
+
+  const handleInputValue = (event) => {
+    const value = setHashtagFormat(event);
+
+    setInputValue(value);
   };
 
   const handleButtonClick = async () => {
@@ -124,7 +132,7 @@ export default function SnippetSavingModal({ creator, language, code, onClick })
       <Modal>
         <Label>
           해시태그
-          <Input type="text" placeholder="#HashTag #InfiniteScroll" ref={hashtagInput} />
+          <Input type="text" placeholder="#HashTag #InfiniteScroll" ref={hashtagInput} onChange={handleInputValue} value={inputValue} />
           <Message>{failureReason}</Message>
         </Label>
         <Button variant={EDIT} onClick={handleButtonClick}>저장하기</Button>

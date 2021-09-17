@@ -7,6 +7,7 @@ import CodeEditor from "../CodeEditor/CodeEditor";
 import Button from "../common/Button";
 
 import validateHashtag from "../../utils/validateHashtag";
+import setHashtagFormat from "../../utils/setHashtagFormat";
 import { createSnippet } from "../../api/service";
 
 import { OK } from "../../constants/messages";
@@ -60,6 +61,7 @@ const StyledButton = styled(Button)`
 `;
 
 export default function NewSnippetPage() {
+  const [inputValue, setInputValue] = useState("#");
   const [failureReason, setFailureReason] = useState("");
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("Python");
@@ -74,6 +76,12 @@ export default function NewSnippetPage() {
       }
     },
   });
+
+  const handleInputValue = (event) => {
+    const value = setHashtagFormat(event);
+
+    setInputValue(value);
+  };
 
   const handleButtonClick = async () => {
     const hashtags = hashtagInput.current.value;
@@ -105,7 +113,7 @@ export default function NewSnippetPage() {
       <InputContainer>
         <label>
           해시태그
-          <Input type="text" placeholder="#HashTag" ref={hashtagInput} />
+          <Input type="text" placeholder="#HashTag" ref={hashtagInput} onChange={handleInputValue} value={inputValue}/>
           <Message>{failureReason}</Message>
         </label>
       </InputContainer>
