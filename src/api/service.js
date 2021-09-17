@@ -430,3 +430,30 @@ export const setLiker = async (id, taskType) => {
     return error;
   }
 };
+
+export const getNotificationList = async () => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/notification`;
+
+  const options = {
+    method: GET,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (status === 400) { // 리팩토링 예정
+      throw createError(status, "message");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
