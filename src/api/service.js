@@ -54,6 +54,28 @@ export const getSnippet = async (id) => {
   }
 };
 
+export const getUserSnippetList = async (id) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/info/${id}`;
+
+  const options = {
+    method: GET,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const getSnippetList = async (query) => {
   const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets${query}`;
 
