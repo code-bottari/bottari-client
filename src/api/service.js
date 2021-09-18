@@ -485,3 +485,30 @@ export const shareSnippet = async (resource) => {
     return error;
   }
 };
+
+export const getFollowingList = async (id) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/following/${id}`;
+
+  const options = {
+    method: GET,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

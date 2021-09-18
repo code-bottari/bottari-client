@@ -8,6 +8,7 @@ import UserTab from "./UserTab";
 import SelectBox from "../AligningSelectBox/AligningSelectBox";
 import UserSnippetList from "./UserSnippetList";
 import Button from "../common/Button";
+import FollowingList from "./FollowingList";
 
 import { getUserData, getUserSnippetList } from "../../api/service";
 
@@ -99,11 +100,9 @@ export default function UserInformation() {
   useEffect(() => {
     async function fetchData () {
       const userData = await getUserData(id);
-
-      setUser(userData.user);
-
       const snippetsData = await getUserSnippetList(id);
 
+      setUser(userData.user);
       setSnippets(snippetsData.snippetList);
       setFiltered(snippetsData.snippetList);
     }
@@ -146,7 +145,7 @@ export default function UserInformation() {
           <Button variant="notification">환님께서 00님의 글에 좋아요를 누르셨습니다.</Button>
         </NotificationBar>
         <FollowingBar width={430} height="100vh">
-          <p>This is Following List</p>
+          <FollowingList />
         </FollowingBar>
         {user && <UserTab user={user} changeUserImage={changeProfileImage} changeNickname={changeNickname} changedNickname={nickname} />}
       </Side>
