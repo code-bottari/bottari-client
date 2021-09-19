@@ -8,7 +8,7 @@ import SnippetDetailPage from "./components/SnippetDetailPage/SnippetDetailPage"
 import NewSnippetPage from "./components/NewSnippetPage/NewSnippetPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import UserInformation from "./components/UserInformationPage/UserInformation";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import Greeting from "./components/Greeting/Greeting";
 
 export default function App() {
