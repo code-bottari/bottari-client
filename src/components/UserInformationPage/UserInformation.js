@@ -12,6 +12,12 @@ import FollowingList from "./FollowingList";
 
 import { getUserData, getUserSnippetList } from "../../api/service";
 
+import {
+  ALL,
+  MY,
+  SAVED
+} from "../../constants/filters";
+
 const Wrapper = styled.div`
   display: grid;
   position: relative;
@@ -121,15 +127,15 @@ export default function UserInformation() {
   const handleFilterClick = (filter) => {
     let filteredSnippets;
 
-    if (filter === "all") {
+    if (filter === ALL) {
       filteredSnippets = snippets.filter((snippet) => snippet.poster._id === id || snippet.creator._id === id);
     }
 
-    if (filter === "my") {
+    if (filter === MY) {
       filteredSnippets = snippets.filter((snippet) => snippet.creator._id === id && snippet.poster._id === id);
     }
 
-    if (filter === "saved") {
+    if (filter === SAVED) {
       filteredSnippets = snippets.filter((snippet) => snippet.creator._id !== id && snippet.poster._id === id);
     }
 
@@ -150,9 +156,9 @@ export default function UserInformation() {
         {user && <UserTab user={user} changeUserImage={changeProfileImage} changeNickname={changeNickname} changedNickname={nickname} />}
       </Side>
       <Menu>
-        <Button variant="filter" onClick={() => handleFilterClick("all")} children="ALL" />
-        <Button variant="filter" onClick={() => handleFilterClick("my")} children="MY" />
-        <Button variant="filter" onClick={() => handleFilterClick("saved")} children="SAVED" />
+        {[ALL, MY, SAVED].map((filter) => (
+          <Button key={filter} variant="filter" onClick={() => handleFilterClick(filter)} children={filter} />
+        ))}
         <SelectBox />
       </Menu>
       <UserSnippetList snippets={filtered} changedProfileImage={profileImage} changedNickname={nickname} />
