@@ -1,12 +1,17 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useMutation, useQueryClient } from "react-query";
 import styled from "styled-components";
 
 import Button from "../../common/Button";
 
-import { SEARCH } from "../../../constants/variants";
+import { getSnippetList } from "../../../api/service";
 
 import wordConverter from "../../../utils/wordConverter";
 import setHashtagFormat from "../../../utils/setHashtagFormat";
+
+import { SEARCH } from "../../../constants/variants";
+import { SEARCH_ICON } from "../../../constants/images";
 
 const SearchWrapper = styled.div`
   display: flex;
@@ -37,26 +42,55 @@ const SearchInput = styled.input`
 `;
 
 export default function SearchBar() {
+  const queryClient = useQueryClient();
+  const history = useHistory();
+
   const [inputValue, setInputValue] = useState("#");
   const [searchValue, setSearchValue] = useState("");
 
+  const { mutate } = useMutation(() => getSnippetList(searchValue), {
+    onSettled: async (data) => {
+      queryClient.setQueryData("snippetList", data);
+    },
+  });
+
   const handleInputValue = (event) => {
     const value = setHashtagFormat(event);
-
-    setInputValue(value);
-
     const query = wordConverter(value);
 
+    setInputValue(value);
     setSearchValue(query);
+  };
+
+  const handleSearch = () => {
+    history.push(searchValue);
+
+    mutate();
+  };
+
+  const pressEnterKey = ({ key }) => {
+    if (key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
     <SearchWrapper>
-      <SearchIcon src="/images/search_icon.png" alt="돋보기 아이콘" />
-      <SearchInput type="text" placeholder="#HashTag" onChange={handleInputValue} value={inputValue} />
-      <a href={searchValue}>
-        <Button variant={SEARCH} children={"검 색"} />
-      </a>
+      <SearchIcon
+        src={SEARCH_ICON}
+        alt="돋보기 아이콘"
+      />
+      <SearchInput
+        type="text"
+        placeholder="#HashTag"
+        onChange={handleInputValue}
+        onKeyPress={pressEnterKey}
+        value={inputValue}
+      />
+      <Button
+        variant={SEARCH}
+        children={"검 색"}
+        onClick={handleSearch} />
     </SearchWrapper>
   );
 };

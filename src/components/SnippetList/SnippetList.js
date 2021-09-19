@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import styled from "styled-components";
 
 import PreviewSnippet from "./PreviewSnippet/PreviewSnippet";
@@ -19,9 +19,13 @@ const ListBox = styled.div`
 export default function SnippetList() {
   const { search } = useLocation();
   const observingTarget = useRef();
+  const queryClient = useQueryClient();
 
   const { data, refetch, isLoading } = useQuery("snippetList", async () => await getSnippetList(search));
 
+  const a = queryClient.getQueryData("snippetList");
+  // eslint-disable-next-line no-console
+  console.log("aaa", a);
   const snippetList = data?.snippetList;
 
   useEffect(() => {
