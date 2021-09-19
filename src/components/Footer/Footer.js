@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-import { COMPANY_INFORMATION, COMPANY_NAME } from "../constants/constants";
+import {
+  COMPANY_INFORMATION,
+  COMPANY_NAME,
+} from "../../constants/constants";
 
 const FixedWrapper = styled.div`
   z-index: 100;
