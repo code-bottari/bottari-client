@@ -55,7 +55,7 @@ const SubmitIcon = styled.img`
   cursor: pointer;
 `;
 
-export default function CommentInput({ snippetId, userId, updateCommentList }) {
+export default function CommentInput({ snippetId, userId, updateCommentList, writtenComment }) {
   const [user, setUser] = useState({});
   const [inputText, setInputText] = useState("");
 
@@ -102,8 +102,8 @@ export default function CommentInput({ snippetId, userId, updateCommentList }) {
         <>
           <UserImage src={user.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
           <UserName>{user.nickname}</UserName>
-          <InputArea onChange={handleInputChange} value={inputText} />
-          <SubmitIcon src="/images/send_button.png" alt="프로필 이미지" width="25px" height="25px" onClick={() => handleButtonClick()} />
+          <InputArea onChange={handleInputChange} value={writtenComment || inputText} />
+          <SubmitIcon src="/images/send_button.png" alt="댓글 작성하기 아이콘" width="25px" height="25px" onClick={() => handleButtonClick()} />
         </>
       }
       {!user && <div>{COMMENT_INPUT_BLOCKED}</div>}

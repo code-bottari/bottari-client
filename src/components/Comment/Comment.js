@@ -1,11 +1,15 @@
+import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-
-import { deleteComment } from "../../api/service";
 
 import getDate from "../../utils/getDate";
 
+import CommentOptionButton from "./CommentOptionButton";
+
+import { modifyComment } from "../../api/service";
+
 import {
-  DELETE_COMMENT_SUCCEEDED,
+  UPDATE_COMMENT_SUCCEEDED,
+  INSUFFICIENT_COMMENT_LENGTH,
   OK,
 } from "../../constants/messages";
 
@@ -54,12 +58,13 @@ const Date = styled.div`
 
   ${({ isCreator }) => {
     if (!isCreator) {
-      return setPadding("17px");
+      return setPadding("38px");
     }
   }}
 `;
 
-const DeleteButton = styled.div`
+const OptionButton = styled(CommentOptionButton)`
+  position: absolute;
   height: 20px;
   padding-left: 10px;
   color: red;
@@ -68,28 +73,75 @@ const DeleteButton = styled.div`
   cursor: pointer;
 `;
 
-export default function Comment({ data, snippetId, userId, updateCommentList }) {
-  const { _id: commentId, creator, content, createdAt } = data;
+const InputArea = styled.input`
+  width: 850px;
+  height: 30px;
+  padding-left: 10px;
+  padding: 5px 10px 5px 13px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--caret-color);
+  color: white;
+  font-size: 20px;
+  outline: none;
+`;
+
+const SubmitIcon = styled.img`
+  width: 30px;
+  height: 25px;
+  margin-top: 1px;
+  margin-left: 20px;
+  cursor: pointer;
+`;
+
+export default function Comment({ commentData, snippetId, userId, updateCommentList }) {
+  const [isEditable, setIsEditable] = useState(false);
+  const [inputText, setInputText] = useState("");
+
+  const { _id: commentId, creator, content, createdAt } = commentData;
   const dateFormat = getDate(createdAt);
   const isCreator = creator._id === userId;
 
-  const handleOnclick = async () => {
-    const response = await deleteComment({ userId, commentId, snippetId });
+  const handleInputChange = (event) => {
+    setInputText(event.target.value);
+  };
+
+  const handleButtonClick = async () => {
+    if (!inputText.length) {
+      alert(INSUFFICIENT_COMMENT_LENGTH);
+
+      return;
+    }
+
+    const resource = { userId, snippetId, commentId, content: inputText };
+
+    const response = await modifyComment(resource);
 
     if (response.result === OK) {
-      alert(DELETE_COMMENT_SUCCEEDED);
+      alert(UPDATE_COMMENT_SUCCEEDED);
 
+      setIsEditable(false);
       updateCommentList(true);
     }
   };
+
+  useEffect(() => {
+    setInputText(content);
+  }, [content]);
 
   return (
     <Wrapper>
       <UserImage src={creator.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
       <UserName>{creator.nickname}</UserName>
-      <Content>{content}</Content>
-      <Date isCreator={isCreator}>{dateFormat}</Date>
-      {isCreator && <DeleteButton onClick={handleOnclick}>X</DeleteButton>}
+      {!isEditable &&
+        <>
+          <Content>{content}</Content>
+          <Date isCreator={isCreator}>{dateFormat}</Date>
+        </>
+      }
+      {isEditable && <InputArea value={inputText} onChange={handleInputChange} autoFocus />}
+      {isCreator && (!isEditable && <OptionButton commentId={commentId} snippetId={snippetId} userId={userId} updateCommentList={updateCommentList} setIsEditable={setIsEditable} />)}
+      {isEditable && <SubmitIcon src="/images/send_button.png" alt="댓글 수정하기 아이콘" width="25px" height="25px" onClick={() => handleButtonClick()} />}
     </Wrapper>
   );
 }

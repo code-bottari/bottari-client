@@ -32,7 +32,7 @@ export default function CommentList({ snippet, userId, updateCommentList }) {
   return (
     <CommentListBox>
       {commentList.map((comment) => (
-        <Comment key={comment._id} data={comment} snippetId={_id} userId={userId} updateCommentList={updateCommentList} />
+        <Comment key={comment._id} commentData={comment} snippetId={_id} userId={userId} updateCommentList={updateCommentList} />
       ))}
     </CommentListBox>
   );
