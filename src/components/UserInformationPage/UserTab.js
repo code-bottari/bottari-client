@@ -26,6 +26,8 @@ import {
   TERMINAL,
 } from "../../constants/themes";
 
+import { EDIT } from "../../constants/variants";
+
 const Wrapper = styled.div`
   position: absolute;
   z-index: 1;
@@ -230,8 +232,8 @@ export default function UserTab({ user, changeUserImage, changeNickname, changed
         <ButtonWrapper>
           {isEditing &&
             <>
-              <Button variant="edit" children="수정하기" onClick={handleSubmitClick} />
-              <Button variant="edit" children="수정취소" onClick={handleCancelClick} />
+              <Button variant={EDIT} children="수정하기" onClick={handleSubmitClick} />
+              <Button variant={EDIT} children="수정취소" onClick={handleCancelClick} />
             </>
           }
         </ButtonWrapper>

@@ -18,6 +18,8 @@ import {
   SAVED
 } from "../../constants/filters";
 
+import { FILTER } from "../../constants/variants";
+
 const Wrapper = styled.div`
   display: grid;
   position: relative;
@@ -157,7 +159,7 @@ export default function UserInformation() {
       </Side>
       <Menu>
         {[ALL, MY, SAVED].map((filter) => (
-          <Button key={filter} variant="filter" onClick={() => handleFilterClick(filter)} children={filter} />
+          <Button key={filter} variant={FILTER} onClick={() => handleFilterClick(filter)} children={filter} />
         ))}
         <SelectBox />
       </Menu>
