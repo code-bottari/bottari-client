@@ -515,8 +515,7 @@ export const getFollowingList = async (id) => {
 
 export const clickNotification = async (id) => {
   const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/notification/read`;
-  // eslint-disable-next-line no-console
-  console.log(id);
+
   const options = {
     method: PATCH,
     headers: {
