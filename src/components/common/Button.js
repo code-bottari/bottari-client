@@ -97,7 +97,8 @@ const buttonType = {
     focusColor: "#FFFFFF",
   },
   notification: {
-    width: "270px",
+    padding: "10px 10px",
+    width: "430px",
     margin: "2px",
     border: "1px solid #AEA5DF",
     backgroundColor: "#FFFFFF",

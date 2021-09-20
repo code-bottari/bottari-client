@@ -512,3 +512,31 @@ export const getFollowingList = async (id) => {
     return error;
   }
 };
+
+export const clickNotification = async (id) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/notification/read`;
+
+  const options = {
+    method: PATCH,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ id }),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
