@@ -103,7 +103,13 @@ export default function CommentInput({ snippetId, userId, updateCommentList, wri
           <UserImage src={user.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
           <UserName>{user.nickname}</UserName>
           <InputArea onChange={handleInputChange} value={writtenComment || inputText} />
-          <SubmitIcon src="/images/send_button.png" alt="댓글 작성하기 아이콘" width="25px" height="25px" onClick={() => handleButtonClick()} />
+          <SubmitIcon
+            src="/images/send_button.png"
+            alt="댓글 작성하기 아이콘"
+            width="25px"
+            height="25px"
+            onClick={() => handleButtonClick()}
+          />
         </>
       }
       {!user && <div>{COMMENT_INPUT_BLOCKED}</div>}

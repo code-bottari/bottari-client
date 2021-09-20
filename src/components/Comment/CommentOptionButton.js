@@ -17,14 +17,20 @@ export default function CommentOptionButton({ commentId, snippetId, userId, upda
 
   const UserMenuIcon = <img alt="댓글란 더보기 아이콘" src="/images/more.png" width="40" height="40" />;
 
-  const handleDropDown = () => {
-    setIsClicked(!isClicked);
-  };
+  const handleDropDown = () => setIsClicked(!isClicked);
 
   return (
     <CommentOptionWrapper>
       <Button variant={ICON} onClick={handleDropDown} children={UserMenuIcon} />
-      {isClicked && <CommentOptionDropdown commentId={commentId} userId={userId} snippetId={snippetId} updateCommentList={updateCommentList} setIsEditable={setIsEditable} />}
+      {isClicked && (
+        <CommentOptionDropdown
+          commentId={commentId}
+          userId={userId}
+          snippetId={snippetId}
+          updateCommentList={updateCommentList}
+          setIsEditable={setIsEditable}
+        />
+      )}
     </CommentOptionWrapper>
   );
 }

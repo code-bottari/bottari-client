@@ -102,9 +102,7 @@ export default function Comment({ commentData, snippetId, userId, updateCommentL
   const dateFormat = getDate(createdAt);
   const isCreator = creator._id === userId;
 
-  const handleInputChange = (event) => {
-    setInputText(event.target.value);
-  };
+  const handleInputChange = (event) => setInputText(event.target.value);
 
   const handleButtonClick = async () => {
     if (!inputText.length) {
@@ -133,15 +131,35 @@ export default function Comment({ commentData, snippetId, userId, updateCommentL
     <Wrapper>
       <UserImage src={creator.imageUrl} alt="프로필 이미지" width="25px" height="25px" />
       <UserName>{creator.nickname}</UserName>
-      {!isEditable &&
+      {!isEditable && (
         <>
           <Content>{content}</Content>
           <Date isCreator={isCreator}>{dateFormat}</Date>
         </>
-      }
-      {isEditable && <InputArea value={inputText} onChange={handleInputChange} autoFocus />}
-      {isCreator && (!isEditable && <OptionButton commentId={commentId} snippetId={snippetId} userId={userId} updateCommentList={updateCommentList} setIsEditable={setIsEditable} />)}
-      {isEditable && <SubmitIcon src="/images/send_button.png" alt="댓글 수정하기 아이콘" width="25px" height="25px" onClick={() => handleButtonClick()} />}
+      )}
+      {isEditable && (
+        <InputArea value={inputText} onChange={handleInputChange} autoFocus/>
+      )}
+      {isCreator && (
+        !isEditable && (
+          <OptionButton
+            commentId={commentId}
+            snippetId={snippetId}
+            userId={userId}
+            updateCommentList={updateCommentList}
+            setIsEditable={setIsEditable}
+          />
+        )
+      )}
+      {isEditable && (
+        <SubmitIcon
+          src="/images/send_button.png"
+          alt="댓글 수정하기 아이콘"
+          width="25px"
+          height="25px"
+          onClick={() => handleButtonClick()}
+        />
+      )}
     </Wrapper>
   );
 }

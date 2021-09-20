@@ -16,6 +16,11 @@ import {
   OK,
 } from "../../constants/messages";
 
+import {
+  EDIT,
+  DELETE,
+} from "../../constants/names";
+
 const DropdownWrapper = styled.div`
   position: absolute;
   right: -130px;
@@ -27,12 +32,12 @@ export default function CommentOptionDropdown({ commentId, snippetId, userId, up
   const [idOpened, setIsOpened] = useState(true);
 
   const handleCommentOptionButton = async (buttonName) => {
-    if (buttonName === "수정") {
+    if (buttonName === EDIT) {
       setIsEditable(true);
       setIsOpened(false);
     }
 
-    if (buttonName === "삭제") {
+    if (buttonName === DELETE) {
       const response = await deleteComment({ userId, commentId, snippetId });
 
       if (response.result === OK) {
@@ -45,7 +50,7 @@ export default function CommentOptionDropdown({ commentId, snippetId, userId, up
     }
   };
 
-  const commentOptionList = ["수정", "삭제"].map((text) => (
+  const commentOptionList = [EDIT, DELETE].map((text) => (
     <Button
       variant={COMMENT_OPTION}
       onClick={() => handleCommentOptionButton(text)}

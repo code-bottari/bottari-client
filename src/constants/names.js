@@ -4,6 +4,7 @@ const DELETE = "삭제";
 const SAVE = "저장";
 const COPY = "복사";
 const SHARE = "공유";
+const EDIT = "수정";
 
 export {
   REGISTRATION,
@@ -12,4 +13,5 @@ export {
   SAVE,
   COPY,
   SHARE,
+  EDIT,
 };
