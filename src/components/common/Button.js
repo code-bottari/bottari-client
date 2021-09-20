@@ -133,6 +133,15 @@ const buttonType = {
     padding: "0px",
     backgroundColor: "transparent",
   },
+  commentOption: {
+    width: "90px",
+    margin: "2px 0px",
+    backgroundColor: "#AEA5DF",
+    fontSize: "15px",
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+    hoverBackgroundColor: "#26BFA6",
+    activeBackgroundColor: "#21A18C",
+  },
 };
 
 const StyledButton = styled.button`

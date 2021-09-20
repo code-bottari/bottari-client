@@ -14,6 +14,7 @@ const SELECT = "select";
 const MESSAGE = "message";
 const DEFAULT = "default";
 const FOLLOWING = "following";
+const COMMENT_OPTION="commentOption";
 
 export {
   BASIC,
@@ -32,4 +33,5 @@ export {
   MESSAGE,
   DEFAULT,
   FOLLOWING,
+  COMMENT_OPTION,
 };

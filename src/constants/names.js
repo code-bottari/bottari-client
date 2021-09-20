@@ -4,6 +4,7 @@ const DELETE = "삭제";
 const SAVE = "저장";
 const COPY = "복사";
 const SHARE = "공유";
+const EDIT = "수정";
 const TO_HOME = "홈으로";
 
 export {
@@ -13,5 +14,6 @@ export {
   SAVE,
   COPY,
   SHARE,
+  EDIT,
   TO_HOME,
 };
