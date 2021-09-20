@@ -6,7 +6,10 @@ import Dropdown from "../common/Dropdown";
 
 import { deleteComment } from "../../api/service";
 
-import { LIST } from "../../constants/variants";
+import {
+  LIST,
+  COMMENT_OPTION,
+} from "../../constants/variants";
 
 import {
   DELETE_COMMENT_SUCCEEDED,
@@ -44,7 +47,7 @@ export default function CommentOptionDropdown({ commentId, snippetId, userId, up
 
   const commentOptionList = ["수정", "삭제"].map((text) => (
     <Button
-      variant="commentOption"
+      variant={COMMENT_OPTION}
       onClick={() => handleCommentOptionButton(text)}
       key={text}
     >
