@@ -26,10 +26,10 @@ const FooterWrapper = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 170px;
-  height: 35px;
-  margin-right: 20px;
-  opacity: 50%;
+  width: 140px;
+  height: 20px;
+  margin: 0 20px 10px 10px;
+  opacity: 80%;
 `;
 
 const Name = styled.p`
@@ -46,7 +46,7 @@ export default function Footer() {
     <FixedWrapper>
       <Line />
       <FooterWrapper>
-        <Logo src={"/images/logo.png"} />
+        <Logo src={"/images/logo-footer.png"} />
         <Name>{COMPANY_NAME}</Name>
         <Information>{COMPANY_INFORMATION}</Information>
       </FooterWrapper>
