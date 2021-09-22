@@ -36,10 +36,14 @@ export default function SnippetDetailPage() {
 
   return (
     <>
-      <SnippetBox>
-        {snippet && <DetailSnippet snippet={snippet} />}
-      </SnippetBox>
-      {snippet && <CommentBox snippet={snippet} updateCommentList={updateCommentList} />}
+      {snippet && (
+        <>
+          <SnippetBox>
+            <DetailSnippet snippet={snippet} />
+          </SnippetBox>
+          <CommentBox snippet={snippet} updateCommentList={updateCommentList} />
+        </>
+      )}
     </>
   );
 };

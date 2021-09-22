@@ -147,7 +147,7 @@ export default function UserInformation() {
         <FollowingBar width={430} height="100vh">
           <FollowingList />
         </FollowingBar>
-        {user && <UserTab user={user} changeUserImage={changeProfileImage} changeNickname={changeNickname} changedNickname={nickname} />}
+        {user && <UserTab user={user} changeUserImage={changeProfileImage} changeNickname={changeNickname} nickname={nickname} />}
       </Side>
       <Menu>
         <Button variant="filter" onClick={() => handleFilterClick("all")} children="ALL" />
@@ -155,7 +155,7 @@ export default function UserInformation() {
         <Button variant="filter" onClick={() => handleFilterClick("saved")} children="SAVED" />
         <SelectBox />
       </Menu>
-      <UserSnippetList snippets={filtered} changedProfileImage={profileImage} changedNickname={nickname} />
+      <UserSnippetList snippets={filtered} profileImage={profileImage} nickname={nickname} />
     </Wrapper>
   );
 }

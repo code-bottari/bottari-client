@@ -18,15 +18,26 @@ const StyledAceEditor = styled(AceEditor)`
   }}
 `;
 
-export default function Editor({ editorOptions, width, height, onEdit, type }) {
+const languageModes = {
+  Python: "python",
+  Java: "java",
+  JavaScript: "javascript",
+  "C#": "csharp",
+  "C/C++": "c_cpp",
+  PHP: "php",
+  R: "r",
+  "Objective-C": "objectivec",
+};
+
+export default function Editor({ width, height, language, code, onEdit, editorOptions, type }) {
   const {
-    language,
     theme,
     fontSize,
     readOnly,
-    code,
     tab,
   } = editorOptions;
+
+  const convertedLanguage = languageModes[language];
 
   const editCode = (value) => {
     onEdit(value);
@@ -38,7 +49,7 @@ export default function Editor({ editorOptions, width, height, onEdit, type }) {
       name="editor"
       width={width}
       height={height}
-      mode={language}
+      mode={convertedLanguage}
       theme={theme}
       type={type}
       fontSize={Number(fontSize)}
@@ -58,9 +69,11 @@ export default function Editor({ editorOptions, width, height, onEdit, type }) {
 }
 
 Editor.propTypes = {
-  editorOptions: PropTypes.object.isRequired,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
+  language: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
   onEdit: PropTypes.func,
+  editorOptions: PropTypes.object.isRequired,
   type: PropTypes.string,
 };

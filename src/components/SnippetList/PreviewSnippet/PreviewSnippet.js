@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQueryClient } from "react-query";
 import styled from "styled-components";
@@ -16,16 +17,16 @@ const SnippetBox = styled.div`
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 `;
 
-export default function PreviewSnippet({ data, snippetId, changedProfileImage, changedNickname }) {
-  const { _id, poster, language, createdAt, likerList, commentList, code, hashtagList } = data;
-  const { _id: posterId, imageUrl, nickname, followerList } = poster;
+export default function PreviewSnippet({ data, snippetId, profileImage, nickname }) {
+  const { _id, poster, language: defaultLanguage, createdAt, likerList, commentList, code, hashtagList } = data;
+  const { _id: posterId, imageUrl, nickname: posterNickname, followerList } = poster;
 
   const queryClient = useQueryClient();
 
   const userData = queryClient.getQueryData("user");
+  const [language, setLanguage] = useState(defaultLanguage);
 
   const editorOptions = {
-    language,
     theme: userData?.user.theme || "monokai",
     fontSize: 14,
     readOnly: true,
@@ -43,8 +44,8 @@ export default function PreviewSnippet({ data, snippetId, changedProfileImage, c
     <SnippetBox>
       <SnippetHeader
         posterId={posterId}
-        profileUrl={changedProfileImage || imageUrl}
-        nickname={changedNickname || nickname}
+        profileUrl={profileImage || imageUrl}
+        nickname={posterNickname || nickname}
         follower={followerList}
         language={language}
         code={code}
@@ -56,6 +57,9 @@ export default function PreviewSnippet({ data, snippetId, changedProfileImage, c
           width="700px"
           height="230px"
           type="preview"
+          code={code}
+          language={language}
+          onLanguageSelect={setLanguage}
         />
       </Link>
       <SnippetFooter
@@ -72,4 +76,6 @@ export default function PreviewSnippet({ data, snippetId, changedProfileImage, c
 PreviewSnippet.propTypes = {
   data: PropTypes.object.isRequired,
   snippetId: PropTypes.string.isRequired,
+  profileImage: PropTypes.string,
+  nickname: PropTypes.string,
 };
