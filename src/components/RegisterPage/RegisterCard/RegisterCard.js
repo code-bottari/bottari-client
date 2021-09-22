@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useRef, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
@@ -57,7 +56,7 @@ export default function RegisterCard() {
       return;
     }
 
-    const imageUrl = typeof data === "string" ? data : data.Location;
+    const imageUrl = typeof data === "string" ? data : profileImage;
     const idToken = await firebaseAPI.getToken();
     const resource = { idToken, nickname, imageUrl };
 
@@ -70,8 +69,6 @@ export default function RegisterCard() {
 
   const changeProfileImage = async () => {
     data = await addPhoto();
-
-    console.log("data", data);
 
     if (!data) {
       alert(FAILED_UPLOAD_IMAGE);

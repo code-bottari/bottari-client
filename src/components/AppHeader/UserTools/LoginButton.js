@@ -1,21 +1,29 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
+import { useQuery } from "react-query";
 
 import Button from "../../common/Button";
 
 import firebaseAPI from "../../../api/firebase";
-import { checkMember } from "../../../api/service";
+import { checkMember, getUserData } from "../../../api/service";
 
 import { BASIC } from "../../../constants/variants";
 
 export default function LoginButton({ handleLoginStatus }) {
-  const [idToken, setIdToken] = useState(null);
-
   const history = useHistory();
+
+  const [idToken, setIdToken] = useState(null);
+  const [userId, setUserId] = useState(null);
+
+  useQuery("user", () => getUserData(userId), {
+    enabled: !!userId,
+  });
 
   if (idToken) {
     checkMember(idToken).then(({ userId }) => {
       if (userId) {
+        setUserId(userId);
+
         localStorage.setItem("userId", userId);
 
         handleLoginStatus(true);

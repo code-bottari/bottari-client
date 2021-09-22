@@ -7,6 +7,10 @@ import PreviewSnippet from "./PreviewSnippet/PreviewSnippet";
 
 import { getSnippetList } from "../../api/service";
 
+const Loading = styled.p`
+  text-align: center;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -20,7 +24,11 @@ export default function SnippetList() {
   const { search } = useLocation();
   const observingTarget = useRef();
 
-  const { data, refetch, isLoading } = useQuery("snippetList", async () => await getSnippetList(search));
+  const {
+    data,
+    refetch,
+    isLoading,
+  } = useQuery("snippetList", async () => await getSnippetList(search));
 
   const snippetList = data?.snippetList;
 
@@ -46,7 +54,7 @@ export default function SnippetList() {
   }, [snippetList]);
 
   if (isLoading) {
-    return <div>로딩중 입니다.</div>;
+    return <Loading>로딩 중...</Loading>;
   }
 
   return (

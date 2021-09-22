@@ -1,10 +1,11 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useQueryClient } from "react-query";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import SnippetHeader from "./SnippetHeader";
-import SnippetFooter from "./SnippetFooter";
 import Editor from "../../CodeEditor/Editor";
+import SnippetFooter from "./SnippetFooter";
 
 import getDate from "../../../utils/getDate";
 
@@ -19,20 +20,24 @@ export default function PreviewSnippet({ data, snippetId, changedProfileImage, c
   const { _id, poster, language, createdAt, likerList, commentList, code, hashtagList } = data;
   const { _id: posterId, imageUrl, nickname, followerList } = poster;
 
-  const dateFormat = getDate(createdAt);
+  const queryClient = useQueryClient();
 
-  const userId = localStorage.getItem("userId");
-
-  const isLiked = likerList.includes(userId);
+  const userData = queryClient.getQueryData("user");
 
   const editorOptions = {
-    language: language.toLowerCase(),
-    theme: "monokai", // react-query로 데이터 받아오기
+    language,
+    theme: userData?.user.theme || "monokai",
     fontSize: 14,
     readOnly: true,
     code,
     tab: 2,
   };
+
+  const dateFormat = getDate(createdAt);
+
+  const userId = localStorage.getItem("userId");
+
+  const isLiked = likerList.includes(userId);
 
   return (
     <SnippetBox>
@@ -50,6 +55,7 @@ export default function PreviewSnippet({ data, snippetId, changedProfileImage, c
           editorOptions={editorOptions}
           width="700px"
           height="230px"
+          type="preview"
         />
       </Link>
       <SnippetFooter

@@ -61,9 +61,9 @@ export default function CommentInput({ snippetId, userId, updateCommentList }) {
 
   useEffect(() => {
     async function getUser() {
-      const { user } = await getUserData(userId);
+      const userData = await getUserData(userId);
 
-      setUser(user);
+      setUser(userData.user);
     }
 
     getUser();

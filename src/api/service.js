@@ -251,16 +251,17 @@ export const getUserData = async (id) => {
 
   try {
     const response = await fetchData(requestUrl, options);
+    const { status } = response;
 
-    if (response.status === 400) { // 리팩토링 예정
-      throw createError(response.status, "message");
+    if (status === 400) { // 리팩토링 예정
+      throw createError(status, "message");
     }
 
     const data = await response.json();
 
     return data;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 

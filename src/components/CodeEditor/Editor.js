@@ -1,13 +1,24 @@
 import AceEditor from "react-ace";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import "ace-builds/webpack-resolver";
 
 const StyledAceEditor = styled(AceEditor)`
   border-radius: 0px 0px 5px 5px;
+
+  ${({ type }) => {
+    if (type === "preview") {
+      return css`
+        .ace_gutter,
+        .ace_scroller {
+          cursor: pointer;
+        }
+      `;
+    }
+  }}
 `;
 
-export default function Editor({ editorOptions, width, height, onEdit }) {
+export default function Editor({ editorOptions, width, height, onEdit, type }) {
   const {
     language,
     theme,
@@ -29,6 +40,7 @@ export default function Editor({ editorOptions, width, height, onEdit }) {
       height={height}
       mode={language}
       theme={theme}
+      type={type}
       fontSize={Number(fontSize)}
       showPrintMargin={false}
       showGutter={true}
@@ -49,4 +61,6 @@ Editor.propTypes = {
   editorOptions: PropTypes.object.isRequired,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
+  onEdit: PropTypes.func,
+  type: PropTypes.string,
 };
