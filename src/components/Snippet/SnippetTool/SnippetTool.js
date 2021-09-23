@@ -15,6 +15,7 @@ import {
   SHARE,
   DELETE,
 } from "../../../constants/names";
+import Tooltip from "../../Tooltip/Tooltip";
 
 const ToolWrapper = styled.div`
   display: flex;
@@ -25,6 +26,8 @@ const ToolWrapper = styled.div`
 export default function SnippetTool({ creator, language, code, snippetId, hashtagList }) {
   const history = useHistory();
   const [isOpened, setIsOpened] = useState(false);
+  const [onTooltip, setOnTooltip] = useState(false);
+  const [tooltipPosition, setTooltipPosition] = useState(null);
   const userId = localStorage.getItem("userId");
 
   const buttons = [COPY];
@@ -38,8 +41,10 @@ export default function SnippetTool({ creator, language, code, snippetId, hashta
     buttons.push(DELETE);
   }
 
-  const handleClick = async ({ target }) => {
+  const handleClick = async ({ target, clientX, clientY }) => {
     const buttonName = target.textContent;
+    const OFFSET = 15;
+    const DELAY = 1000;
 
     if (buttonName === SAVE) {
       setIsOpened(true);
@@ -47,9 +52,20 @@ export default function SnippetTool({ creator, language, code, snippetId, hashta
     }
 
     if (buttonName === COPY) {
-      await navigator.clipboard.writeText(code);
+      if (!onTooltip) {
+        await navigator.clipboard.writeText(code);
 
-      alert("copied!");
+        setTooltipPosition({
+          left: `${clientX + OFFSET}px`,
+          top: `${clientY + OFFSET}px`,
+        });
+
+        setOnTooltip(true);
+
+        setTimeout(() => {
+          setOnTooltip(false);
+        }, DELAY);
+      }
 
       return;
     }
@@ -100,6 +116,9 @@ export default function SnippetTool({ creator, language, code, snippetId, hashta
           code={code}
           onClick={setIsOpened}
         />
+      )}
+      {onTooltip && (
+        <Tooltip tooltipPosition={tooltipPosition} content="copied!"/>
       )}
     </>
   );
