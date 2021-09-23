@@ -157,7 +157,7 @@ export default function Comment({ commentData, snippetId, userId, updateCommentL
           alt="댓글 수정하기 아이콘"
           width="25px"
           height="25px"
-          onClick={() => handleButtonClick()}
+          onClick={handleButtonClick}
         />
       )}
     </Wrapper>
