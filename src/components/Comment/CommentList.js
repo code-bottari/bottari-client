@@ -49,17 +49,15 @@ export default function CommentList({ snippet, userId, updateCommentList }) {
 
   return (
     <CommentListBox>
-      {getCurrentComments(comments)
-        .map((comment) => (
-          <Comment
-            key={comment._id}
-            commentData={comment}
-            snippetId={_id}
-            userId={userId}
-            updateCommentList={updateCommentList}
-          />
-        ))
-      }
+      {getCurrentComments(comments).map((comment) => (
+        <Comment
+          key={comment._id}
+          commentData={comment}
+          snippetId={_id}
+          userId={userId}
+          updateCommentList={updateCommentList}
+        />
+      ))}
       <PaginationBar commentsPerPage={commentsPerPage} totalComments={comments.length} paginate={setCurrentPage}></PaginationBar>
     </CommentListBox>
   );
