@@ -41,14 +41,16 @@ const SearchInput = styled.input`
   }
 `;
 
-export default function SearchBar() {
+export default function SearchBar({ resetPage }) {
   const queryClient = useQueryClient();
   const history = useHistory();
 
   const [inputValue, setInputValue] = useState("#");
   const [searchValue, setSearchValue] = useState("");
 
-  const { mutate } = useMutation(() => getSnippetList(searchValue), {
+  const resource = { page: 1 };
+
+  const { mutate } = useMutation(() => getSnippetList(resource, searchValue), {
     onSettled: async (data) => {
       queryClient.setQueryData("snippetList", data);
     },
@@ -64,6 +66,8 @@ export default function SearchBar() {
 
   const handleSearch = () => {
     history.push(searchValue);
+
+    resetPage(1);
 
     mutate();
   };

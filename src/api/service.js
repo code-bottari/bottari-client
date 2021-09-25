@@ -77,8 +77,8 @@ export const getUserSnippetList = async (id) => {
   }
 };
 
-export const getSnippetList = async (resource) => {
-  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
+export const getSnippetList = async (resource, query = "") => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets${query}`;
 
   const options = {
     method: POST,

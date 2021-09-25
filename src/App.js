@@ -20,7 +20,7 @@ export default function App() {
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
-        refetchOnmount: false,
+        refetchOnMount: false,
         refetchOnReconnect: false,
       },
     },
@@ -30,7 +30,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <GlobalStyle />
-        <AppHeader />
+        <AppHeader resetPage={setPage} />
         <Switch>
           <Route exact path="/">
             <Main page={page} onButtonClick={setPage} />

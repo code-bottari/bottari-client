@@ -16,12 +16,12 @@ const HeaderWrapper = styled.header`
   box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.3);
 `;
 
-export default function AppHeader() {
+export default function AppHeader({ resetPage }) {
   return (
     <>
       <HeaderWrapper>
         <Logo />
-        <SearchBar />
+        <SearchBar resetPage={resetPage} />
         <UserTools />
       </HeaderWrapper>
       <NavigationBar />

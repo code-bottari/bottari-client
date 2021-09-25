@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useLocation } from "react-router";
+import { useQuery, useQueryClient } from "react-query";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -21,16 +22,27 @@ const Wrapper = styled.div`
 `;
 
 export default function SnippetList({ page, onShowMoreButtonClick }) {
+  const queryClient = useQueryClient();
+  const { search: query } = useLocation();
   const [snippets, setSnippets] = useState(null);
-
   const resource = { page };
 
   const {
     refetch,
     isLoading,
-  } = useQuery("snippetList", async () => await getSnippetList(resource), {
+  } = useQuery("snippetList", async () => await getSnippetList(resource, query), {
     enabled: false,
   });
+
+  const newSnippet = queryClient.getQueryData("snippetList");
+
+  const newSnippetList = newSnippet?.snippetList;
+
+  const isNewData = JSON.stringify(snippets) === JSON.stringify(newSnippetList);
+
+  if (snippets && !isNewData) {
+    setSnippets(newSnippetList);
+  }
 
   useEffect(() => {
     (async () => {
@@ -45,7 +57,7 @@ export default function SnippetList({ page, onShowMoreButtonClick }) {
       setSnippets([...snippets, ...data.snippetList]);
     })();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, refetch]);
 
   if (isLoading) {
