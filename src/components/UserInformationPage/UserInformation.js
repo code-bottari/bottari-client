@@ -155,9 +155,6 @@ export default function UserInformation() {
         <FollowingBar width={430} height="100vh">
           <FollowingList />
         </FollowingBar>
-<<<<<<< HEAD
-        {user && <UserTab user={user} changeUserImage={changeProfileImage} changeNickname={changeNickname} nickname={nickname} />}
-=======
         {user && (
           <UserTab
             user={user}
@@ -166,7 +163,6 @@ export default function UserInformation() {
             changedNickname={nickname}
           />
         )}
->>>>>>> 3a08d0806f74e840f2f404b472840caf0dd5212e
       </Side>
       <Menu>
         {[ALL, MY, SAVED].map((filter) => (
