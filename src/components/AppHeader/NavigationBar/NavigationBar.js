@@ -34,7 +34,13 @@ export default function NavigationBar() {
   return (
     <NavigationWrapper>
       {languageList.map((language) => {
-        const addedQuery = `language=${language}`;
+        let addedQuery = `language=${language}`;
+
+        if (language === CSHARP) {
+          const formatLanguage = `${language.slice(0, 1)}%23`;
+
+          addedQuery = `language=${formatLanguage}`;
+        }
 
         const query = getQuery(addedQuery, defaultQuery);
 
