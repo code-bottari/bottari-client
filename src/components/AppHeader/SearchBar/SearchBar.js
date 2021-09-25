@@ -1,11 +1,7 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useMutation, useQueryClient } from "react-query";
 import styled from "styled-components";
 
 import Button from "../../common/Button";
-
-import { getSnippetList } from "../../../api/service";
 
 import wordConverter from "../../../utils/wordConverter";
 import setHashtagFormat from "../../../utils/setHashtagFormat";
@@ -41,20 +37,9 @@ const SearchInput = styled.input`
   }
 `;
 
-export default function SearchBar({ resetPage }) {
-  const queryClient = useQueryClient();
-  const history = useHistory();
-
+export default function SearchBar() {
   const [inputValue, setInputValue] = useState("#");
   const [searchValue, setSearchValue] = useState("");
-
-  const resource = { page: 1 };
-
-  const { mutate } = useMutation(() => getSnippetList(resource, searchValue), {
-    onSettled: async (data) => {
-      queryClient.setQueryData("snippetList", data);
-    },
-  });
 
   const handleInputValue = (event) => {
     const value = setHashtagFormat(event);
@@ -65,11 +50,7 @@ export default function SearchBar({ resetPage }) {
   };
 
   const handleSearch = () => {
-    history.push(searchValue);
-
-    resetPage(1);
-
-    mutate();
+    document.location.replace(searchValue);
   };
 
   const pressEnterKey = ({ key }) => {

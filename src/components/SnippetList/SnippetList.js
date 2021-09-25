@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 import PreviewSnippet from "./PreviewSnippet/PreviewSnippet";
 import Button from "../common/Button";
@@ -21,9 +20,10 @@ const Wrapper = styled.div`
   margin: auto;
 `;
 
-export default function SnippetList({ page, onShowMoreButtonClick }) {
-  const queryClient = useQueryClient();
+export default function SnippetList() {
   const { search: query } = useLocation();
+
+  const [page, setPage] = useState(1);
   const [snippets, setSnippets] = useState(null);
   const resource = { page };
 
@@ -33,16 +33,6 @@ export default function SnippetList({ page, onShowMoreButtonClick }) {
   } = useQuery("snippetList", async () => await getSnippetList(resource, query), {
     enabled: false,
   });
-
-  const newSnippet = queryClient.getQueryData("snippetList");
-
-  const newSnippetList = newSnippet?.snippetList;
-
-  const isNewData = JSON.stringify(snippets) === JSON.stringify(newSnippetList);
-
-  if (snippets && !isNewData) {
-    setSnippets(newSnippetList);
-  }
 
   useEffect(() => {
     (async () => {
@@ -64,7 +54,7 @@ export default function SnippetList({ page, onShowMoreButtonClick }) {
     return <Loading>로딩 중...</Loading>;
   }
 
-  const handleButtonClick = async () => onShowMoreButtonClick(page + 1);
+  const handleButtonClick = async () => setPage(page + 1);
 
   return (
     <Wrapper>
@@ -75,8 +65,3 @@ export default function SnippetList({ page, onShowMoreButtonClick }) {
     </Wrapper>
   );
 }
-
-SnippetList.propTypes = {
-  page: PropTypes.number.isRequired,
-  onShowMoreButtonClick: PropTypes.func.isRequired,
-};

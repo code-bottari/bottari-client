@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import GlobalStyle from "./constants/styledComponent/GlobalStyle";
 import AppHeader from "./components/AppHeader/AppHeader";
@@ -13,24 +13,34 @@ import ErrorPage from "./components/ErrorPage/ErrorPage";
 import Footer from "./components/Footer/Footer";
 
 export default function App() {
-  const [page, setPage] = useState(1);
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+      },
+    },
+  });
 
   return (
-    <Router>
-      <GlobalStyle />
-      <AppHeader resetPage={setPage} />
-      <Switch>
-        <Route exact path="/">
-          <Main page={page} onButtonClick={setPage} />
-        </Route>
-        <Route path="/snippets/new" component={NewSnippetPage} />
-        <Route path="/snippets/:id" component={SnippetDetailPage} />
-        <Route path="/users/register" component={RegisterPage} />
-        <Route path="/users/:id" component={UserInformation} />
-        <Route path="/error" component={ErrorPage} />
-        <Route path="/slack/greeting" component={Greeting} />
-      </Switch>
-      <Footer />
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <GlobalStyle />
+        <AppHeader />
+        <Switch>
+          <Route exact path="/">
+            <Main />
+          </Route>
+          <Route path="/snippets/new" component={NewSnippetPage} />
+          <Route path="/snippets/:id" component={SnippetDetailPage} />
+          <Route path="/users/register" component={RegisterPage} />
+          <Route path="/users/:id" component={UserInformation} />
+          <Route path="/error" component={ErrorPage} />
+          <Route path="/slack/greeting" component={Greeting} />
+        </Switch>
+        <Footer />
+      </Router>
+    </QueryClientProvider>
   );
 }
