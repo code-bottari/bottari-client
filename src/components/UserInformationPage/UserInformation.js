@@ -97,8 +97,8 @@ const Menu = styled.div`
 `;
 
 export default function UserInformation() {
-  const [user, setUser] = useState();
-  const [snippets, setSnippets] = useState([]);
+  const [user, setUser] = useState(null);
+  const [snippets, setSnippets] = useState(null);
   const [filtered, setFiltered] = useState(null);
   const [profileImage, setProfileImage] = useState("");
   const [nickname, setNickname] = useState(user?.nickname);

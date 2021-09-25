@@ -27,5 +27,5 @@ export default function UserSnippetList({ snippets, profileImage, nickname }) {
 UserSnippetList.propTypes = {
   snippets: PropTypes.array,
   profileImage: PropTypes.string.isRequired,
-  nickname: PropTypes.string.isRequired,
+  nickname: PropTypes.string,
 };
