@@ -46,9 +46,10 @@ const UserName = styled.div`
   cursor: pointer;
 `;
 
-export default function UserProfile({ posterId, profileUrl, nickname, follower, isFollowed, isLogin }) {
+export default function UserProfile({ posterId, profileUrl, nickname, follower, isFollowed }) {
   const history = useHistory();
   const userId = localStorage.getItem("userId");
+  const isLogin = userId !== undefined;
   const isMySelf = userId === posterId;
 
   const [followerStatus, setFollowerStatus] = useState({
@@ -67,7 +68,12 @@ export default function UserProfile({ posterId, profileUrl, nickname, follower, 
         return;
       }
 
-      alert(data.message); // 에러 페이지 생성 후 처리
+      history.push({
+        pathname: "/error",
+        state: {
+          message: data.message,
+        },
+      });
     },
   });
 
