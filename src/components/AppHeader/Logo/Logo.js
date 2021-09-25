@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const LogoImage = styled.img`
-  width: 240px;
+  width: 200px;
   height: 50px;
   margin-left: 30px;
 `;
@@ -9,7 +9,7 @@ const LogoImage = styled.img`
 export default function Logo() {
   return (
     <a href="/">
-      <LogoImage src="/images/logo.png" />
+      <LogoImage src="/images/logo-purple.png" />
     </a>
   );
 }

@@ -97,7 +97,8 @@ const buttonType = {
     focusColor: "#FFFFFF",
   },
   notification: {
-    width: "270px",
+    padding: "10px 10px",
+    width: "430px",
     margin: "2px",
     border: "1px solid #AEA5DF",
     backgroundColor: "#FFFFFF",
@@ -131,6 +132,15 @@ const buttonType = {
   icon: {
     padding: "0px",
     backgroundColor: "transparent",
+  },
+  commentOption: {
+    width: "90px",
+    margin: "2px 0px",
+    backgroundColor: "#AEA5DF",
+    fontSize: "15px",
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+    hoverBackgroundColor: "#26BFA6",
+    activeBackgroundColor: "#21A18C",
   },
 };
 

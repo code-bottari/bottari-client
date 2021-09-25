@@ -16,6 +16,7 @@ import {
   NOT_FOUND_SNIPPET,
   UNKNOWN_FOLLOWING_STATUS,
   UNKNOWN_LIKE_STATUS,
+  FAILED_UPDATE_COMMENT,
 } from "../constants/messages";
 
 const fetchData = async (url, options) => {
@@ -357,6 +358,42 @@ export const deleteComment = async (resource) => {
   }
 };
 
+export const modifyComment = async (resource) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/comment`;
+
+  const options = {
+    method: PATCH,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(resource),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (status === 403) {
+      throw createError(status, COMMENT_FORBIDDEN);
+    }
+
+    if (status === 422) {
+      throw createError(status, FAILED_UPDATE_COMMENT);
+    }
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const setFollower = async (id, taskType) => {
   const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/follower/${id}`;
 
@@ -512,5 +549,33 @@ export const getFollowingList = async (id) => {
     return data;
   } catch (error) {
     return error;
+  }
+};
+
+export const clickNotification = async (id) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/users/notification/read`;
+
+  const options = {
+    method: PATCH,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ id }),
+  };
+
+  try {
+    const response = await fetchData(requestUrl, options);
+    const { status } = response;
+
+    if (status === 500) {
+      throw createError(status, FAILED_FULFILLMENT);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    throw error;
   }
 };
