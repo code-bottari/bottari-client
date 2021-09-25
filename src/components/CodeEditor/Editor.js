@@ -1,21 +1,43 @@
 import AceEditor from "react-ace";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import "ace-builds/webpack-resolver";
 
 const StyledAceEditor = styled(AceEditor)`
   border-radius: 0px 0px 5px 5px;
+
+  ${({ type }) => {
+    if (type === "preview") {
+      return css`
+        .ace_gutter,
+        .ace_scroller {
+          cursor: pointer;
+        }
+      `;
+    }
+  }}
 `;
 
-export default function Editor({ editorOptions, width, height, onEdit }) {
+const languageModes = {
+  Python: "python",
+  Java: "java",
+  JavaScript: "javascript",
+  "C#": "csharp",
+  "C/C++": "c_cpp",
+  PHP: "php",
+  R: "r",
+  "Objective-C": "objectivec",
+};
+
+export default function Editor({ width, height, language, code, onEdit, editorOptions, type }) {
   const {
-    language,
     theme,
     fontSize,
     readOnly,
-    code,
     tab,
   } = editorOptions;
+
+  const convertedLanguage = languageModes[language];
 
   const editCode = (value) => {
     onEdit(value);
@@ -27,8 +49,9 @@ export default function Editor({ editorOptions, width, height, onEdit }) {
       name="editor"
       width={width}
       height={height}
-      mode={language}
+      mode={convertedLanguage}
       theme={theme}
+      type={type}
       fontSize={Number(fontSize)}
       showPrintMargin={false}
       showGutter={true}
@@ -46,7 +69,11 @@ export default function Editor({ editorOptions, width, height, onEdit }) {
 }
 
 Editor.propTypes = {
-  editorOptions: PropTypes.object.isRequired,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
+  language: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
+  onEdit: PropTypes.func,
+  editorOptions: PropTypes.object.isRequired,
+  type: PropTypes.string,
 };

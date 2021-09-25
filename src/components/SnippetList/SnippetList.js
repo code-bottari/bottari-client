@@ -1,62 +1,70 @@
-import { useEffect, useRef } from "react";
-import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import PreviewSnippet from "./PreviewSnippet/PreviewSnippet";
+import Button from "../common/Button";
 
 import { getSnippetList } from "../../api/service";
 
+const Loading = styled.p`
+  text-align: center;
+`;
+
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
-`;
-
-const ListBox = styled.div`
+  flex-direction: column;
+  align-items: center;
   width: 700px;
+  margin: auto;
 `;
 
-export default function SnippetList() {
-  const { search } = useLocation();
-  const observingTarget = useRef();
+export default function SnippetList({ page, onShowMoreButtonClick }) {
+  const [snippets, setSnippets] = useState(null);
 
-  const { data, refetch, isLoading } = useQuery("snippetList", async () => await getSnippetList(search));
+  const resource = { page };
 
-  const snippetList = data?.snippetList;
+  const {
+    refetch,
+    isLoading,
+  } = useQuery("snippetList", async () => await getSnippetList(resource), {
+    enabled: false,
+  });
 
   useEffect(() => {
-    const currentObservingTarget = observingTarget.current;
+    (async () => {
+      const { data } = await refetch();
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        if (!snippetList.length) {
-          refetch();
+      if (snippets === null) {
+        setSnippets(data.snippetList);
 
-          return;
-        };
+        return;
       }
-    });
 
-    if (currentObservingTarget) {
-      observer.observe(currentObservingTarget);
-    }
+      setSnippets([...snippets, ...data.snippetList]);
+    })();
 
-    return () => observer && observer.disconnect();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [snippetList]);
+  }, [page, refetch]);
 
   if (isLoading) {
-    return <div>로딩중 입니다.</div>;
+    return <Loading>로딩 중...</Loading>;
   }
+
+  const handleButtonClick = async () => onShowMoreButtonClick(page + 1);
 
   return (
     <Wrapper>
-      <ListBox>
-        {snippetList && snippetList.map((snippet) => (
-          <PreviewSnippet key={snippet._id} data={snippet} snippetId={snippet._id} />
-        ))}
-        <div ref={observingTarget} />
-      </ListBox>
+      {snippets && snippets.map((snippet) => (
+        <PreviewSnippet key={snippet._id} data={snippet} snippetId={snippet._id} />
+      ))}
+      <Button variant="utility" onClick={handleButtonClick} children="더 보기" />
     </Wrapper>
   );
 }
+
+SnippetList.propTypes = {
+  page: PropTypes.number.isRequired,
+  onShowMoreButtonClick: PropTypes.func.isRequired,
+};

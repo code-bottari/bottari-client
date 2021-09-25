@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CommentInput from "./CommentInputBox";
+import CommentInput from "./CommentInput";
 import CommentList from "./CommentList";
 
 const Wrapper = styled.div`

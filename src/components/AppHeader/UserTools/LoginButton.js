@@ -9,9 +9,9 @@ import { checkMember } from "../../../api/service";
 import { BASIC } from "../../../constants/variants";
 
 export default function LoginButton({ handleLoginStatus }) {
-  const [idToken, setIdToken] = useState(null);
-
   const history = useHistory();
+
+  const [idToken, setIdToken] = useState(null);
 
   if (idToken) {
     checkMember(idToken).then(({ userId }) => {

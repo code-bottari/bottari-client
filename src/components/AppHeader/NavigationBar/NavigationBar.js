@@ -17,7 +17,7 @@ import {
   PHP,
   R,
   OBJECTIVE_C,
-  OTHERS
+  OTHERS,
 } from "../../../constants/languages";
 
 const NavigationWrapper = styled.div`
@@ -26,17 +26,17 @@ const NavigationWrapper = styled.div`
   margin: 0px 20px;
 `;
 
-function NavigationBar() {
-  const { search } = useLocation();
+export default function NavigationBar() {
+  const { search: defaultQuery } = useLocation();
 
   const languageList = [ALL, PYTHON, JAVA, JAVASCRIPT, CSHARP, C_CPP, PHP, R, OBJECTIVE_C, OTHERS];
 
   return (
     <NavigationWrapper>
       {languageList.map((language) => {
-        const formatLanguage = `language=${language}`;
+        const addedQuery = `language=${language}`;
 
-        const query = getQuery(formatLanguage, search);
+        const query = getQuery(addedQuery, defaultQuery);
 
         return (
           <a key={language} href={query}>
@@ -51,5 +51,3 @@ function NavigationBar() {
     </NavigationWrapper>
   );
 }
-
-export default NavigationBar;

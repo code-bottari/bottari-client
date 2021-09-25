@@ -76,15 +76,16 @@ export const getUserSnippetList = async (id) => {
   }
 };
 
-export const getSnippetList = async (query) => {
-  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets${query}`;
+export const getSnippetList = async (resource) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
 
   const options = {
-    method: GET,
+    method: POST,
     headers: {
       "Content-Type": "application/json",
     },
     credentials: "include",
+    body: JSON.stringify(resource),
   };
 
   try {
@@ -251,16 +252,17 @@ export const getUserData = async (id) => {
 
   try {
     const response = await fetchData(requestUrl, options);
+    const { status } = response;
 
-    if (response.status === 400) { // 리팩토링 예정
-      throw createError(response.status, "message");
+    if (status === 400) { // 리팩토링 예정
+      throw createError(status, "message");
     }
 
     const data = await response.json();
 
     return data;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 
@@ -459,7 +461,7 @@ export const getNotificationList = async () => {
 };
 
 export const shareSnippet = async (resource) => {
-  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/share`;
 
   const options = {
     method: POST,

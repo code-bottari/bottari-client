@@ -13,12 +13,10 @@ const EditorWrapper = styled.div`
 
 export default function CodeEditor({ width, height, language, code, onEdit, onLanguageSelect }) {
   const [editorOptions, setEditorOption] = useState({
-    language,
     theme: "monokai",
     fontSize: 14,
     readOnly: false,
     tab: 2,
-    code,
   });
 
   const updateOption = (optionName) => {
@@ -33,16 +31,20 @@ export default function CodeEditor({ width, height, language, code, onEdit, onLa
   return (
     <EditorWrapper>
       <EditorBar
-        optionTypes={editorOptions}
-        onOptionSelected={updateOption}
         width={width}
         height={height}
+        language={language}
+        optionTypes={editorOptions}
+        onLanguageSelect={onLanguageSelect}
+        onOptionSelected={updateOption}
       />
       <Editor
-        editorOptions={editorOptions}
         width={width}
         height={height}
+        language={language}
+        code={code}
         onEdit={onEdit}
+        editorOptions={editorOptions}
       />
     </EditorWrapper>
   );
@@ -51,4 +53,8 @@ export default function CodeEditor({ width, height, language, code, onEdit, onLa
 CodeEditor.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
+  language: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onLanguageSelect: PropTypes.func.isRequired,
 };

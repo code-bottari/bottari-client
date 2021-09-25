@@ -34,10 +34,11 @@ const Date = styled.div`
 `;
 
 export default function DetailSnippet({ snippet }) {
-  const { hashtagList, creator, poster, language, likerList, commentList, createdAt, _id: snippetId, code: defaultCode } = snippet;
+  const { hashtagList, creator, poster, language: defaultLanguage, likerList, commentList, createdAt, _id: snippetId, code: defaultCode } = snippet;
 
   const { _id: posterId, nickname, imageUrl, followerList } = poster;
 
+  const [language, setLanguage] = useState(defaultLanguage);
   const [code, setCode] = useState(defaultCode);
 
   const userId = localStorage.getItem("userId");
@@ -52,7 +53,7 @@ export default function DetailSnippet({ snippet }) {
       <HashtagList
         type="detail"
         hashtags={hashtagList} />
-      <CodeEditor width="1100px" height="400px" language={language} code={code} onEdit={setCode} />
+      <CodeEditor width="1100px" height="400px" language={language} code={code} onEdit={setCode} onLanguageSelect={setLanguage} />
       <InfoWrapper>
         <UserProfile
           posterId={posterId}

@@ -117,7 +117,7 @@ export default function NewSnippetPage() {
           <Message>{failureReason}</Message>
         </label>
       </InputContainer>
-      <CodeEditor width="1000px" height="500px" code={code} onEdit={setCode} onLanguageSelect={setLanguage} />
+      <CodeEditor width="1000px" height="500px" language={language} code={code} onEdit={setCode} onLanguageSelect={setLanguage} />
       <StyledButton variant="edit" onClick={() => handleButtonClick()} children="생성하기" />
     </SnippetToolWrapper>
   );
