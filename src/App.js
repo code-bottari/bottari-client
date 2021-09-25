@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -12,7 +13,17 @@ import Footer from "./components/Footer/Footer";
 import Greeting from "./components/Greeting/Greeting";
 
 export default function App() {
-  const queryClient = new QueryClient();
+  const [page, setPage] = useState(1);
+
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnmount: false,
+        refetchOnReconnect: false,
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -20,7 +31,9 @@ export default function App() {
         <GlobalStyle />
         <AppHeader />
         <Switch>
-          <Route exact path="/" component={Main} />
+          <Route exact path="/">
+            <Main page={page} onButtonClick={setPage} />
+          </Route>
           <Route path="/snippets/new" component={NewSnippetPage} />
           <Route path="/snippets/:id" component={SnippetDetailPage} />
           <Route path="/users/register" component={RegisterPage} />

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useQueryClient } from "react-query";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -21,13 +20,10 @@ export default function PreviewSnippet({ data, snippetId, profileImage, nickname
   const { _id, poster, language: defaultLanguage, createdAt, likerList, commentList, code, hashtagList } = data;
   const { _id: posterId, imageUrl, nickname: posterNickname, followerList } = poster;
 
-  const queryClient = useQueryClient();
-
-  const userData = queryClient.getQueryData("user");
   const [language, setLanguage] = useState(defaultLanguage);
 
   const editorOptions = {
-    theme: userData?.user.theme || "monokai",
+    theme: "monokai",
     fontSize: 14,
     readOnly: true,
     code,

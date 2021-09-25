@@ -76,15 +76,16 @@ export const getUserSnippetList = async (id) => {
   }
 };
 
-export const getSnippetList = async (query) => {
-  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets${query}`;
+export const getSnippetList = async (resource) => {
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
 
   const options = {
-    method: GET,
+    method: POST,
     headers: {
       "Content-Type": "application/json",
     },
     credentials: "include",
+    body: JSON.stringify(resource),
   };
 
   try {
@@ -460,7 +461,7 @@ export const getNotificationList = async () => {
 };
 
 export const shareSnippet = async (resource) => {
-  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets`;
+  const requestUrl = `${process.env.REACT_APP_SERVER_URL}/snippets/share`;
 
   const options = {
     method: POST,
