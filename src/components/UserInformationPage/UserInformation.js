@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useQueryClient } from "react-query";
 import styled from "styled-components";
 
 import NotificationBar from "./NotificationBar";
@@ -10,7 +11,17 @@ import UserSnippetList from "./UserSnippetList";
 import Button from "../common/Button";
 import FollowingList from "./FollowingList";
 
-import { getUserData, getUserSnippetList } from "../../api/service";
+import {
+  getUserData,
+  getUserSnippetList,
+} from "../../api/service";
+
+import {
+  LIKE_ICON,
+  COMMENT_ICON,
+  NEW_SNIPPET_ICON,
+  FOLLOWER_ICON,
+} from "../../constants/images";
 
 import {
   ALL,
@@ -18,7 +29,10 @@ import {
   SAVED
 } from "../../constants/filters";
 
-import { FILTER } from "../../constants/variants";
+import {
+  FILTER,
+  NOTIFICATION,
+} from "../../constants/variants";
 
 const Wrapper = styled.div`
   display: grid;
@@ -56,6 +70,31 @@ const Side = styled.div`
   display: flex;
   position: absolute;
   height: 2000px;
+`;
+
+const ButtonWrapper = styled.div`
+  position: relative;
+`;
+
+const StyledButton = styled(Button)`
+  width: 400px;
+  margin-left: 15px;
+`;
+
+const NotificationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Icon = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+const Message = styled.div`
+  display: inline-block;
+  margin: 0px 0px 0px 5px;
 `;
 
 const Menu = styled.div`
@@ -96,6 +135,39 @@ const Menu = styled.div`
   }
 `;
 
+const selectIcon = (type) => {
+  const iconTypes = {
+    like: LIKE_ICON,
+    comment: COMMENT_ICON,
+    snippet: NEW_SNIPPET_ICON,
+    follower: FOLLOWER_ICON,
+  };
+
+  return iconTypes[type];
+};
+
+const selectAlternative = (type) => {
+  const alternativeTypes = {
+    like: "좋아요 아이콘",
+    comment: "댓글 아이콘",
+    snippet: "스니펫 아이콘",
+    follower: "팔로우 아이콘",
+  };
+
+  return alternativeTypes[type];
+};
+
+const selectMessage = (type, user) => {
+  const messageTypes = {
+    like: `${user.nickname}님께서 회원님의 스니펫을 좋아합니다.`,
+    comment: `${user.nickname}님께서 회원님의 스니펫에 댓글을 남겼습니다.`,
+    snippet: `${user.nickname}님께서 새 스니펫을 업로드하셨습니다.`,
+    follower: `${user.nickname}님께서 회원님을 팔로우하셨습니다.`,
+  };
+
+  return messageTypes[type];
+};
+
 export default function UserInformation() {
   const [user, setUser] = useState(null);
   const [snippets, setSnippets] = useState(null);
@@ -105,8 +177,14 @@ export default function UserInformation() {
 
   const { id } = useParams();
 
+  const queryClient = useQueryClient();
+
+  const notificationList = queryClient.getQueryData("notificationList")?.notificationList;
+
+  const hasNotification = !!notificationList?.length;
+
   useEffect(() => {
-    async function fetchData () {
+    async function fetchData() {
       const userData = await getUserData(id);
       const snippetsData = await getUserSnippetList(id);
 
@@ -148,9 +226,24 @@ export default function UserInformation() {
     <Wrapper>
       <Side>
         <NotificationBar width={430} height="100vh">
-          <Button variant="notification">단오님께서 00님의 글에 좋아요를 누르셨습니다.</Button>
-          <Button variant="notification">한나님께서 00님의 글에 좋아요를 누르셨습니다.</Button>
-          <Button variant="notification">환님께서 00님의 글에 좋아요를 누르셨습니다.</Button>
+          {hasNotification
+            ? notificationList.map(({ type, user, targetId: targetPath, _id: notificationId }) => (
+              <ButtonWrapper key={notificationId}>
+                <StyledButton
+                  variant={NOTIFICATION}
+                  children={
+                    <NotificationWrapper>
+                      <Icon src={selectIcon(type)} alt={selectAlternative(type)} />
+                      <Message>
+                        {selectMessage(type, user, targetPath)}
+                      </Message>
+                    </NotificationWrapper>
+                  }
+                />
+              </ButtonWrapper>
+            ))
+            : <StyledButton variant={NOTIFICATION} children="알림이 없습니다." />
+          }
         </NotificationBar>
         <FollowingBar width={430} height="100vh">
           <FollowingList />

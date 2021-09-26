@@ -24,10 +24,6 @@ const Icon = styled.img`
   outline: none;
 `;
 
-const Message = styled.div`
-  margin-left: 75px;
-`;
-
 export default function NotificationBar({ width, height, children, buttonPosition = 0 }) {
   const [position, setPosition] = useState(-width);
 
@@ -60,9 +56,7 @@ export default function NotificationBar({ width, height, children, buttonPositio
             transform: `translate(${width}px, ${buttonPosition}px)`,
           }}
         />
-        <Message>
-          {children}
-        </Message>
+        {children}
       </Bar>
     </>
   );

@@ -158,6 +158,7 @@ export default function NotificationDropdown({ notificationList, onClick }) {
         children={hasNotification
           ? notificationList.map(({ type, user, targetId: targetPath, _id: notificationId }) => {
             const path = selectPath(type, targetPath);
+
             return (
               <ButtonWrapper key={notificationId}>
                 <Button
