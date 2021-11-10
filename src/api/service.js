@@ -489,6 +489,10 @@ export const getNotificationList = async () => {
       throw createError(status, "message");
     }
 
+    if (status === 401) {
+      throw createError(status, status.message);
+    }
+
     const data = await response.json();
 
     return data;

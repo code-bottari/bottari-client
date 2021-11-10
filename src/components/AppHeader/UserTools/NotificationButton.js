@@ -25,6 +25,13 @@ export default function NotificationButton() {
     return <></>;
   }
 
+  if (data.status === 401) {
+    localStorage.removeItem("userId");
+    window.location.replace("/");
+
+    return;
+  }
+
   const filteredNotificationList = data.notificationList.filter((notification) => notification.isChecked === false);
   const hasNotification = !!filteredNotificationList.length;
 
