@@ -6,7 +6,7 @@ import ProfileImage from "../../components/RegisterPage/RegisterCard/ProfileImag
 
 import { modifyUserData } from "../../api/service";
 import validateNickname from "../../utils/validateNickname";
-import addPhoto from "../../addPhoto";
+import addPhoto from "../../api/s3";
 
 import {
   FAILED_UPLOAD_IMAGE,

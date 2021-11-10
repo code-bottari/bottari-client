@@ -1,5 +1,5 @@
-import { DEFAULT_IMAGE_URL } from "./constants/constants";
-import { EXCESSIVE_IMAGE_SIZE } from "./constants/messages";
+import { DEFAULT_IMAGE_URL } from "../constants/constants";
+import { EXCESSIVE_IMAGE_SIZE } from "../constants/messages";
 
 const bucketName = process.env.REACT_APP_S3_BUCKET_NAME;
 const bucketRegion = process.env.REACT_APP_S3_BUCKET_REGION;

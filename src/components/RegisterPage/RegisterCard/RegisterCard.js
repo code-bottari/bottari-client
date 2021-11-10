@@ -8,7 +8,7 @@ import Button from "../../common/Button";
 
 import validateNickname from "../../../utils/validateNickname";
 import firebaseAPI from "../../../api/firebase";
-import addPhoto from "../../../addPhoto";
+import addPhoto from "../../../api/s3";
 
 import { REGISTRATION } from "../../../constants/names";
 import { BASIC } from "../../../constants/variants";
