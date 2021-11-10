@@ -1,5 +1,6 @@
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import styled from "styled-components";
 
 import GlobalStyle from "./constants/styledComponent/GlobalStyle";
 import AppHeader from "./components/AppHeader/AppHeader";
@@ -12,6 +13,12 @@ import Greeting from "./components/Greeting/Greeting";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import Footer from "./components/Footer/Footer";
 
+const Message = styled.div`
+  margin-top: 40vh;
+  text-align: center;
+  font-size: 30px;
+`;
+
 export default function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -22,6 +29,12 @@ export default function App() {
       },
     },
   });
+
+  const isMobile = navigator.userAgentData.mobile;
+
+  if (isMobile) {
+    return <Message>모바일 환경에서는<br />이용이 불가합니다.</Message>;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
